@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta charset="UTF-8">
+</head>
+<body>
+<form action='' method="post">
+    {% csrf_token %}
+    <table>
+        <input type="text" placeholder="username" name="username">
+        <input type="email" placeholder="email" name="email">
+        <input type="text" placeholder="restaurant" name="restaurant">
+        <input type="password" placeholder="password" name="password">
+    </table>
+    <input class="submit-button" type="submit" value="Register">
+</form>
+
+</body>
+</html>
