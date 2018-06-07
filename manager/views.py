@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from .models import Manager, Restaurant
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 
 
 def home(request):
@@ -19,3 +20,8 @@ def home(request):
         new_manager.save()
         return HttpResponseRedirect('login')
     return render(request, 'home.html')
+
+
+@login_required()
+def login_home(request):
+    return render(request, 'login_home.html')

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Home</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta charset="UTF-8">
+</head>
+<body>
+  <div style="outline-style: solid;">
+  <h1>Chefs</h1>
+  {% for chef in request.user.manager.restaurant.chef.all %}
+    Id: {{ chef.chef_id }}
+  {% endfor %}
+</div>
+<div style="outline-style: solid;">
+  <h1>Tables</h1>
+
+</div>
+</body>
+</html>
