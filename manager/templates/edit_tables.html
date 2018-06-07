@@ -9,18 +9,14 @@
 </head>
 <body>
   <h1>Tables</h1><a href="add-table/{{ request.user.manager.restaurant.id }}"> Add</a>
-  {% if request.user.manager.restaurant.table.all.count > 0 %}
   {% for table in request.user.manager.restaurant.table.all %}
 <div style="outline-style: solid;">
 <h2>Table Number: {{ table.table_number }} ({{ table.seat.all.count }})</h2>
 <h4><a href="add-seat/{{ table.id }}/{{ table.seat.all.count }}"> Add Seat</a></h4>
-{% if table.seat.all.count > 0 %}
 <h4><a href="remove-seat/{{ table.seat.all.first }}"> Remove Seat</a></h4>
-{% endif %}
 </div>
 
 {% endfor %}
-{% endif %}
 
 
 </div>

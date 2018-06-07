@@ -53,4 +53,4 @@ def add_table(request, restaurant_id):
     table_num = Table.objects.count() + 1
     table = Table(restaurant=restaurant_object, table_number=table_num)
     table.save()
-    return render(request, 'edit_tables.html')
+    return HttpResponseRedirect('/manager/home/edit-tables')

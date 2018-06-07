@@ -10,30 +10,24 @@
 <body>
   <div style="outline-style: solid;">
   <h1>Chefs</h1>
-  {% if request.user.manager.restaurant.table.all.count > 0 %}
   {% for chef in request.user.manager.restaurant.chef.all %}
     Id: {{ chef.chef_id }}
   {% endfor %}
-  {% endif %}
 
 </div>
 <div style="outline-style: solid;">
   <h1>Tables <a href="edit-tables">Edit</a></h1>
-  {% if request.user.manager.restaurant.table.all.count > 0 %}
   {% for table in request.user.manager.restaurant.table.all %}
     Table Number: {{ table.table_number }} ({{ table.seat.all.count }})
   {% endfor %}
-  {% endif %}
 
 </div>
 <div style="outline-style: solid;">
   <h1>Dishes</h1>
-  {% if request.user.manager.restaurant.dish.all.count > 0 %}
 
   {% for dish in request.user.manager.restaurant.dish.all %}
     Id: {{ dish.dish_id }}
   {% endfor %}
-  {% endif %}
 
 </div>
 </body>
