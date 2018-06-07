@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
+# from django.db.models.signals import post_save
 
 
 class Restaurant(models.Model):
@@ -32,7 +32,7 @@ class Manager(models.Model):
 
 class Table(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='table')
-    table_number = models.IntegerField(primary_key=True)
+    table_number = models.IntegerField(default=0)
 
     def __str__(self):
         return self.table_number
@@ -40,7 +40,7 @@ class Table(models.Model):
 
 class Seat(models.Model):
     table = models.ForeignKey(Table, on_delete=models.CASCADE, related_name='seat')
-    seat_number = models.IntegerField(primary_key=True)
+    seat_number = models.IntegerField(default=0)
     payed = models.BooleanField(default=False)
 
     def __str__(self):
@@ -48,10 +48,10 @@ class Seat(models.Model):
 
 
 class Dish(models.Model):
-    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='dish')
-    dish_id = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=100)
-    description = models.CharField(max_length=500)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='dish', default='')
+    dish_number = models.IntegerField(default=0)
+    name = models.CharField(null=True, max_length=100)
+    description = models.CharField(max_length=500, default="")
 
     def __str__(self):
         return self.name
