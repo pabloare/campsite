@@ -33,7 +33,9 @@ def edit_tables(request):
 
 
 @login_required()
-def remove_seat(request, seat):
+def remove_seat(request, table):
+    table_object = Table.objects.get(pk=table)
+    seat = Seat.objects.filter(table=table_object).last()
     seat.delete()
     return render(request, 'edit_tables.html')
 
@@ -46,11 +48,11 @@ def add_seat(request, table, count):
     seat_object.save()
     return render(request, 'edit_tables.html')
 
-# HAVE TODO DELETE DATABASE AND RESTART IT
+
 @login_required()
 def add_table(request, restaurant_id):
     restaurant_object = Restaurant.objects.get(pk=restaurant_id)
-    table_num = Table.objects.count() + 1
+    table_num = Table.objects.filter(restaurant=restaurant_object).count() + 1
     table = Table(restaurant=restaurant_object, table_number=table_num)
     table.save()
     return HttpResponseRedirect('/manager/home/edit-tables')

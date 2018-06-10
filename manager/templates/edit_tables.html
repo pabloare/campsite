@@ -8,12 +8,12 @@
     <meta charset="UTF-8">
 </head>
 <body>
-  <h1>Tables</h1><a href="add-table/{{ request.user.manager.restaurant.id }}"> Add</a>
+  <h1>Tables</h1><a href="/manager/home/add-table/{{ request.user.manager.restaurant.id }}"> Add</a>
   {% for table in request.user.manager.restaurant.table.all %}
 <div style="outline-style: solid;">
 <h2>Table Number: {{ table.table_number }} ({{ table.seat.all.count }})</h2>
-<h4><a href="add-seat/{{ table.id }}/{{ table.seat.all.count }}"> Add Seat</a></h4>
-<h4><a href="remove-seat/{{ table.seat.all.first }}"> Remove Seat</a></h4>
+<h4><a href="/manager/home/edit-tables/add-seat/{{ table.id }}/{{ table.seat.all.count }}"> Add Seat</a></h4>
+<h4><a href="/manager/home/edit-tables/remove-seat/{{ table.id }}"> Remove Seat</a></h4>
 </div>
 
 {% endfor %}
