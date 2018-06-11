@@ -9,7 +9,7 @@
 </head>
 <body>
   <div style="outline-style: solid;">
-  <h1>Chefs</h1>
+  <h1>Chefs<a href="edit-chef">Edit</a></h1>
   {% for chef in request.user.manager.restaurant.chef.all %}
     Id: {{ chef.chef_id }}
   {% endfor %}

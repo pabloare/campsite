@@ -9,6 +9,7 @@
 </head>
 <body>
   <h1>Tables</h1>
+  <a href="/manager/home/">Go back </a>
   <p>To delete a table remove all seats</p>
   <a href="/manager/home/add-table/{{ request.user.manager.restaurant.id }}"> Add</a>
   {% for table in request.user.manager.restaurant.table.all %}

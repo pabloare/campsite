@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import home, login_home, edit_tables, remove_seat, add_seat, add_table
+from .views import home, login_home, edit_tables, remove_seat, add_seat, add_table, edit_chef
 from django.contrib.auth.views import login
 
 urlpatterns = [
@@ -9,6 +9,7 @@ urlpatterns = [
     path('home/edit-tables', edit_tables),
     path('home/edit-tables/remove-seat/<table>', remove_seat),
     path('home/edit-tables/add-seat/<table>/<int:count>', add_seat),
-    path('home/add-table/<int:restaurant_id>', add_table)
+    path('home/add-table/<int:restaurant_id>', add_table),
+    path('home/edit-chef', edit_chef),
 
 ]

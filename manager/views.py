@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from .models import Manager, Restaurant, Table, Seat
+from chef.models import Chef
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
@@ -43,7 +44,7 @@ def remove_seat(request, table):
                 table.table_number = table.table_number - 1
                 table.save()
         table_object.delete()
-    return render(request, 'edit_tables.html')
+    return HttpResponseRedirect('/manager/home/edit-tables')
 
 
 @login_required()
@@ -52,7 +53,7 @@ def add_seat(request, table, count):
     new_count = count + 1
     seat_object = Seat(table=table_object, seat_number=new_count, payed=False)
     seat_object.save()
-    return render(request, 'edit_tables.html')
+    return HttpResponseRedirect('/manager/home/edit-tables')
 
 
 @login_required()
@@ -62,3 +63,14 @@ def add_table(request, restaurant_id):
     table = Table(restaurant=restaurant_object, table_number=table_num)
     table.save()
     return HttpResponseRedirect('/manager/home/edit-tables')
+
+
+@login_required()
+def edit_chef(request):
+    if request.method == 'POST':
+        chef_id = request.POST['chef_id']
+        restaurant = request.user.manager.restaurant
+        chef = Chef(chef_id=chef_id, restaurant=restaurant, accumulator=0, active=False)
+        chef.save()
+        return HttpResponseRedirect('/manager/home/edit-chef')
+    return render(request, 'edit_chef.html')
