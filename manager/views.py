@@ -37,6 +37,12 @@ def remove_seat(request, table):
     table_object = Table.objects.get(pk=table)
     seat = Seat.objects.filter(table=table_object).last()
     seat.delete()
+    if Seat.objects.filter(table=table_object).count() == 0:
+        for table in Table.objects.filter(restaurant=table_object.restaurant):
+            if table.table_number > table_object.table_number:
+                table.table_number = table.table_number - 1
+                table.save()
+        table_object.delete()
     return render(request, 'edit_tables.html')
 
 

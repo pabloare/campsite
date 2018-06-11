@@ -35,7 +35,9 @@ class Table(models.Model):
     table_number = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.table_number
+        return str(self.table_number)
+
+
 
 
 class Seat(models.Model):
@@ -44,7 +46,8 @@ class Seat(models.Model):
     payed = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.seat_number
+        return str(self.seat_number)
+
 
 
 class Dish(models.Model):
