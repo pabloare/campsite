@@ -74,3 +74,24 @@ def edit_chef(request):
         chef.save()
         return HttpResponseRedirect('/manager/home/edit-chef')
     return render(request, 'edit_chef.html')
+
+
+@login_required()
+def remove_chef(request, chef_id):
+    restaurant = request.user.manager.restaurant
+    chef = Chef.objects.get(chef_id=chef_id, restaurant=restaurant)
+    chef.delete()
+    return HttpResponseRedirect('/manager/home/edit-chef')
+
+
+@login_required()
+def activate_chef(request, cid):
+    restaurant = request.user.manager.restaurant
+    chef = Chef.objects.get(chef_id=cid, restaurant=restaurant)
+    if chef.active:
+        chef.active = False
+        chef.save()
+    elif not chef.active:
+        chef.active = True
+        chef.save()
+    return HttpResponseRedirect('/manager/home/edit-chef')
