@@ -70,7 +70,7 @@ def edit_chef(request):
     if request.method == 'POST':
         restaurant = request.user.manager.restaurant
         chef_id = request.POST['chef_id']
-        chefs = Dish.objects.filter(restaurant=restaurant)
+        chefs = Chef.objects.filter(restaurant=restaurant)
         if chefs.filter(chef_id=chef_id).exists():
             return render(request, 'edit_chef.html', {'error': True})
         chef = Chef(chef_id=chef_id, restaurant=restaurant, accumulator=0, active=False)

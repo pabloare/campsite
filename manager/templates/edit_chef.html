@@ -11,6 +11,9 @@
   <div style="outline-style: solid;">
   <h1>Chefs</h1>
   <h3> Add a Chef </h3>
+  {% if error == True %}
+  <p>There already exists a Chef with that ID. Choose another one!</p>
+  {% endif %}
   <form class="register-form" action='' method="post">
       {% csrf_token %}
       <table>
