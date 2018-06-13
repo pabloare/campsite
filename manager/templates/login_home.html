@@ -23,7 +23,7 @@
 
 </div>
 <div style="outline-style: solid;">
-  <h1>Dishes</h1>
+  <h1>Dishes <a href="edit-dish">Edit</a></h1>
 
   {% for dish in request.user.manager.restaurant.dish.all %}
     Id: {{ dish.dish_id }}

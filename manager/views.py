@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from .models import Manager, Restaurant, Table, Seat
+from .models import Manager, Restaurant, Table, Seat, Dish
 from chef.models import Chef
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
@@ -68,12 +68,15 @@ def add_table(request, restaurant_id):
 @login_required()
 def edit_chef(request):
     if request.method == 'POST':
-        chef_id = request.POST['chef_id']
         restaurant = request.user.manager.restaurant
+        chef_id = request.POST['chef_id']
+        chefs = Dish.objects.filter(restaurant=restaurant)
+        if chefs.filter(chef_id=chef_id).exists():
+            return render(request, 'edit_chef.html', {'error': True})
         chef = Chef(chef_id=chef_id, restaurant=restaurant, accumulator=0, active=False)
         chef.save()
         return HttpResponseRedirect('/manager/home/edit-chef')
-    return render(request, 'edit_chef.html')
+    return render(request, 'edit_chef.html', {'error': False})
 
 
 @login_required()
@@ -95,3 +98,20 @@ def activate_chef(request, cid):
         chef.active = True
         chef.save()
     return HttpResponseRedirect('/manager/home/edit-chef')
+
+
+@login_required()
+def add_dish(request):
+    if request.method == 'POST':
+        rest = request.user.manager.restaurant
+        dish_num = request.POST['dish_num']
+        dish_n = int(dish_num)
+        dishes = Dish.objects.filter(restaurant=rest)
+        if dishes.filter(dish_number=dish_n).exists():
+            return render(request, 'edit_dish.html', {'error': True})
+        desc = request.POST['dish_desc']
+        d_name = request.POST['dish_name']
+        dish = Dish(restaurant=rest, dish_number=dish_n, description=desc, name=d_name)
+        dish.save()
+        return HttpResponseRedirect('/manager/home/edit-dish')
+    return render(request, 'edit_dish.html', {'error': False})

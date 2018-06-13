@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Edit Chefs</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta charset="UTF-8">
+</head>
+<body>
+  <div style="outline-style: solid;">
+  <h1>Chefs</h1>
+  <h3> Add a Dish </h3>
+  {% if error == True %}
+  <p>The dish number already exists. Choose another one!</p>
+  {% endif %}
+  <form class="register-form" action='' method="post">
+      {% csrf_token %}
+      <table>
+        <input type="text" placeholder="Dish #" name="dish_num" required> <p> Dish Number has to be unique for each dish </p>
+        <input type="text" placeholder="Dish Name" name="dish_name" required>
+        <input type="text" placeholder="Dish Description" name="dish_desc" required>
+      </table>
+      <input type="submit" value="Add Dish">
+  </form>
+  {% for dish in request.user.manager.restaurant.dish.all %}
+<div style="outline-style: solid;">
+<h2>Dish #: {{ dish.dish_number }}</h2>
+<h3> Dish Name: {{ dish.name }}</h3>
+<p> Description: {{ dish.description }} </p>
+<h4><a href="/manager/home/edit-chef/remove-chef/{{ chef.chef_id }}"> Remove Dish</a></h4>
+</div>
+
+{% endfor %}
+
+</div>
+</body>
+</html>

@@ -3,7 +3,7 @@ from manager.models import Restaurant
 
 
 class Chef(models.Model):
-    chef_id = models.CharField(primary_key=True, max_length=70)
+    chef_id = models.CharField(max_length=70, default="")
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='chef')
     accumulator = models.IntegerField(default=0)
     active = models.BooleanField(default=False)
