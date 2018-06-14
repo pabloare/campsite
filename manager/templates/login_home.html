@@ -11,14 +11,14 @@
   <div style="outline-style: solid;">
   <h1>Chefs<a href="edit-chef">Edit</a></h1>
   {% for chef in request.user.manager.restaurant.chef.all %}
-    Id: {{ chef.chef_id }}
+  <p>  Id: {{ chef.chef_id }} </p>
   {% endfor %}
 
 </div>
 <div style="outline-style: solid;">
   <h1>Tables <a href="edit-tables">Edit</a></h1>
   {% for table in request.user.manager.restaurant.table.all %}
-    Table Number: {{ table.table_number }} ({{ table.seat.all.count }})
+    <p>Table Number: {{ table.table_number }}, Number of Seats:({{ table.seat.all.count }})</p>
   {% endfor %}
 
 </div>
@@ -26,7 +26,7 @@
   <h1>Dishes <a href="edit-dish">Edit</a></h1>
 
   {% for dish in request.user.manager.restaurant.dish.all %}
-    Id: {{ dish.dish_id }}
+  <p>  Id: {{ dish.dish_number }}, Name : {{ dish.name }}</p>
   {% endfor %}
 
 </div>

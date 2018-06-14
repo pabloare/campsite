@@ -115,3 +115,11 @@ def add_dish(request):
         dish.save()
         return HttpResponseRedirect('/manager/home/edit-dish')
     return render(request, 'edit_dish.html', {'error': False})
+
+
+@login_required()
+def remove_dish(request, dish_num):
+    res = request.user.manager.restaurant
+    dish = Dish.objects.filter(restaurant=res).get(dish_number=dish_num)
+    dish.delete()
+    return HttpResponseRedirect('/manager/home/edit-dish')

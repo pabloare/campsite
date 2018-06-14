@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import home, login_home, edit_tables, remove_seat, add_seat
 from .views import add_table, edit_chef, remove_chef, activate_chef, add_dish
+from .views import remove_dish
 from django.contrib.auth.views import login
 
 urlpatterns = [
@@ -15,5 +16,6 @@ urlpatterns = [
     path('home/edit-chef/remove-chef/<chef_id>', remove_chef),
     path('home/edit-chef/activate-chef/<cid>', activate_chef),
     path('home/edit-dish', add_dish),
+    path('home/edit-dish/remove-dish/<int:dish_num>', remove_dish),
 
 ]
