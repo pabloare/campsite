@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Chef Login</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta charset="UTF-8">
+</head>
+<body>
+  <div style="outline-style: solid;">
+    <h1>Chef Login </h1>
+  <form class="register-form" action='' method="post">
+      {% csrf_token %}
+      <table>
+        <p>Your Chef ID </p><input type="text" placeholder="Chef ID" name="chef_id" required>
+         <p> Forgot Chef Id? Ask your manager for it!</p>
+         <p> Rememeber to <em>not</em> share your ID! It is unique for you!</p>
+         <select name="select-res" required>
+           <p>Select the restaurant you work in </p>
+         {% for restaurant in restaurants %}
+         <option value="{{ restaurant.id }}"> {{ restaurant.name }}</option>
+         {% endfor %}
+       </select>
+      </table>
+      <input type="submit">
+      <a href="/"class="goback">Go back</a>
+    </form>
+</div>
+</body>
+</html>
