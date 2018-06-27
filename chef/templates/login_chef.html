@@ -11,6 +11,9 @@
   <div style="outline-style: solid;">
     <h1>Chef Login </h1>
   <form class="register-form" action='' method="post">
+    {% if error %}
+    <h3> The Chef ID you submitted does not exist. Contact Manager for further assistance</h3>
+    {% endif %}
       {% csrf_token %}
       <table>
         <p>Your Chef ID </p><input type="text" placeholder="Chef ID" name="chef_id" required>
