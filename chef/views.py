@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Chef
 from manager.models import Restaurant
 
-# MAKE CUSTOM USER MODEL FOR CHEF WITH ONLY ID AND RESTAURANT FIELDS
+
 def home(request):
     error = False
     if request.method == 'POST':
@@ -14,7 +14,8 @@ def home(request):
         chefs = Chef.objects.filter(restaurant=res)
         if chefs.filter(chef_id=chef_id).exists():
             chef = chefs.get(chef_id=chef_id)
-            return render(request, 'home_chef.html', {'chef': chef})
+            # return render(request, 'home_chef.html', {'chef': chef})
+            return HttpResponseRedirect('feeds')
         else:
             error = True
     return render(request, 'login_chef.html', {'restaurants': Restaurant.objects.all(), 'error': error})
