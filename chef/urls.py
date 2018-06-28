@@ -1,9 +1,7 @@
 from django.urls import path
-from .views import home
-from .feed import OrderFeed
+from .views import home, main
 
 urlpatterns = [
     path('', home),
-    path('feeds', OrderFeed()),
-
+    path('home/<chef_id>/<str:chef_res>', main),
 ]

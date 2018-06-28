@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from django.contrib.auth.decorators import login_required
 from .models import Chef
 from manager.models import Restaurant
 
@@ -15,7 +14,12 @@ def home(request):
         if chefs.filter(chef_id=chef_id).exists():
             chef = chefs.get(chef_id=chef_id)
             # return render(request, 'home_chef.html', {'chef': chef})
-            return HttpResponseRedirect('feeds')
+            return HttpResponseRedirect('home/' + chef.chef_id + "/" + res_id)
         else:
             error = True
     return render(request, 'login_chef.html', {'restaurants': Restaurant.objects.all(), 'error': error})
+
+
+def main(request, chef_id, chef_res):
+    chef = Chef.objects.filter(restaurant=chef_res).get(chef_id=chef_id)
+    return render(request, 'home_chef.html', {'chef': chef})
