@@ -23,8 +23,3 @@ def home(request):
 def main(request, chef_id, chef_res):
     chef = Chef.objects.filter(restaurant=chef_res).get(chef_id=chef_id)
     return render(request, 'home_chef.html', {'chef': chef})
-
-
-def render_orders(request):
-    dishes = Dish.objects.all()
-    return render(request, 'chef-orders.html', {'dishes': dishes})
