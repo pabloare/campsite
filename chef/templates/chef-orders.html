@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta charset="UTF-8">
+    {% load static %}
+
+</head>
+<body>
+<h1>WE DID IT</h1>
+{% for dish in dishes %}
+<p> {{ dish.name }} </p>
+{% endfor %}
+
+</body>
+</html>
