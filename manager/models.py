@@ -38,8 +38,6 @@ class Table(models.Model):
         return str(self.table_number)
 
 
-
-
 class Seat(models.Model):
     table = models.ForeignKey(Table, on_delete=models.CASCADE, related_name='seat')
     seat_number = models.IntegerField(default=0)
@@ -47,7 +45,6 @@ class Seat(models.Model):
 
     def __str__(self):
         return str(self.seat_number)
-
 
 
 class Dish(models.Model):
