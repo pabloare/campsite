@@ -41,7 +41,7 @@ class Table(models.Model):
 class Seat(models.Model):
     table = models.ForeignKey(Table, on_delete=models.CASCADE, related_name='seat')
     seat_number = models.IntegerField(default=0)
-    payed = models.BooleanField(default=False)
+    payed = models.BooleanField(default=True)
 
     def __str__(self):
         return str(self.seat_number)
