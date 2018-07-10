@@ -16,12 +16,18 @@ def render_orders(request, chef_id, res_id):
 def dish_complete(request, chef_id, dish_num, res_id):
     chef = Chef.objects.get(chef_id=chef_id)
     dish = Dish.objects.get(dish_number=dish_num)
-    dishes = Join.objects.filter(chef=chef, dish=dish)
-    try:
-        completed_dish = dishes.get()
-        completed_dish.delete()
-        return HttpResponseRedirect('/chef/home/' + chef_id + "/" + res_id)
-    except:
-        completed_dish = dishes.first()
-        completed_dish.delete()
-        return HttpResponseRedirect('/chef/home/' + chef_id + "/" + res_id)
+
+    # Using without exceptions handling
+
+    # dishes = Join.objects.filter(chef=chef, dish=dish)
+    # try:
+    #    completed_dish = dishes.get()
+    #    completed_dish.delete()
+    #    return HttpResponseRedirect('/chef/home/' + chef_id + "/" + res_id)
+    # except:
+    #    completed_dish = dishes.first()
+    #    completed_dish.delete()
+    #    return HttpResponseRedirect('/chef/home/' + chef_id + "/" + res_id)
+    dish = Join.objects.filter(chef=chef, dish=dish).first()
+    dish.delete()
+    return HttpResponseRedirect('/chef/home/' + chef_id + "/" + res_id)

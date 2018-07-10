@@ -12,7 +12,5 @@ $(document).ready(function () {
 
 function updateContent(res_name, chef_id) {
   var link = "/chef/home/update/"+chef_id+"/"+res_name;
-  console.log(link);
-
   $(".orders").load(link).fadeIn("fast");
 }
