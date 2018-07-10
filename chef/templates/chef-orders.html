@@ -13,8 +13,7 @@
 <h1>{{ chef }}</h1>
 <h3>Num Dishes in Queue: {{ dishes.count }} </h3>
 {% for dish in dishes %}
-<p> <a href='/chef/home/{{ chef }}/{{ dish.dish_number }}/'>{{ dish  }} </a> </p>
+<p> <a href="/chef/home/{{ chef }}/{{ dish.dish_number }}/{{ res }}">{{ dish  }} </a> </p>
 {% endfor %}
-
 </body>
 </html>

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from .models import Chef
+from .models import Chef, Join
 from manager.models import Restaurant, Dish
 
 
