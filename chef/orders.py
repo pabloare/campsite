@@ -16,7 +16,7 @@ def render_orders(request, chef_id, res_id):
 def dish_complete(request, chef_id, dish_num, res_id):
     res = Restaurant.objects.get(id=res_id)
     chef = Chef.objects.get(chef_id=chef_id, restaurant=res)
-    dish = Dish.objects.get(restaurant=res, dish_number=dish_num)
+    dish_object = Dish.objects.get(restaurant=res, dish_number=dish_num)
 
     # Using without exceptions handling
 
@@ -29,7 +29,8 @@ def dish_complete(request, chef_id, dish_num, res_id):
     #    completed_dish = dishes.first()
     #    completed_dish.delete()
     #    return HttpResponseRedirect('/chef/home/' + chef_id + "/" + res_id)
-    dish = Join.objects.filter(chef=chef, dish=dish).first()
+    dish = Join.objects.filter(chef=chef, dish=dish_object).first()
     dish.delete()
-    chef.accumulator -= dish.time_to_do
+    chef.accumulator -= dish_object.time_to_do
+    chef.save()
     return HttpResponseRedirect('/chef/home/' + chef_id + "/" + res_id)

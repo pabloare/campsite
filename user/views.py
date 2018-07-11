@@ -65,3 +65,4 @@ def send_to_chef(dish, restaurant):
     add_order = Join(chef=chef_chosen, dish=dish)
     add_order.save()
     chef_chosen.accumulator += dish.time_to_do
+    chef_chosen.save()
