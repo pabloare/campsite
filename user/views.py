@@ -16,12 +16,13 @@ def home(request):
         seat = Seat.objects.get(table=table_object, seat_number=seat_num)
         # if someone is in the seat or has not payed do not release seat
         if not seat.payed:
-            render(request, 'home.html', {'error': error})
+            error = True
+            return render(request, 'user_home.html', {'error': error, 'restaurants': Restaurant.objects.all()})
             # Throw error about how seat is occupied (use HttpResponseRedirect)
         # Create order to link dishes to
         username = request.POST['username']
         # lock seat when user has entered seat
-        # seat.payed = False
+        seat.payed = False
         order = Order(username=username, seat=seat, note='')
         order.save()
         return HttpResponseRedirect('/user/order/' + username + '/' + seat_num + '/' + table + '/' + restaurant)

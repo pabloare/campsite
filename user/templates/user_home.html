@@ -11,6 +11,7 @@
   <h3> There seems to be a problem. Somebody is at that seat already </h3>
   {% endif %}
   <form action='' method="post">
+    {% csrf_token %}
       <table>
         <select name="select-res" required>
           <p>Select the restaurant you are in </p>
