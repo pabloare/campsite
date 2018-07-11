@@ -52,6 +52,7 @@ class Dish(models.Model):
     dish_number = models.IntegerField(default=0)
     name = models.CharField(null=True, max_length=100)
     description = models.CharField(max_length=500, default="")
+    time_to_do = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name

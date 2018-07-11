@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Ordering</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+</head>
+<body>
+  <h1>Welcome {{ username }}</h1>
+    <form action='' method="post">
+      {% csrf_token %}
+      <table>
+          <input type="number" placeholder="#" name="num_items">
+          <input type="text" placeholder="Item" name="item">
+      </table>
+      <input class="submit-button" type="submit" value="Order">
+  </form>
+  <h3> Currently Ordered </h3>
+  {% for dish in ordered_dishes %}
+  <p> {{ dish.name }} </p>
+  {% endfor %}
+
+</body>
+</html>

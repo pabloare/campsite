@@ -10,10 +10,11 @@
 
 </head>
 <body>
-<h1>{{ chef }}</h1>
+<h1>{{ chef.chef_id }}</h1>
 <h3>Num Dishes in Queue: {{ dishes.count }} </h3>
+<p> Accumulator: {{ chef.accumulator }} </p>
 {% for dish in dishes %}
-<p> <a href="/chef/home/{{ chef }}/{{ dish.dish_number }}/{{ res }}">{{ dish  }} </a> </p>
+<p> <a href="/chef/home/{{ chef.chef_id }}/{{ dish.dish_number }}/{{ res }}">{{ dish  }} </a> </p>
 {% endfor %}
 </body>
 </html>

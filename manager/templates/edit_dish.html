@@ -20,6 +20,7 @@
         <input type="text" placeholder="Dish #" name="dish_num" required> <p> Dish Number has to be unique for each dish </p>
         <input type="text" placeholder="Dish Name" name="dish_name" required>
         <input type="text" placeholder="Dish Description" name="dish_desc" required>
+        <input type="number" placeholder="Time to Complete" name="time" required>
       </table>
       <input type="submit" value="Add Dish">
   </form>
@@ -27,6 +28,7 @@
 <div style="outline-style: solid;">
 <h2>Dish #: {{ dish.dish_number }}</h2>
 <h3> Dish Name: {{ dish.name }}</h3>
+<h4>Time to do: {{ dish.time_to_do }}</h4>
 <p> Description: {{ dish.description }} </p>
 <h4><a href="/manager/home/edit-dish/remove-dish/{{ dish.dish_number }}"> Remove Dish</a></h4>
 </div>

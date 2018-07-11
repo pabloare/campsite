@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Home</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+</head>
+<body>
+  {% if error %}
+  <h3> There seems to be a problem. Somebody is at that seat already </h3>
+  {% endif %}
+  <form action='' method="post">
+      <table>
+        <select name="select-res" required>
+          <p>Select the restaurant you are in </p>
+        {% for restaurant in restaurants %}
+        <option value="{{ restaurant.id }}"> {{ restaurant.name }}</option>
+        {% endfor %}
+      </select>
+          <input type="number" placeholder="Table" name="table">
+          <input type="number" placeholder="Seat Number" name="seat_num">
+          <input type="text" placeholder="Username" name="username">
+      </table>
+      <input class="submit-button" type="submit" value="Order">
+  </form>
+
+</body>
+</html>

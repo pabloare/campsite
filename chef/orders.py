@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Chef, Join
-from manager.models import Dish
+from manager.models import Dish, Restaurant
 from django.http import HttpResponseRedirect
 
 
@@ -10,12 +10,13 @@ def render_orders(request, chef_id, res_id):
     # add_order = Join(chef=chef, dish=dish)
     # add_order.save()
     dishes = chef.dishes.all()
-    return render(request, 'chef-orders.html', {'dishes': dishes, 'chef': chef.chef_id, 'res': res_id})
+    return render(request, 'chef-orders.html', {'dishes': dishes, 'chef': chef, 'res': res_id})
 
 
 def dish_complete(request, chef_id, dish_num, res_id):
-    chef = Chef.objects.get(chef_id=chef_id)
-    dish = Dish.objects.get(dish_number=dish_num)
+    res = Restaurant.objects.get(id=res_id)
+    chef = Chef.objects.get(chef_id=chef_id, restaurant=res)
+    dish = Dish.objects.get(restaurant=res, dish_number=dish_num)
 
     # Using without exceptions handling
 
@@ -30,4 +31,5 @@ def dish_complete(request, chef_id, dish_num, res_id):
     #    return HttpResponseRedirect('/chef/home/' + chef_id + "/" + res_id)
     dish = Join.objects.filter(chef=chef, dish=dish).first()
     dish.delete()
+    chef.accumulator -= dish.time_to_do
     return HttpResponseRedirect('/chef/home/' + chef_id + "/" + res_id)
