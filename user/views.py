@@ -45,7 +45,7 @@ def ordering(request, username, seat, table, restaurant):
         for i in range(int(num_items)):
             order_dishes(restaurant, item, order)
     ordered_dishes = order.dishes.all()
-    return render(request, 'ordering.html', {'username': username, 'ordered_dishes': ordered_dishes})
+    return render(request, 'ordering.html', {'username': username, 'ordered_dishes': ordered_dishes, 'res_name': restaurant.name, 'table_num': table.table_number, 'seat_num': seat.seat_number})
     # render ordered dishes to view along with username so we can later delete the join order
     #
 
@@ -69,3 +69,16 @@ def send_to_chef(dish, restaurant):
     add_order.save()
     chef_chosen.accumulator += dish.time_to_do
     chef_chosen.save()
+
+
+# When user pays: Clear all dishes ordered (Joint objects). Delete order and make seat available
+def pay(request, username, res_name, table_num, seat_num):
+    restaurant = Restaurant.objects.get(name=res_name)
+    table = Table.objects.get(restaurant=restaurant, table_number=table_num)
+    seat = Seat.objects.get(table=table, seat_number=seat_num)
+    order = Order.objects.get(username=username, seat=seat)
+    order.dishes.clear()
+    order.delete()
+    seat.payed = True
+    seat.save()
+    return HttpResponseRedirect('/user/')
