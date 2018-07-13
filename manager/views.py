@@ -52,6 +52,7 @@ def add_seat(request, table, count):
     table_object = Table.objects.get(pk=table)
     new_count = count + 1
     seat_object = Seat(table=table_object, seat_number=new_count, payed=False)
+    seat_object.payed = True
     seat_object.save()
     return HttpResponseRedirect('/manager/home/edit-tables')
 
