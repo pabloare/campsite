@@ -1,16 +1,27 @@
 from django.shortcuts import render
 from .models import Chef, Join
 from manager.models import Dish, Restaurant
+from user.models import Order
 from django.http import HttpResponseRedirect
 
 
 def render_orders(request, chef_id, res_id):
-    chef = Chef.objects.filter(restaurant=res_id).get(chef_id=chef_id)
+    res = Restaurant.objects.get(id=res_id)
+    chef = Chef.objects.filter(restaurant=res).get(chef_id=chef_id)
+    # Testing
     # dish = Dish.objects.get(name="California Roll")
     # add_order = Join(chef=chef, dish=dish)
     # add_order.save()
+    order_seats = []
+    order_tables = []
     dishes = chef.dishes.all()
-    return render(request, 'chef-orders.html', {'dishes': dishes, 'chef': chef, 'res': res_id})
+    for dish in dishes:
+        joins = Join.objects.filter(chef=chef, dish=dish)
+        for join in joins:
+            order = join.order
+            order_seats.append(order.seat.seat_number)
+            order_tables.append(order.seat.table.table_number)
+    return render(request, 'chef-orders.html', {'dishes': dishes, 'chef': chef, 'res': res_id, 'order_seats': order_seats, 'order_tables': order_tables})
 
 
 def dish_complete(request, chef_id, dish_num, res_id):

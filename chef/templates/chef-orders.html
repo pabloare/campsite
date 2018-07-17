@@ -14,7 +14,14 @@
 <h3>Num Dishes in Queue: {{ dishes.count }} </h3>
 <p> Accumulator: {{ chef.accumulator }} </p>
 {% for dish in dishes %}
-<p> <a href="/chef/home/{{ chef.chef_id }}/{{ dish.dish_number }}/{{ res }}">{{ dish  }} </a> </p>
+<p> <a href="/chef/home/{{ chef.chef_id }}/{{ dish.dish_number }}/{{ res }}">{{ dish }} </a> </p>
+{% endfor %}
+{% for seat in order_seats %}
+{{ seat }}
+{% endfor %}
+
+{% for table in order_tables %}
+{{ table }}
 {% endfor %}
 </body>
 </html>

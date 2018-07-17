@@ -1,5 +1,6 @@
 from django.db import models
 from manager.models import Restaurant, Dish
+from user.models import Order
 
 
 class Chef(models.Model):
@@ -16,3 +17,4 @@ class Chef(models.Model):
 class Join(models.Model):
     dish = models.ForeignKey(Dish, on_delete=models.CASCADE, related_name='dish_chef')
     chef = models.ForeignKey(Chef, on_delete=models.CASCADE, related_name='chef')
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='dish_order')

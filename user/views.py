@@ -54,18 +54,17 @@ def order_dishes(restaurant, item, order):
     dish = Dish.objects.get(restaurant=restaurant, name=item)
     add_to = JoinOrder(dish=dish, order=order)
     add_to.save()
-    send_to_chef(dish, restaurant)
+    send_to_chef(dish, restaurant, order)
 
 
-def send_to_chef(dish, restaurant):
+def send_to_chef(dish, restaurant, order):
     chefs = Chef.objects.filter(restaurant=restaurant)
-    # TODO: make sure at least one chef is active
     chef_chosen = chefs.first()
     for chef in chefs:
         if chef.active:
             if chef.accumulator < chef_chosen.accumulator:
                 chef_chosen = chef
-    add_order = Join(chef=chef_chosen, dish=dish)
+    add_order = Join(chef=chef_chosen, dish=dish, order=order)
     add_order.save()
     chef_chosen.accumulator += dish.time_to_do
     chef_chosen.save()
