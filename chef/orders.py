@@ -21,7 +21,9 @@ def render_orders(request, chef_id, res_id):
             order = join.order
             order_seats.append(order.seat.seat_number)
             order_tables.append(order.seat.table.table_number)
-    return render(request, 'chef-orders.html', {'dishes': dishes, 'chef': chef, 'res': res_id, 'order_seats': order_seats, 'order_tables': order_tables})
+    # Join lists in order to iterate in parallel
+    mylist = zip(order_seats, order_tables, dishes)
+    return render(request, 'chef-orders.html', {'chef': chef, 'res': res_id, 'order_list': mylist})
 
 
 def dish_complete(request, chef_id, dish_num, res_id):
