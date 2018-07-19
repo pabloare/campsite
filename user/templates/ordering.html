@@ -5,9 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta charset="UTF-8">
+    {% load static %}
+
 </head>
 <body>
-  <h1>Welcome {{ username }}</h1>
+  <h1 class="username">Welcome {{ username }}</h1>
+  <!-- Needed for rendering orders -->
+  <h3> Your order id: </h3> <h3 class="order_id">{{ order_id }}<h3>
   <h5>You are currently at {{ res_name }}, seated at table {{ table_num }}, seat {{ seat_num }}</h5>
     <form action='' method="post">
       {% csrf_token %}
@@ -19,10 +23,20 @@
   </form>
   <h3> Currently Ordered </h3>
   {% for dish in ordered_dishes %}
-  <p> {{ dish.name }} </p>
-  {% endfor %}
+  <div style="outline-style: solid;">
 
+  <p> {{ dish.name }} </p>
+</div>
+
+  {% endfor %}
   <a href="/user/pay/{{ username }}/{{ res_name }}/{{ table_num }}/{{ seat_num }}"><h3>Pay for Bill </h3></a>
+
+  <script
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="{% static 'user-jquery.js' %}"></script>
 
 </body>
 </html>

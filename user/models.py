@@ -10,5 +10,5 @@ class Order(models.Model):
 
 
 class JoinOrder(models.Model):
-    dish = models.ForeignKey(Dish, on_delete=models.CASCADE, related_name='dish_order')
+    dishes = models.ForeignKey(Dish, on_delete=models.CASCADE, related_name='dish_order')
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='order')

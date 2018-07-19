@@ -13,14 +13,15 @@
 <h1>{{ chef.chef_id }}</h1>
 <h3>Num Dishes in Queue: {{ dishes.count }} </h3>
 <p> Accumulator: {{ chef.accumulator }} </p>
-<!--{% for dish in dishes %}-->
-<!--><p> <a href="/chef/home/{{ chef.chef_id }}/{{ dish.dish_number }}/{{ res }}">{{ dish }} </a> </p>-->
-<!--{% endfor %}-->
-<p>try</p>
-{% for seat, table, dish in order_list %}
-<p>Seat: {{ seat }}</p>
-<p>Table: {{ table }}</p>
-<p> Dish:  <a href="/chef/home/{{ chef.chef_id }}/{{ dish.dish_number }}/{{ res }}">{{ dish }} </a> </p>
+{% for join in joins %}
+<div style="outline-style: solid;">
+
+<p>Order: {{ join.order.id }} </p>
+<p>Seat: {{ join.order.seat }}</p>
+<p>Table: {{ join.order.seat.table }}</p>
+<p> Dish:  <a href="/chef/home/{{ join.chef.chef_id }}/{{ join.dish.dish_number }}/{{ res }}">{{ join.dish }} </a> </p>
+</div>
+
 {% endfor %}
 </body>
 </html>

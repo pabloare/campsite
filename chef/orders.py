@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from .models import Chef, Join
 from manager.models import Dish, Restaurant
-from user.models import Order
 from django.http import HttpResponseRedirect
 
 
@@ -15,15 +14,15 @@ def render_orders(request, chef_id, res_id):
     order_seats = []
     order_tables = []
     dishes = chef.dishes.all()
-    for dish in dishes:
-        joins = Join.objects.filter(chef=chef, dish=dish)
-        for join in joins:
-            order = join.order
-            order_seats.append(order.seat.seat_number)
-            order_tables.append(order.seat.table.table_number)
+    joins = Join.objects.filter(chef=chef)
+    # for dish in dishes:
+    #     joins = Join.objects.filter(chef=chef, dish=dish)
+    #     for join in joins:
+    #         order = join.order
+    #         order_seats.append(order.seat.seat_number)
+    #         order_tables.append(order.seat.table.table_number)
     # Join lists in order to iterate in parallel
-    mylist = zip(order_seats, order_tables, dishes)
-    return render(request, 'chef-orders.html', {'chef': chef, 'res': res_id, 'order_list': mylist})
+    return render(request, 'chef-orders.html', {'chef': chef, 'res': res_id, 'joins': joins})
 
 
 def dish_complete(request, chef_id, dish_num, res_id):

@@ -45,14 +45,14 @@ def ordering(request, username, seat, table, restaurant):
         for i in range(int(num_items)):
             order_dishes(restaurant, item, order)
     ordered_dishes = order.dishes.all()
-    return render(request, 'ordering.html', {'username': username, 'ordered_dishes': ordered_dishes, 'res_name': restaurant.name, 'table_num': table.table_number, 'seat_num': seat.seat_number})
+    return render(request, 'ordering.html', {'username': username, 'ordered_dishes': ordered_dishes, 'res_name': restaurant.name, 'table_num': table.table_number, 'seat_num': seat.seat_number, 'order_id': order.id})
     # render ordered dishes to view along with username so we can later delete the join order
     #
 
 
 def order_dishes(restaurant, item, order):
     dish = Dish.objects.get(restaurant=restaurant, name=item)
-    add_to = JoinOrder(dish=dish, order=order)
+    add_to = JoinOrder(dishes=dish, order=order)
     add_to.save()
     send_to_chef(dish, restaurant, order)
 
