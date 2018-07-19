@@ -19,7 +19,7 @@
 <p>Order: {{ join.order.id }} </p>
 <p>Seat: {{ join.order.seat }}</p>
 <p>Table: {{ join.order.seat.table }}</p>
-<p> Dish:  <a href="/chef/home/{{ join.chef.chef_id }}/{{ join.dish.dish_number }}/{{ res }}">{{ join.dish }} </a> </p>
+<p> Dish:  <a href="/chef/home/{{ join.id }}">{{ join.dish }} </a> </p>
 </div>
 
 {% endfor %}

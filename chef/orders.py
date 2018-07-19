@@ -11,9 +11,6 @@ def render_orders(request, chef_id, res_id):
     # dish = Dish.objects.get(name="California Roll")
     # add_order = Join(chef=chef, dish=dish)
     # add_order.save()
-    order_seats = []
-    order_tables = []
-    dishes = chef.dishes.all()
     joins = Join.objects.filter(chef=chef)
     # for dish in dishes:
     #     joins = Join.objects.filter(chef=chef, dish=dish)
@@ -25,24 +22,11 @@ def render_orders(request, chef_id, res_id):
     return render(request, 'chef-orders.html', {'chef': chef, 'res': res_id, 'joins': joins})
 
 
-def dish_complete(request, chef_id, dish_num, res_id):
-    res = Restaurant.objects.get(id=res_id)
-    chef = Chef.objects.get(chef_id=chef_id, restaurant=res)
-    dish_object = Dish.objects.get(restaurant=res, dish_number=dish_num)
-
-    # Using without exceptions handling
-
-    # dishes = Join.objects.filter(chef=chef, dish=dish)
-    # try:
-    #    completed_dish = dishes.get()
-    #    completed_dish.delete()
-    #    return HttpResponseRedirect('/chef/home/' + chef_id + "/" + res_id)
-    # except:
-    #    completed_dish = dishes.first()
-    #    completed_dish.delete()
-    #    return HttpResponseRedirect('/chef/home/' + chef_id + "/" + res_id)
-    dish = Join.objects.filter(chef=chef, dish=dish_object).first()
-    dish.delete()
-    chef.accumulator -= dish_object.time_to_do
-    chef.save()
+def dish_complete(request, join_id):
+    join = Join.objects.get(id=join_id)
+    join.chef.accumulator -= join.dish.time_to_do
+    chef_id = join.chef.chef_id
+    res_id = join.chef.restaurant.id
+    join.chef.save()
+    join.delete()
     return HttpResponseRedirect('/chef/home/' + chef_id + "/" + res_id)

@@ -6,5 +6,5 @@ urlpatterns = [
     path('', home),
     path('home/<chef_id>/<str:chef_res>', main),
     path('home/update/<chef_id>/<res_id>', render_orders),
-    path('home/<chef_id>/<dish_num>/<res_id>', dish_complete)
+    path('home/<str:join_id>', dish_complete)
 ]
