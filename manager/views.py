@@ -4,6 +4,13 @@ from .models import Manager, Restaurant, Table, Seat, Dish
 from chef.models import Chef
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+
+
+def start(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect('/manager/home')
+    return render(request, 'start.html')
 
 
 def home(request):
@@ -19,7 +26,7 @@ def home(request):
         res.save()
         new_manager = Manager(user=u, email=email, restaurant=res)
         new_manager.save()
-        return HttpResponseRedirect('login')
+        return HttpResponseRedirect('/manager')
     return render(request, 'home.html')
 
 
@@ -125,3 +132,9 @@ def remove_dish(request, dish_num):
     dish = Dish.objects.filter(restaurant=res).get(dish_number=dish_num)
     dish.delete()
     return HttpResponseRedirect('/manager/home/edit-dish')
+
+
+@login_required()
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/manager/login')
