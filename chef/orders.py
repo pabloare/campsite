@@ -14,7 +14,7 @@ def render_orders(request, chef_id, res_id):
     joins = Join.objects.filter(chef=chef)
     return render(request, 'chef-orders.html', {'chef': chef, 'res': res_id, 'joins': joins})
 
-## WHEN GOING HERE THE JOIN_ID IS AN INT AND NEEDS TO BE A STR
+
 def dish_complete(request, join_id):
     join = Join.objects.get(id=join_id)
     join.chef.accumulator -= join.dish.time_to_do

@@ -30,7 +30,9 @@
 
   {% endfor %}
   <a href="/user/pay/{{ username }}/{{ res_name }}/{{ table_num }}/{{ seat_num }}"><h3>Pay for Bill </h3></a>
-
+  {% if has_payed %}
+  <h1> It seems your dishes haven't been made by the chef yet. They are on their way! <h1>
+  {% endif %}
   <script
     src="https://code.jquery.com/jquery-3.3.1.js"
     integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="

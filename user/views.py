@@ -3,6 +3,7 @@ from manager.models import Seat, Restaurant, Table, Dish
 from .models import Order, JoinOrder
 from chef.models import Chef, Join
 from django.http import HttpResponseRedirect
+from django.core.exceptions import ObjectDoesNotExist
 
 
 def home(request):
@@ -45,7 +46,8 @@ def ordering(request, username, seat, table, restaurant):
         for i in range(int(num_items)):
             order_dishes(restaurant, item, order)
     ordered_dishes = order.dishes.all()
-    return render(request, 'ordering.html', {'username': username, 'ordered_dishes': ordered_dishes, 'res_name': restaurant.name, 'table_num': table.table_number, 'seat_num': seat.seat_number, 'order_id': order.id})
+    # See if chef has finished all dishes (i.e, deleted all joins) in order to make the user payment available
+    return render(request, 'ordering.html', {'username': username, 'ordered_dishes': ordered_dishes, 'res_name': restaurant.name, 'table_num': table.table_number, 'seat_num': seat.seat_number, 'order_id': order.id, 'has_payed': False})
     # render ordered dishes to view along with username so we can later delete the join order
     #
 
@@ -76,8 +78,16 @@ def pay(request, username, res_name, table_num, seat_num):
     table = Table.objects.get(restaurant=restaurant, table_number=table_num)
     seat = Seat.objects.get(table=table, seat_number=seat_num)
     order = Order.objects.get(username=username, seat=seat)
-    order.dishes.clear()
-    order.delete()
-    seat.payed = True
-    seat.save()
+    joins = Join.objects.filter(order=order)
+    try:
+        if not joins:
+            order.dishes.clear()
+            order.delete()
+            seat.payed = True
+            seat.save()
+            return HttpResponseRedirect('/user/')
+        else:
+            return render(request, 'ordering.html', {'username': username, 'ordered_dishes': order.dishes.all(), 'res_name': restaurant.name, 'table_num': table.table_number, 'seat_num': seat.seat_number, 'order_id': order.id, 'has_payed': True})
+    except ObjectDoesNotExist:
+        pass
     return HttpResponseRedirect('/user/')
