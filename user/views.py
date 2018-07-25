@@ -43,6 +43,10 @@ def ordering(request, username, seat, table, restaurant):
     if request.method == 'POST':
         num_items = request.POST['num_items']
         item = request.POST['item']
+        note = request.POST['note']
+        if note:
+            order.note = note
+            order.save()
         for i in range(int(num_items)):
             order_dishes(restaurant, item, order)
     ordered_dishes = order.dishes.all()

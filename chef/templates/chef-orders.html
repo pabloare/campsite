@@ -20,6 +20,11 @@
 <p>Seat: {{ join.order.seat }}</p>
 <p>Table: {{ join.order.seat.table }}</p>
 <p> Dish:  <a href="/chef/home/{{ join.id }}">{{ join.dish }} </a> </p>
+{% if not join.order.note %}
+<p> No note was added </p>
+{% else %}
+<p> Note : {{ join.order.note }} </p>
+{% endif %}
 </div>
 
 {% endfor %}
