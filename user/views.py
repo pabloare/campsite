@@ -51,7 +51,7 @@ def ordering(request, username, seat, table, restaurant):
             order_dishes(restaurant, item, order)
     ordered_dishes = order.dishes.all()
     # See if chef has finished all dishes (i.e, deleted all joins) in order to make the user payment available
-    return render(request, 'ordering.html', {'username': username, 'ordered_dishes': ordered_dishes, 'res_name': restaurant.name, 'table_num': table.table_number, 'seat_num': seat.seat_number, 'order_id': order.id, 'has_payed': False})
+    return render(request, 'ordering.html', {'username': username, 'ordered_dishes': ordered_dishes, 'res_name': restaurant.name, 'table_num': table.table_number, 'seat_num': seat.seat_number, 'order': order, 'has_payed': False})
     # render ordered dishes to view along with username so we can later delete the join order
     #
 
