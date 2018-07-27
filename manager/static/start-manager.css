@@ -1,6 +1,15 @@
+* {
+  background-image: url("/static/img/start-image2.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
 .title {
-  margin-top: 5%;
+  margin-top: 10%;
   text-align: center;
+  color: white;
 }
 
 .forms {
