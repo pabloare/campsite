@@ -1,15 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+{% extends 'manager-base.html' %}
+{% block title %}
   <title>Start</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'start-manager.css' %}" type="text/css">
+{% endblock %}
 
-    <meta charset="UTF-8">
-</head>
-<body>
-  <h1>Already have an account ? <a href="/manager/login"> Login </a> </h1>
-  <h2> If not, <a href="/manager/register">Register</a> <h2>
-    
-</body>
-</html>
+{% block body %}
+<div class="container-fluid">
+  <h2 class="display-3 title">Welcome to CampSite!</h1>
+</div>
+<div class="row align-items-center forms">
+  <div class="col-6 col-sm-6">
+    <h4 class="display-4 form-text"><a href="/manager/login">Login</a> </h1>
+  </div>
+  <div class="col-6 col-sm-6">
+    <h4 class="display-4 form-text"><a href="/manager/register">Register</a> <h2>
+
+  </div>
+</div>
+{% endblock %}
