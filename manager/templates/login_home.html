@@ -2,29 +2,29 @@
 {% load static %}
   {% block title%}
   <title>Home</title>
+  <link rel="stylesheet" href="{% static 'login-home-manager.css' %}" type="text/css">
+
   {% endblock %}
   {% block breadcrumbs %}
   <li class="breadcrumb-item active" aria-current="page">Home</li>
-
   {% endblock %}
   {% block body %}
-  <div style="outline-style: solid;">
-  <h1>Chefs<a href="edit-chef">Edit</a></h1>
+  <div class="container mydiv">
+  <h1>Chefs <a href="edit-chef">Edit</a></h1>
   {% for chef in request.user.manager.restaurant.chef.all %}
   <p>  Id: {{ chef.chef_id }} </p>
   {% endfor %}
-
 </div>
-<div style="outline-style: solid;">
+
+<div class="container mydiv">
   <h1>Tables <a href="edit-tables">Edit</a></h1>
   {% for table in request.user.manager.restaurant.table.all %}
     <p>Table Number: {{ table.table_number }}, Number of Seats:({{ table.seat.all.count }})</p>
   {% endfor %}
-
 </div>
-<div style="outline-style: solid;">
-  <h1>Dishes <a href="edit-dish">Edit</a></h1>
 
+<div class="container mydiv">
+  <h1>Dishes <a href="edit-dish">Edit</a></h1>
   {% for dish in request.user.manager.restaurant.dish.all %}
   <p>  Id: {{ dish.dish_number }}, Name : {{ dish.name }}</p>
   {% endfor %}
