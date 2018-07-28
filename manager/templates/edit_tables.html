@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+{% extends 'manager-base.html' %}
+{% load static %}
+  {% block title%}
   <title>Home</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <meta charset="UTF-8">
-</head>
-<body>
+  {% endblock %}
+  {% block breadcrumbs %}
+  <li class="breadcrumb-item"><a href="/manager/home/">Home</a></li>
+  <li class="breadcrumb-item active" aria-current="page">Tables</li>
+  {% endblock %}
+
+{% block body %}
   <h1>Tables</h1>
-  <a href="/manager/home/">Go back </a>
   <p>To delete a table remove all seats</p>
   <a href="/manager/home/add-table/{{ request.user.manager.restaurant.id }}"> Add</a>
   {% for table in request.user.manager.restaurant.table.all %}
@@ -20,7 +21,7 @@
 </div>
 
 {% endfor %}
-
+{% endblock %}
 
 </div>
 </body>

@@ -32,7 +32,7 @@ def home(request):
 
 @login_required()
 def login_home(request):
-    return render(request, 'login_home.html')
+    return render(request, 'login_home.html', {'selector': 0})
 
 
 @login_required()
@@ -51,17 +51,16 @@ def remove_seat(request, table):
                 table.table_number = table.table_number - 1
                 table.save()
         table_object.delete()
-    return HttpResponseRedirect('/manager/home')
+    return HttpResponseRedirect('/manager/home/edit-tables')
 
 
 @login_required()
 def add_seat(request, table, count):
     table_object = Table.objects.get(pk=table)
     new_count = count + 1
-    seat_object = Seat(table=table_object, seat_number=new_count, payed=False)
-    seat_object.payed = True
+    seat_object = Seat(table=table_object, seat_number=new_count, payed=True)
     seat_object.save()
-    return HttpResponseRedirect('/manager/home')
+    return HttpResponseRedirect('/manager/home/edit-tables')
 
 
 @login_required()
@@ -70,7 +69,7 @@ def add_table(request, restaurant_id):
     table_num = Table.objects.filter(restaurant=restaurant_object).count() + 1
     table = Table(restaurant=restaurant_object, table_number=table_num)
     table.save()
-    return HttpResponseRedirect('/manager/home')
+    return HttpResponseRedirect('/manager/home/edit-tables')
 
 
 @login_required()
@@ -92,7 +91,7 @@ def remove_chef(request, chef_id):
     restaurant = request.user.manager.restaurant
     chef = Chef.objects.get(chef_id=chef_id, restaurant=restaurant)
     chef.delete()
-    return HttpResponseRedirect('/manager/home')
+    return HttpResponseRedirect('/manager/home/edit-chef')
 
 
 @login_required()
@@ -105,7 +104,7 @@ def activate_chef(request, cid):
     elif not chef.active:
         chef.active = True
         chef.save()
-    return HttpResponseRedirect('/manager/home')
+    return HttpResponseRedirect('/manager/home/edit-chef')
 
 
 @login_required()
@@ -131,7 +130,7 @@ def remove_dish(request, dish_num):
     res = request.user.manager.restaurant
     dish = Dish.objects.filter(restaurant=res).get(dish_number=dish_num)
     dish.delete()
-    return HttpResponseRedirect('/manager/home')
+    return HttpResponseRedirect('/manager/home/edit-dish')
 
 
 @login_required()

@@ -3,22 +3,11 @@
   {% block title%}
   <title>Home</title>
   {% endblock %}
-  {% block body %}
-  <div class="row justify-content-center">
+  {% block breadcrumbs %}
+  <li class="breadcrumb-item active" aria-current="page">Home</li>
 
-<div class="btn-group btn-group-toggle" data-toggle="buttons">
-<label class="btn btn-secondary active chefs">
-  <input type="radio" name="options" id="option1" autocomplete="off" checked> Chefs
-</label>
-<label class="btn btn-secondary tables">
-  <input type="radio" name="options" id="option2" autocomplete="off"> Table
-</label>
-<label class="btn btn-secondary dishes">
-  <input type="radio" name="options" id="option3" autocomplete="off"> Dishes
-</label>
-</div>
-</div>
-  <!--
+  {% endblock %}
+  {% block body %}
   <div style="outline-style: solid;">
   <h1>Chefs<a href="edit-chef">Edit</a></h1>
   {% for chef in request.user.manager.restaurant.chef.all %}
@@ -41,9 +30,6 @@
   {% endfor %}
 </div>
 <a href="/manager/home/logout"><h2>logout</h2></a>
--->
-<div id="body">
-</div>
 {% endblock %}
 
 {% block jslinks %}

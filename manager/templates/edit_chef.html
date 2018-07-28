@@ -1,13 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+{% extends 'manager-base.html' %}
+{% load static %}
+  {% block title%}
   <title>Edit Chefs</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  {% endblock %}
+  {% block breadcrumbs %}
 
-    <meta charset="UTF-8">
-</head>
-<body>
+  <li class="breadcrumb-item"><a href="/manager/home/">Home</a></li>
+  <li class="breadcrumb-item active" aria-current="page">Chefs</li>
+  {% endblock %}
+  {% block body %}
   <div style="outline-style: solid;">
   <h1>Chefs</h1>
   <h3> Add a Chef </h3>
@@ -35,5 +36,5 @@
 {% endfor %}
 
 </div>
-</body>
-</html>
+
+{% endblock %}
