@@ -13,21 +13,17 @@
 </head>
 <body>
   {% if user.is_authenticated %}
-  <nav aria-label="breadcrumb">
+
+  <nav aria-label="breadcrumb" style="position: relative;">
     <ol class="breadcrumb">
 
     {% block breadcrumbs %}
 
     <!-- Add current page in user navbar -->
     {% endblock %}
-    <ul class="nav navbar-nav navbar-right">
-     <li class="dropdown navbar-right">
-       <a href='' class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Log Out or Edit Settings <span class="caret"></span></a>
-       <ul class="dropdown-menu">
-         <li><a href="/account/logout">Logout</a></li>
-         <li><a href="edit">Edit Profile</a></li>
-       </ul>
     </ol>
+    <a href="/manager/home/logout" style="position: absolute; top: 20%; right: 2%;">Logout</a>
+
   </nav>
   {% endif %}
   {% block body %}
