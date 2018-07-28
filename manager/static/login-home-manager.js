@@ -1,6 +1,7 @@
 $(document).ready(function () {
     'use strict';
     console.log("jquery working");
+
     $(".dishes").click(function(event) {
       /* Act on the event */
       $("#body").load("/manager/home/edit-dish").fadeIn('slow');

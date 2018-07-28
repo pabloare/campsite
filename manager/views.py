@@ -51,7 +51,7 @@ def remove_seat(request, table):
                 table.table_number = table.table_number - 1
                 table.save()
         table_object.delete()
-    return HttpResponseRedirect('/manager/home/edit-tables')
+    return HttpResponseRedirect('/manager/home')
 
 
 @login_required()
@@ -61,7 +61,7 @@ def add_seat(request, table, count):
     seat_object = Seat(table=table_object, seat_number=new_count, payed=False)
     seat_object.payed = True
     seat_object.save()
-    return HttpResponseRedirect('/manager/home/edit-tables')
+    return HttpResponseRedirect('/manager/home')
 
 
 @login_required()
@@ -70,7 +70,7 @@ def add_table(request, restaurant_id):
     table_num = Table.objects.filter(restaurant=restaurant_object).count() + 1
     table = Table(restaurant=restaurant_object, table_number=table_num)
     table.save()
-    return HttpResponseRedirect('/manager/home/edit-tables')
+    return HttpResponseRedirect('/manager/home')
 
 
 @login_required()
@@ -83,7 +83,7 @@ def edit_chef(request):
             return render(request, 'edit_chef.html', {'error': True})
         chef = Chef(chef_id=chef_id, restaurant=restaurant, accumulator=0, active=False)
         chef.save()
-        return HttpResponseRedirect('/manager/home/edit-chef')
+        return HttpResponseRedirect('/manager/home')
     return render(request, 'edit_chef.html', {'error': False})
 
 
@@ -92,7 +92,7 @@ def remove_chef(request, chef_id):
     restaurant = request.user.manager.restaurant
     chef = Chef.objects.get(chef_id=chef_id, restaurant=restaurant)
     chef.delete()
-    return HttpResponseRedirect('/manager/home/edit-chef')
+    return HttpResponseRedirect('/manager/home')
 
 
 @login_required()
@@ -105,7 +105,7 @@ def activate_chef(request, cid):
     elif not chef.active:
         chef.active = True
         chef.save()
-    return HttpResponseRedirect('/manager/home/edit-chef')
+    return HttpResponseRedirect('/manager/home')
 
 
 @login_required()
@@ -122,7 +122,7 @@ def add_dish(request):
         time = request.POST['time']
         dish = Dish(restaurant=rest, dish_number=dish_n, description=desc, name=d_name, time_to_do=time)
         dish.save()
-        return HttpResponseRedirect('/manager/home/edit-dish')
+        return HttpResponseRedirect('/manager/home')
     return render(request, 'edit_dish.html', {'error': False})
 
 
@@ -131,7 +131,7 @@ def remove_dish(request, dish_num):
     res = request.user.manager.restaurant
     dish = Dish.objects.filter(restaurant=res).get(dish_number=dish_num)
     dish.delete()
-    return HttpResponseRedirect('/manager/home/edit-dish')
+    return HttpResponseRedirect('/manager/home')
 
 
 @login_required()
