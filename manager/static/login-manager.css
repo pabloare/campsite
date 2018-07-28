@@ -1,0 +1,16 @@
+*:not(.btn) {
+  background-image: url("/static/img/login-manager.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  overflow: hidden;
+}
+.title {
+  margin-top: 5%;
+  text-align: center;
+  color: black;
+}
+#form {
+  margin-top: 3%;
+}
