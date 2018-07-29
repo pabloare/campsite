@@ -2,39 +2,60 @@
 {% load static %}
   {% block title%}
   <title>Edit Chefs</title>
+  <link rel="stylesheet" href="{% static 'edit-chef.css' %}" type="text/css">
   {% endblock %}
   {% block breadcrumbs %}
-
   <li class="breadcrumb-item"><a href="/manager/home/">Home</a></li>
   <li class="breadcrumb-item active" aria-current="page">Chefs</li>
   {% endblock %}
   {% block body %}
-  <div style="outline-style: solid;">
-  <h1>Chefs</h1>
-  <h3> Add a Chef </h3>
+  <div class="container">
+  <h1 class="display-6">Your Chefs</h1>
+  <p class="lead">Add a Chef to your Restaurant. Remember <em>Chef id has to be unique for each chef.</em></p>
+
   {% if error == True %}
-  <p>There already exists a Chef with that ID. Choose another one!</p>
+  <div class="alert alert-danger alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong>Oops!</strong> There seems to exist another Chef with that ID already. Try another one!
+  </div>
+
   {% endif %}
   <form class="register-form" action='' method="post">
       {% csrf_token %}
-      <table>
-        <input type="text" placeholder="Chef ID" name="chef_id" required> <p> Chef id has to be unique for each chef</p>
-      </table>
-      <input type="submit" value="Add Chef">
+      <div class="input-group">
+        <input type="text" class="form-control" aria-describedby="basic-addon1" placeholder="Chef ID" name="chef_id" required>
+        <span class="input-group-btn">
+          <button class="btn btn-primary" type="submit" type="button">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true">Add + </span>
+          </button>
+        </span>
+    </div><!-- /input-group -->
   </form>
   {% for chef in request.user.manager.restaurant.chef.all %}
-<div style="outline-style: solid;">
-<h2>Chef Id: {{ chef.chef_id }} (Active : {{ chef.active }})</h2>
-{% if chef.active %}
-<a href="/manager/home/edit-chef/activate-chef/{{ chef.chef_id }}">Deactivate</a>
+<div class="ind-div">
+<h2 class="display-6"><i class="fa fa-user-circle" aria-hidden="true"></i>
+ID: {{ chef.chef_id }} ; Active : {{ chef.active }} {% if chef.active %}<i class="fa fa-circle" aria-hidden="true" style="color:green;"></i>
 {% else %}
-<a href="/manager/home/edit-chef/activate-chef/{{ chef.chef_id }}">Activate Chef</a>
+<i class="fa fa-circle-thin" aria-hidden="true"></i>
 {% endif %}
-<h4><a href="/manager/home/edit-chef/remove-chef/{{ chef.chef_id }}"> Remove Chef</a></h4>
+</h2>
+{% if chef.active %}
+<a style="margin-top:1%;" class="btn btn-outline-secondary" href="/manager/home/edit-chef/activate-chef/{{ chef.chef_id }}">Deactivate</a>
+{% else %}
+<a style="margin-top:1%;" class="btn btn-outline-success" href="/manager/home/edit-chef/activate-chef/{{ chef.chef_id }}">Activate Chef</a>
+{% endif %}
+<h6 class="display-6"><a style="margin-top:1%;" class="btn btn-outline-danger" href="/manager/home/edit-chef/remove-chef/{{ chef.chef_id }}">Remove Chef
+</a></h6>
 </div>
-
 {% endfor %}
 
+<div class="goback">
+<a class="btn btn-outline-primary" href="/manager/home/"><i class="fa fa-reply" aria-hidden="true"></i>
+Go Back
+</a>
 </div>
+
+</div>
+
 
 {% endblock %}

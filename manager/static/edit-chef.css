@@ -1,0 +1,13 @@
+.ind-div {
+  margin-top: 1%;
+  border-color: gray;
+  border-radius: 10px;
+  border-style: solid;
+  padding: 1.2%;
+}
+
+.goback {
+  margin-top: 3%;
+  float: right;
+  width: 10%;
+}

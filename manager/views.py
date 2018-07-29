@@ -82,7 +82,7 @@ def edit_chef(request):
             return render(request, 'edit_chef.html', {'error': True})
         chef = Chef(chef_id=chef_id, restaurant=restaurant, accumulator=0, active=False)
         chef.save()
-        return HttpResponseRedirect('/manager/home')
+        return HttpResponseRedirect('/manager/home/edit-chef')
     return render(request, 'edit_chef.html', {'error': False})
 
 
