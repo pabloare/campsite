@@ -2,6 +2,7 @@
 {% load static %}
   {% block title%}
   <title>Home</title>
+  <link rel="stylesheet" href="{% static 'edit-chef.css' %}" type="text/css">
 
   {% endblock %}
   {% block breadcrumbs %}
@@ -10,17 +11,30 @@
   {% endblock %}
 
 {% block body %}
-  <h1>Tables</h1>
-  <p>To delete a table remove all seats</p>
-  <a href="/manager/home/add-table/{{ request.user.manager.restaurant.id }}"> Add</a>
+  <div class="container">
+  <h1 class="display-5">Tables</h1>
+  <p class="lead">To delete a table remove all seats</p>
+  <a  style="display:inline;" class="btn btn-primary btn-lg" href="/manager/home/add-table/{{ request.user.manager.restaurant.id }}"> <i class="fa fa-plus-square" aria-hidden="true"></i>
+  Add a table</a>
+</div>
+  <div style="margin-top:1%;" class="container">
   {% for table in request.user.manager.restaurant.table.all %}
-<div style="outline-style: solid;">
-<h2>Table Number: {{ table.table_number }} ({{ table.seat.all.count }})</h2>
+<div class="ind-div">
+<h2>Table {{ table.table_number }} ; Number of Seats: {{ table.seat.all.count }}</h2>
 <h4><a href="/manager/home/edit-tables/add-seat/{{ table.id }}/{{ table.seat.all.count }}"> Add Seat</a></h4>
 <h4><a href="/manager/home/edit-tables/remove-seat/{{ table.id }}"> Remove Seat</a></h4>
 </div>
 
 {% endfor %}
+
+<div class="goback">
+<a class="btn btn-outline-primary" href="/manager/home/"><i class="fa fa-reply" aria-hidden="true"></i>
+Go Back
+</a>
+</div>
+</div>
+<br>
+<br>
 {% endblock %}
 
 </div>
