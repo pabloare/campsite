@@ -10,23 +10,27 @@
   {% endblock %}
   {% block body %}
   <div class="container mydiv">
-  <h1 class="display-5">Chefs <a href="edit-chef">Edit</a></h1>
+  <h1 class="display-5">Chefs <a href="edit-chef">  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+</a></h1>
   {% for chef in request.user.manager.restaurant.chef.all %}
   <p>  ID: {{ chef.chef_id }} </p>
   {% endfor %}
 </div>
 
 <div class="container mydiv">
-  <h1 class="display-5">Tables <a href="edit-tables">Edit</a></h1>
+  <h1 class="display-5">Tables <a href="edit-tables">  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+
+</a></h1>
   {% for table in request.user.manager.restaurant.table.all %}
-    <p>Table #: {{ table.table_number }}, Number of Seats: {{ table.seat.all.count }}</p>
+    <p>Table {{ table.table_number }} - Number of Seats: {{ table.seat.all.count }}</p>
   {% endfor %}
 </div>
 
 <div class="container mydiv">
-  <h1 class="display-5">Dishes <a href="edit-dish">Edit</a></h1>
+  <h1 class="display-5">Dishes <a href="edit-dish">  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+</a></h1>
   {% for dish in request.user.manager.restaurant.dish.all %}
-  <p>  ID: {{ dish.dish_number }}, Name : {{ dish.name }}</p>
+  <p>  ID: {{ dish.dish_number }} - Name : {{ dish.name }}</p>
   {% endfor %}
 </div>
 {% endblock %}

@@ -34,7 +34,7 @@
   {% for chef in request.user.manager.restaurant.chef.all %}
 <div class="ind-div">
 <h2 class="display-6"><i class="fa fa-user-circle" aria-hidden="true"></i>
-ID: {{ chef.chef_id }} ; Active : {{ chef.active }} {% if chef.active %}<i class="fa fa-circle" aria-hidden="true" style="color:green;"></i>
+ID: {{ chef.chef_id }} - Active : {{ chef.active }} {% if chef.active %}<i class="fa fa-circle" aria-hidden="true" style="color:green;"></i>
 {% else %}
 <i class="fa fa-circle-thin" aria-hidden="true"></i>
 {% endif %}
@@ -49,7 +49,7 @@ ID: {{ chef.chef_id }} ; Active : {{ chef.active }} {% if chef.active %}<i class
 </div>
 {% endfor %}
 
-<div class="goback">
+<div class="row justify-content-end goback">
 <a class="btn btn-outline-primary" href="/manager/home/"><i class="fa fa-reply" aria-hidden="true"></i>
 Go Back
 </a>
