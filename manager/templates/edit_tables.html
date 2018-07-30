@@ -17,7 +17,7 @@
   <a  style="display:inline;" class="btn btn-primary btn-lg" href="/manager/home/add-table/{{ request.user.manager.restaurant.id }}"> <i class="fa fa-plus-square" aria-hidden="true"></i>
   Add a table</a>
 </div>
-  <div style="margin-top:3%;" class="container">
+  <div style="margin-top:25px;" class="container">
   {% for table in request.user.manager.restaurant.table.all %}
 <div class="ind-div">
 <h2>Table {{ table.table_number }} - Number of Seats: {{ table.seat.all.count }}</h2>
@@ -29,7 +29,7 @@
 
 {% endfor %}
 
-<div class="row justify-content-end goback">
+<div style="float: right;" class="row justify-content-end goback">
 <a class="btn btn-outline-primary" href="/manager/home/"><i class="fa fa-reply" aria-hidden="true"></i>
 Go Back
 </a>
@@ -37,7 +37,3 @@ Go Back
 
 </div>
 {% endblock %}
-
-</div>
-</body>
-</html>

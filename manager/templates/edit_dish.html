@@ -1,7 +1,9 @@
 {% extends 'manager-base.html' %}
 {% load static %}
   {% block title%}
-  <title>Edit Chefs</title>
+  <title>Edit Dishes</title>
+  <link rel="stylesheet" href="{% static 'edit-chef.css' %}" type="text/css">
+
 {% endblock %}
 {% block breadcrumbs %}
 
@@ -10,31 +12,46 @@
 {% endblock %}
 
 {% block body %}
-  <div style="outline-style: solid;">
-  <h1>Chefs</h1>
-  <h3> Add a Dish </h3>
+  <div class="container">
+  <h1> Add a Dish </h1>
   {% if error == True %}
-  <p>The dish number already exists. Choose another one!</p>
+  <div class="alert alert-danger alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong>Oops!</strong> There seems to exist another Dish with that ID already. Try another one!
+  </div>
+
   {% endif %}
   <form class="register-form" action='' method="post">
       {% csrf_token %}
       <table>
-        <input type="text" placeholder="Dish #" name="dish_num" required> <p> Dish Number has to be unique for each dish </p>
-        <input type="text" placeholder="Dish Name" name="dish_name" required>
-        <input type="text" placeholder="Dish Description" name="dish_desc" required>
-        <input type="number" placeholder="Time to Complete" name="time" required>
+        <input style="max-width: 250px;"type="text" class="form-control" aria-describedby="basic-addon1" placeholder="Dish ID" name="dish_num" required>
+         <p class="lead"> Dish ID has to be unique for each dish </p>
+        <input style="max-width: 250px;" type="text" class="form-control" aria-describedby="basic-addon1" type="text" placeholder="Dish Name" name="dish_name" required>
+        <input style="max-width: 250px;" type="text" class="form-control" aria-describedby="basic-addon1" type="text" placeholder="Dish Description" name="dish_desc" required>
+        <input style="max-width: 250px;" type="text" class="form-control" aria-describedby="basic-addon1" type="number" placeholder="Time to Complete" name="time" required>
       </table>
-      <input type="submit" value="Add Dish">
+      <button class="btn btn-primary" type="submit" type="button" style="margin-top:1%;">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true">Add + </span>
+      </button>
   </form>
+</div>
+<div style="margin-top:25px;" class="container">
   {% for dish in request.user.manager.restaurant.dish.all %}
-<div style="outline-style: solid;">
-<h2>Dish #: {{ dish.dish_number }}</h2>
-<h3> Dish Name: {{ dish.name }}</h3>
-<h4>Time to do: {{ dish.time_to_do }}</h4>
+<div class="ind-div">
+<h2>Name: {{ dish.name }} - ID #: {{ dish.dish_number }}</h2>
+<h4>Completion Time: {{ dish.time_to_do }}</h4>
 <p> Description: {{ dish.description }} </p>
-<h4><a href="/manager/home/edit-dish/remove-dish/{{ dish.dish_number }}"> Remove Dish</a></h4>
+<h4><a style="text-decoration: none;"href="/manager/home/edit-dish/remove-dish/{{ dish.dish_number }}">Remove Dish  <i class="fa fa-minus-square" aria-hidden="true"></i></a></h4>
 </div>
 
 {% endfor %}
+
+<div style="float: right;" class="row justify-content-end goback">
+<a class="btn btn-outline-primary" href="/manager/home/"><i class="fa fa-reply" aria-hidden="true"></i>
+Go Back
+</a>
+</div>
+
+</div>
 </div>
 {% endblock %}
