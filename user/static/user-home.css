@@ -1,0 +1,14 @@
+input {
+  margin-top: 15px;
+}
+
+
+.register-div {
+  height: 100vh;
+  background-image: url("/static/img/background-image1.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  overflow: hidden;
+}
