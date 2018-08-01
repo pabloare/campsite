@@ -35,22 +35,26 @@
     <form id="form" class="register-form" action='' method="post">
     {% csrf_token %}
     <table>
+      <div class="input-group input-group-lg">
+
       <select name="select-res" class="custom-select" required>
   <option selected>Select Restaurant</option>
   {% for restaurant in restaurants %}
   <option value="{{ restaurant.id }}">{{ restaurant.name }}</option>
   {% endfor %}
 </select>
+</div>
+
       <div class="input-group input-group-lg">
-  <input type="number" class="form-control" name="table" placeholder="Table" aria-describedby="sizing-addon1">
+  <input type="number" class="form-control" name="table" placeholder="Table" aria-describedby="sizing-addon1" required>
 </div>
 
 <div class="input-group input-group-lg">
-  <input type="number" class="form-control" name="seat_num" placeholder="Seat Number" aria-describedby="sizing-addon2">
+  <input type="number" class="form-control" name="seat_num" placeholder="Seat Number" aria-describedby="sizing-addon2" required>
 </div>
 
 <div class="input-group input-group-lg">
-  <input type="text" class="form-control" name="username" placeholder="Username" aria-describedby="sizing-addon3">
+  <input type="text" class="form-control" name="username" placeholder="Username" aria-describedby="sizing-addon3" required>
 </div>
     </table>
     <div class="row justify-content-center">

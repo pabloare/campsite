@@ -121,7 +121,7 @@ def add_dish(request):
         time = request.POST['time']
         dish = Dish(restaurant=rest, dish_number=dish_n, description=desc, name=d_name, time_to_do=time)
         dish.save()
-        return HttpResponseRedirect('/manager/home')
+        return HttpResponseRedirect('/manager/home/edit-dish')
     return render(request, 'edit_dish.html', {'error': False})
 
 

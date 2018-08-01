@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
   <title>Ordering</title>
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
     {% load static %}
     <link rel="stylesheet" href="{% static 'user-style.css' %}" type="text/css">
 
@@ -14,27 +17,43 @@
   <!-- Needed for rendering orders -->
   <h3> Your order id: </h3> <h3 class="order_id">{{ order.id }}<h3>
   <h5>You are currently at {{ res_name }}, seated at table {{ table_num }}, seat {{ seat_num }}</h5>
-    <form action='' method="post">
-      {% csrf_token %}
-      <table>
-          <input type="number" placeholder="#" name="num_items" required>
-          <div>
-          <input type="text" placeholder="Search Item" id="myInput" name="item" onkeyup="searchFunction()" required>
-          <!--- Improve dropdown UI -->
-          <div id="myDropdown" class="dropdown-content">
-          {% for dish in all_dishes %}
-          <a onclick="put('{{ dish.name }}')" href="#a">{{ dish }}</a>
-          {% endfor %}
-          </div>
-          </div>
-        <!--    Improve dropdown UI                      -->
-          {% if order.note %}
-          <p> You already have a note for your order. If you wish to rewrite it, add it again</p>
-          {% endif %}
-          <input type="text" placeholder="If you have allergies or prefer a certain condiment, let the chef know here! (Use this space for all plates)" name="note">
-      </table>
-      <input class="submit-button" type="submit" value="Order">
+
+  <div class="row justify-content-center">
+    <form id="form" class="register-form" action='' method="post">
+    {% csrf_token %}
+    <table>
+      <div class="input-group input-group-lg">
+          <input type="number" name="num_items" class="form-control"  placeholder="# Of Items" aria-describedby="sizing-addon1" required>
+      </div>
+
+  <div class="input-group input-group-lg">
+    <div>
+      <input type="text" class="form-control" id="myInput" name="item" onkeyup="searchFunction()" placeholder="Search Item" aria-describedby="sizing-addon2" required>
+    <!--- Improve dropdown UI -->
+    <div id="myDropdown" class="dropdown-content">
+    {% for dish in all_dishes %}
+    <a onclick="put('{{ dish.name }}')" href="#a">{{ dish }}</a>
+    {% endfor %}
+    </div>
+    </div>
+  </div>
+
+  <div class="input-group input-group-lg">
+    {% if order.note %}
+    <p> You already have a note for your order. If you wish to rewrite it, add it again</p>
+    {% endif %}
+  <input  id="note" type="text" class="form-control" name="note" placeholder="If you have allergies or prefer a certain condiment, let the chef know here! (Use this space for all plates)" aria-describedby="sizing-addon3">
+  </div>
+    </table>
+    <div class="row justify-content-center">
+      <!-- normal button -->
+    <!--<input class="btn btn-primary" type="submit" value="Order"> -->
+
+    <button class="btn btn-primary" type="submit" type="button" style="margin-top:15px;">Order <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+    </button>
+  </div>
   </form>
+  </div>
 
   <h3> Currently Ordered </h3>
   {% for dish in ordered_dishes %}

@@ -91,7 +91,7 @@ def pay(request, username, res_name, table_num, seat_num):
             seat.save()
             return HttpResponseRedirect('/user/')
         else:
-            return render(request, 'ordering.html', {'username': username, 'ordered_dishes': order.dishes.all(), 'res_name': restaurant.name, 'table_num': table.table_number, 'seat_num': seat.seat_number, 'order_id': order.id, 'has_payed': True})
+            return HttpResponseRedirect('/user/order/' + username + '/' + str(seat.seat_number) + '/' + str(table.table_number) + '/' + str(restaurant.id))
     except ObjectDoesNotExist:
         pass
     return HttpResponseRedirect('/user/')
