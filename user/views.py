@@ -6,6 +6,10 @@ from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 
 
+def initial_view(request):
+    return HttpResponseRedirect('/user/')
+
+
 def home(request):
     error = False
     if request.method == 'POST':
@@ -44,11 +48,15 @@ def ordering(request, username, seat, table, restaurant):
         num_items = request.POST['num_items']
         item = request.POST['item']
         note = request.POST['note']
-        if note:
-            order.note = note
-            order.save()
+        # Added note to join
+        # if note:
+        #    order.note = note
+        #    order.save()
+        if not note:
+            note = ""
         for i in range(int(num_items)):
-            order_dishes(restaurant, item, order)
+            # passed note as parameter
+            order_dishes(restaurant, item, order, note)
     ordered_dishes = order.dishes.all()
     all_dishes = Dish.objects.filter(restaurant=restaurant).all()
     # See if chef has finished all dishes (i.e, deleted all joins) in order to make the user payment available
@@ -56,26 +64,32 @@ def ordering(request, username, seat, table, restaurant):
     # render ordered dishes to view along with username so we can later delete the join order
 
 
-def order_dishes(restaurant, item, order):
+# Added note parameter for note in join
+def order_dishes(restaurant, item, order, note):
     dish = Dish.objects.get(restaurant=restaurant, name=item)
     add_to = JoinOrder(dishes=dish, order=order)
     add_to.save()
-    send_to_chef(dish, restaurant, order)
+    # passed note as parameter
+    send_to_chef(dish, restaurant, order, note)
 
 
-def send_to_chef(dish, restaurant, order):
+# Added note parameter for note in join
+def send_to_chef(dish, restaurant, order, note):
     chefs = Chef.objects.filter(restaurant=restaurant)
     chef_chosen = chefs.first()
     for chef in chefs:
         if chef.active:
             if chef.accumulator < chef_chosen.accumulator:
                 chef_chosen = chef
-    add_order = Join(chef=chef_chosen, dish=dish, order=order)
+    # create join with note and not ready
+    add_order = Join(chef=chef_chosen, dish=dish, order=order, note=note, ready=False)
     add_order.save()
     chef_chosen.accumulator += dish.time_to_do
     chef_chosen.save()
 
 
+# This will not work until I add the server and he clicks on the dish
+# and the join is actually deleted after he clicks on it (before the join is only ready)
 # When user pays: Clear all dishes ordered (Joint objects). Delete order and make seat available
 def pay(request, username, res_name, table_num, seat_num):
     restaurant = Restaurant.objects.get(name=res_name)

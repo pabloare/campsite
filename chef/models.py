@@ -18,3 +18,6 @@ class Join(models.Model):
     dish = models.ForeignKey(Dish, on_delete=models.CASCADE, related_name='dish_chef')
     chef = models.ForeignKey(Chef, on_delete=models.CASCADE, related_name='chef')
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='dish_order')
+    # Added fields
+    note = models.CharField(max_length=300)
+    ready = models.BooleanField(default=False)
