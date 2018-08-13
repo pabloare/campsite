@@ -1,6 +1,7 @@
 $(document).ready(function() {
   'use strict';
   console.log("working");
+  $("body").fadeIn("slow");
 });
 
 

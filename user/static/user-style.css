@@ -1,4 +1,10 @@
+html {
+  overflow: hidden;
+  background-size: cover;
+}
+
 .dropdown-content {
+    height: 50px;
     display: none;
     position: absolute;
     background-color: #f6f6f6;
@@ -6,7 +12,6 @@
     overflow: scroll;
     border: 1px solid #ddd;
     z-index: 1;
-    max-height: 50px;
 }
 
 .dropdown-content a {
