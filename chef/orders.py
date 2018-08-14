@@ -19,12 +19,10 @@ def render_orders(request, chef_id, res_id):
 def dish_complete(request, join_id):
     join = Join.objects.get(id=join_id)
     join.chef.accumulator -= join.dish.time_to_do
-
     # used to render view
     chef_id = str(join.chef.chef_id)
     res_id = str(join.chef.restaurant.id)
     # used to render view
-
     join.chef.save()
     # Set ready for delivery
     join.ready = True
