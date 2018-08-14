@@ -12,9 +12,7 @@ def render_orders(request, runner_id, res_id):
     # dish = Dish.objects.get(name="California Roll")
     # add_order = Join(chef=chef, dish=dish)
     # add_order.save()
-
-
-    # only display dishes that have not been finished
+    # only display dishes that have  been finished
     joins = Join.objects.filter(restaurant=res, ready=True)
 
     return render(request, 'chef-orders.html', {'runner': runner, 'res': res_id, 'joins': joins})

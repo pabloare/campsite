@@ -10,7 +10,7 @@ $(document).ready(function () {
 
 
 
-function updateContent(res_name, chef_id) {
+function updateContent(res_name, runner_id) {
   var link = "/runner/home/update/"+runner_id+"/"+res_name;
   $(".orders").load(link).fadeIn("fast");
 }
