@@ -5,6 +5,7 @@ from chef.models import Chef
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from runner.models import Runner
 
 
 def start(request):
@@ -87,10 +88,32 @@ def edit_chef(request):
 
 
 @login_required()
+def edit_runner(request):
+    if request.method == 'POST':
+        restaurant = request.user.manager.restaurant
+        runner_id = request.POST['runner_id']
+        runners = Runner.objects.filter(restaurant=restaurant)
+        if runners.filter(runner_id=runner_id).exists():
+            return render(request, 'edit_runner.html', {'error': True})
+        runner = Runner(runner_id=runner_id, restaurant=restaurant, active=False)
+        runner.save()
+        return HttpResponseRedirect('/manager/home/edit-runner')
+    return render(request, 'edit_runner.html', {'error': False})
+
+
+@login_required()
 def remove_chef(request, chef_id):
     restaurant = request.user.manager.restaurant
     chef = Chef.objects.get(chef_id=chef_id, restaurant=restaurant)
     chef.delete()
+    return HttpResponseRedirect('/manager/home/edit-chef')
+
+
+@login_required()
+def remove_runner(request, runner_id):
+    restaurant = request.user.manager.restaurant
+    runner = Runner.objects.get(runner_id=runner_id, restaurant=restaurant)
+    runner.delete()
     return HttpResponseRedirect('/manager/home/edit-chef')
 
 
@@ -105,6 +128,19 @@ def activate_chef(request, cid):
         chef.active = True
         chef.save()
     return HttpResponseRedirect('/manager/home/edit-chef')
+
+
+@login_required()
+def activate_runner(request, rid):
+    restaurant = request.user.manager.restaurant
+    runner = Runner.objects.get(runner_id=rid, restaurant=restaurant)
+    if runner.active:
+        runner.active = False
+        runner.save()
+    elif not runner.active:
+        runner.active = True
+        runner.save()
+    return HttpResponseRedirect('/manager/home/edit-runner')
 
 
 @login_required()

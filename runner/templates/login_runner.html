@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Runner Login</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta charset="UTF-8">
+</head>
+<body>
+  <div style="outline-style: solid;">
+    <h1>Runner Login </h1>
+  <form class="register-form" action='' method="post">
+    {% if error %}
+    <h3> The Runner ID you submitted does not exist. Contact Manager for further assistance</h3>
+    {% endif %}
+      {% csrf_token %}
+      <table>
+        <p>Your Runner ID </p><input type="text" placeholder="Runner ID" name="runner_id" required>
+         <p> Forgot Runner Id? Ask your manager for it!</p>
+         <p> Rememeber to <em>not</em> share your ID! It is unique for you!</p>
+         <select name="select-res" required>
+           <p>Select the restaurant you work in </p>
+         {% for restaurant in restaurants %}
+         <option value="{{ restaurant.id }}"> {{ restaurant.name }}</option>
+         {% endfor %}
+       </select>
+      </table>
+      <input type="submit">
+      <a href="/"class="goback">Go back</a>
+    </form>
+</div>
+</body>
+</html>

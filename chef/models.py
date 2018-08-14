@@ -15,6 +15,7 @@ class Chef(models.Model):
 
 
 class Join(models.Model):
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='join_restaurant')
     dish = models.ForeignKey(Dish, on_delete=models.CASCADE, related_name='dish_chef')
     chef = models.ForeignKey(Chef, on_delete=models.CASCADE, related_name='chef')
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='dish_order')

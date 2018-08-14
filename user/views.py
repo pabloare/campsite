@@ -82,7 +82,7 @@ def send_to_chef(dish, restaurant, order, note):
             if chef.accumulator < chef_chosen.accumulator:
                 chef_chosen = chef
     # create join with note and not ready
-    add_order = Join(chef=chef_chosen, dish=dish, order=order, note=note, ready=False)
+    add_order = Join(restaurant=restaurant, chef=chef_chosen, dish=dish, order=order, note=note, ready=False)
     add_order.save()
     chef_chosen.accumulator += dish.time_to_do
     chef_chosen.save()
