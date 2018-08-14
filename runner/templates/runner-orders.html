@@ -4,27 +4,26 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <meta charset="UTF-8">
     {% load static %}
 
 </head>
 <body>
-<h1>{{ runner.runner_id }}</h1>
-{% for join in joins %}
-<div style="outline-style: solid;">
+  <h1>{{ runner.runner_id }}</h1>
+  {% for join in joins %}
+  <div style="outline-style: solid;">
 
-<p>Order: {{ join.order.id }} </p>
-<p>Seat: {{ join.order.seat }}</p>
-<p>Table: {{ join.order.seat.table }}</p>
-<p> Dish:  <a href="/runner/home/{{ runner.runner_id }}/{{ join.id }}">{{ join.dish }} </a> </p>
-{% if not join.order.note %}
-<p> No note was added </p>
-{% else %}
-<p> Note : {{ join.order.note }} </p>
-{% endif %}
-</div>
+      <p>Order: {{ join.order.id }} </p>
+      <p>Seat: {{ join.order.seat }}</p>
+      <p>Table: {{ join.order.seat.table }}</p>
+      <p>Dish:  <a href="/runner/home/{{ runner.runner_id }}/{{ join.id }}/{{ join.restaurant.id }}">{{ join.dish }} </a> </p>
+      {% if not join.order.note %}
+        <p> No note was added </p>
+      {% else %}
+        <p> Note : {{ join.order.note }} </p>
+      {% endif %}
+  </div>
 
-{% endfor %}
+  {% endfor %}
 </body>
 </html>

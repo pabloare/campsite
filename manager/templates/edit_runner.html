@@ -10,8 +10,8 @@
   {% endblock %}
   {% block body %}
   <div class="container">
-  <h1 class="display-6">Your Chefs</h1>
-  <p class="lead">Add a Runner to your Restaurant. Remember <em>Runner id has to be unique for each Runner.</em></p>
+  <h1 class="display-6">Your Runners</h1>
+  <p class="lead">Add a Runner to your Restaurant.<br> Remember <em>Runner id has to be unique for each Runner.</em></p>
 
   {% if error == True %}
   <div class="alert alert-danger alert-dismissible" role="alert">
@@ -31,23 +31,24 @@
         </span>
     </div><!-- /input-group -->
   </form>
+  <p>{{request.user.manager.restaurant.runner.first}} </p>
   {% for runner in request.user.manager.restaurant.runner.all %}
-<div class="ind-div">
-<h2 class="display-6"><i class="fa fa-user-circle" aria-hidden="true"></i>
-ID: {{ runner.runner_id }} - Active : {{ runner.active }} {% if runner.active %}<i class="fa fa-circle" aria-hidden="true" style="color:green;"></i>
-{% else %}
-<i class="fa fa-circle-thin" aria-hidden="true"></i>
-{% endif %}
-</h2>
-{% if runner.active %}
-<a style="margin-top:1%;" class="btn btn-outline-secondary" href="/manager/home/edit-runner/activate-runner/{{ runner.runner_id }}">Deactivate</a>
-{% else %}
-<a style="margin-top:1%;" class="btn btn-outline-success" href="/manager/home/edit-runner/activate-runner/{{ runner.runner_id }}">Activate</a>
-{% endif %}
-<h6 class="display-6"><a style="margin-top:1%;" class="btn btn-outline-danger" href="/manager/home/edit-runner/remove-runner/{{ runner.runner_id }}">Remove Runner
-</a></h6>
-</div>
-{% endfor %}
+    <div class="ind-div">
+      <h2 class="display-6"><i class="fa fa-user-circle" aria-hidden="true"></i>
+        ID: {{ runner.runner_id }} - Active : {{ runner.active }} {% if runner.active %}<i class="fa fa-circle" aria-hidden="true" style="color:green;"></i>
+        {% else %}
+        <i class="fa fa-circle-thin" aria-hidden="true"></i>
+        {% endif %}
+      </h2>
+      {% if runner.active %}
+      <a style="margin-top:1%;" class="btn btn-outline-secondary" href="/manager/home/edit-runner/activate-runner/{{ runner.runner_id }}">Deactivate</a>
+      {% else %}
+      <a style="margin-top:1%;" class="btn btn-outline-success" href="/manager/home/edit-runner/activate-runner/{{ runner.runner_id }}">Activate</a>
+      {% endif %}
+      <h6 class="display-6"><a style="margin-top:1%;" class="btn btn-outline-danger" href="/manager/home/edit-runner/remove-runner/{{ runner.runner_id }}">Remove Runner
+      </a></h6>
+    </div>
+    {% endfor %}
 
 <div style="float: right;" class="row justify-content-end goback">
 <a class="btn btn-outline-primary" href="/manager/home/"><i class="fa fa-reply" aria-hidden="true"></i>

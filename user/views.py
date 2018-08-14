@@ -76,7 +76,10 @@ def order_dishes(restaurant, item, order, note):
 # Added note parameter for note in join
 def send_to_chef(dish, restaurant, order, note):
     chefs = Chef.objects.filter(restaurant=restaurant)
-    chef_chosen = chefs.first()
+    for chef in chefs:
+        if chef.active:
+            chef_chosen = chef
+            break
     for chef in chefs:
         if chef.active:
             if chef.accumulator < chef_chosen.accumulator:

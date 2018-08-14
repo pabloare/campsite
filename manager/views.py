@@ -95,7 +95,7 @@ def edit_runner(request):
         runners = Runner.objects.filter(restaurant=restaurant)
         if runners.filter(runner_id=runner_id).exists():
             return render(request, 'edit_runner.html', {'error': True})
-        runner = Runner(runner_id=runner_id, restaurant=restaurant, active=False)
+        runner = Runner(restaurant=restaurant, runner_id=runner_id, active=False)
         runner.save()
         return HttpResponseRedirect('/manager/home/edit-runner')
     return render(request, 'edit_runner.html', {'error': False})

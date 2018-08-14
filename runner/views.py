@@ -13,13 +13,13 @@ def home(request):
         runners = Runner.objects.filter(restaurant=res)
         if runners.filter(runner_id=runner_id).exists():
             runner = runners.get(runner_id=runner_id)
-            # return render(request, 'home_chef.html', {'chef': chef})
-            return HttpResponseRedirect('home/' + runner.runner_id + "/" + res_id)
+            return HttpResponseRedirect('home/' + runner.runner_id + '/' + res_id)
         else:
             error = True
     return render(request, 'login_runner.html', {'restaurants': Restaurant.objects.all(), 'error': error})
 
 
 def main(request, run_id, run_res):
-    runner = Runner.objects.filter(restaurant=run_res).get(runner_id=run_id)
+    res = Restaurant.objects.get(id=int(run_res))
+    runner = Runner.objects.filter(restaurant=res).get(runner_id=run_id)
     return render(request, 'home_runner.html', {'runner': runner})
