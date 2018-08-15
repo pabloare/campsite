@@ -114,7 +114,7 @@ def remove_runner(request, runner_id):
     restaurant = request.user.manager.restaurant
     runner = Runner.objects.get(runner_id=runner_id, restaurant=restaurant)
     runner.delete()
-    return HttpResponseRedirect('/manager/home/edit-chef')
+    return HttpResponseRedirect('/manager/home/edit-runner')
 
 
 @login_required()

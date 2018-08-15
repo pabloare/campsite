@@ -2,33 +2,44 @@
 <html lang="en">
 <head>
   <title>Chef Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <meta charset="UTF-8">
 </head>
 <body>
-  <div style="outline-style: solid;">
-    <h1>Chef Login </h1>
+    <div style="margin-top:2%;"class="row justify-content-center">
+    <h4 class="display-4">Chef Login     <i class="fa fa-cubes" aria-hidden="true"></i></h4>
+  </div>
+  <div  style="margin-top:2%;"class="container">
   <form class="register-form" action='' method="post">
     {% if error %}
     <h3> The Chef ID you submitted does not exist. Contact Manager for further assistance</h3>
     {% endif %}
       {% csrf_token %}
       <table>
-        <p>Your Chef ID </p><input type="text" placeholder="Chef ID" name="chef_id" required>
+
+        <div class="input-group input-group-md">
+        <input class="form-control" type="text" placeholder="Your Chef ID" name="chef_id" required>
+      </div>
          <p> Forgot Chef Id? Ask your manager for it!</p>
          <p> Rememeber to <em>not</em> share your ID! It is unique for you!</p>
-         <select name="select-res" required>
-           <p>Select the restaurant you work in </p>
-         {% for restaurant in restaurants %}
-         <option value="{{ restaurant.id }}"> {{ restaurant.name }}</option>
-         {% endfor %}
-       </select>
+         <div class="input-group input-group-lg">
+
+         <select name="select-res" class="custom-select" required>
+     <option selected>Select Restaurant</option>
+     {% for restaurant in restaurants %}
+     <option value="{{ restaurant.id }}">{{ restaurant.name }}</option>
+     {% endfor %}
+     </select>
+     </div>
       </table>
-      <input type="submit">
-      <a href="/"class="goback">Go back</a>
+      <button class="btn btn-primary" type="submit" type="button" style="margin-top:1%;">Log In <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+      </button>
+      <a class="btn btn-outline-primary" style="margin-top:1%;" href="/"class="goback">Go back</a>
     </form>
-</div>
+  </div>
 </body>
 </html>
