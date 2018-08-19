@@ -1,31 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+{% extends 'login_chef.html' %}
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <meta charset="UTF-8">
+{% block title %}
+<title> Ordering </title>
     {% load static %}
-
-</head>
-<body>
-  <h1>Welcome</h1>
+{% endblock %}
+{% block body %}
+<div class="container">
+<div class="row justify-content-center">
+<h1>Welcome Back!</h1>
+</div>
+<div class="row justify-content-center">
+<a href="/chef/">Logout</a>
+</div>
   <!-- USING THESE AS VARIABLES TO RENDER, DO NOT TOUCH-->
   <p class="res_name">{{ chef.restaurant.id }}</p>
   <p class="chef_id">{{ chef.chef_id }}</p>
   <div class="orders">
 
   </div>
-  <div class="try">
-  </div>
-</form>
-<script
-  src="https://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+</div>
+{% endblock %}
+{% block jslinks %}
 <script type="text/javascript" src="{% static 'chef-jquery.js' %}"></script>
-
-</body>
-</html>
+{% endblock %}

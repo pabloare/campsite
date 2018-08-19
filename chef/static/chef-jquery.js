@@ -1,5 +1,7 @@
 $(document).ready(function () {
     'use strict';
+    $(".res_name").hide();
+    $(".chef_id").hide();
     console.log("jquery working");
     var res_name = $(".res_name").text();
     var chef_id = $(".chef_id").text();

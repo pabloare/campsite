@@ -1,29 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta charset="UTF-8">
+{% extends 'login_runner.html' %}
+{% block title %}
     {% load static %}
+    <link rel="stylesheet" href="{% static 'runner_orders.css' %}" type="text/css">
 
-</head>
-<body>
-  <h1>{{ runner.runner_id }}</h1>
+{% endblock %}
+{% block body %}
   {% for join in joins %}
-  <div style="outline-style: solid;">
+  <div class="order_div">
+    <p>Dish:  <a href="/runner/home/{{ runner.runner_id }}/{{ join.id }}/{{ join.restaurant.id }}">{{ join.dish }} </a> </p>
 
+    <p>Table: {{ join.order.seat.table }}</p>
+    <p>Seat: {{ join.order.seat }}</p>
       <p>Order: {{ join.order.id }} </p>
-      <p>Seat: {{ join.order.seat }}</p>
-      <p>Table: {{ join.order.seat.table }}</p>
-      <p>Dish:  <a href="/runner/home/{{ runner.runner_id }}/{{ join.id }}/{{ join.restaurant.id }}">{{ join.dish }} </a> </p>
-      {% if not join.order.note %}
-        <p> No note was added </p>
+      {% if not join.note %}
+        <p> Note: None </p>
       {% else %}
-        <p> Note : {{ join.order.note }} </p>
+        <p> Note : {{ join.note }} </p>
       {% endif %}
   </div>
 
   {% endfor %}
-</body>
-</html>
+{% endblock %}
