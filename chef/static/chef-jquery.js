@@ -6,7 +6,7 @@ $(document).ready(function () {
     var res_name = $(".res_name").text();
     var chef_id = $(".chef_id").text();
     // TODO : Change interval so it is only called when a dish is ordered
-    setInterval(function() { updateContent(res_name, chef_id); }, 1000 );
+    setInterval(function() { updateContent(res_name, chef_id); }, 10000 );
     console.log("jquery working");
 })
 
