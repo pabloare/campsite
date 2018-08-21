@@ -4,7 +4,7 @@ html {
 }
 
 .dropdown-content {
-    height: 50px;
+    max-height: 120px;
     display: none;
     position: absolute;
     background-color: #f6f6f6;
