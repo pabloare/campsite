@@ -24,7 +24,7 @@ SECRET_KEY = 'hher59g+toe))!i_adv_cr=6bw9f*jo%f0o(^0yp$^d!yms@!k'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['campsite-parellano.herokuapp.com', 'www.campsite.ml' '127.0.0.1']
+ALLOWED_HOSTS = ['campsite-parellano.herokuapp.com', 'www.campsite.ml', '127.0.0.1']
 
 
 # Application definition
