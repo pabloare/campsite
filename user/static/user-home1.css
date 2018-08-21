@@ -14,7 +14,7 @@ input {
 }
 
 .how-to {
-  height: 400px;
+  height: 100vh;
   background-color: rgb(102, 163, 255);
   background-repeat: no-repeat;
   background-position: center;
