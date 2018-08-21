@@ -26,13 +26,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['campsite-parellano.herokuapp.com', 'www.campsite.ml', '127.0.0.1']
 
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-# Application definition
-SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
