@@ -35,7 +35,7 @@
     <div>
       <input type="text" class="form-control" id="myInput" name="item" onkeyup="searchFunction()" placeholder="Search Item" aria-describedby="sizing-addon2" required>
     <!--- Improve dropdown UI -->
-    <div id="myDropdown" class=" input-group dropdown-content">
+    <div id="myDropdown" class="input-group dropdown-content">
     {% for dish in all_dishes %}
     <a onclick="put('{{ dish.name }}')" href="#a">{{ dish }}</a>
     {% endfor %}

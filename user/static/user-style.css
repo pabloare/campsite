@@ -8,6 +8,7 @@ html {
     display: none;
     position: absolute;
     background-color: #f6f6f6;
+    border-radius: 4px;
     min-width: 130px;
     overflow: scroll;
     border: 1px solid #ddd;
