@@ -6,20 +6,22 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
 
 </head>
 <body>
-  <div class="row justify-content-center">
     {% if allow_exit %}
     <div class="alert alert-success alert-dismissible" role="alert">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       <strong>Payment Confirmed!</strong> See you soon <i class="em em-wave"></i>
     </div>
     <div class="row justify-content-center">
-    <a class="btn btn-success" href="/">Home</a>
+    <a class="btn btn-success text-center" href="/">Home</a>
   </div>
     {% else %}
-    <div style="margin-top:20%;">
+    <div class="row justify-content-center">
+
+    <div>
       <h3 class="text-center">We are confirming your payment<h3>
       </div>
       {% endif %}
