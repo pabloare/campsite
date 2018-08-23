@@ -5,6 +5,10 @@
 
 {% endblock %}
 {% block body %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-6">
+      <h4 class="text-center">Orders</h4>
   {% for join in joins %}
   <div class="order_div">
     <p>Dish:  <a href="/runner/home/{{ runner.runner_id }}/{{ join.id }}/{{ join.restaurant.id }}">{{ join.dish }} </a> </p>
@@ -18,6 +22,9 @@
       {% endif %}
   </div>
   {% endfor %}
+</div>
+<div class="col-6">
+  <h4 class="text-center">Payments</h4>
   {% for order in orders%}
   {% if order.payment.wants_to_pay %}
   <div class="order_div">
@@ -26,10 +33,14 @@
     {% else %}
     <p>Needs change for: {{ order.payment.change_if_cash }} </p>
     {% endif %}
-    <p>Payed Bill:  <a href="/runner/home/pay/{{ runner.runner_id }}/{{ order.restaurant.id }}/{{ order.id }}">{{ order.id }} </a> </p>
+    <p><a href="/runner/home/pay/{{ runner.runner_id }}/{{ order.restaurant.id }}/{{ order.id }}">Has Payed Bill</a> </p>
     <p>Table: {{ order.seat.table }}</p>
     <p>Seat: {{ order.seat }}</p>
   </div>
+
   {% endif %}
 {% endfor %}
+</div>
+</div>
+</div>
 {% endblock %}
