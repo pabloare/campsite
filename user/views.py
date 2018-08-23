@@ -152,13 +152,17 @@ def confirmation(request, order_id):
 
 
 def pay_exit(request, order_id):
-    order = Order.objects.get(id=order_id)
-    allow_exit = False
-    if order.payment.has_payed:
+    try:
+        order = Order.objects.get(id=order_id)
+        allow_exit = False
+        if order.payment.has_payed:
+            allow_exit = True
+            order.dishes.clear()
+            order.seat.payed = True
+            order.seat.save()
+            order.payment.delete()
+            order.delete()
+            allow_exit = True
+    except ObjectDoesNotExist:
         allow_exit = True
-        order.dishes.clear()
-        order.seat.payed = True
-        order.seat.save()
-        order.payment.delete()
-        order.delete()
     return render(request, 'exit_confirmation.html', {'allow_exit': allow_exit})
