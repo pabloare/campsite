@@ -21,7 +21,7 @@
   {% for table in request.user.manager.restaurant.table.all %}
 <div class="ind-div">
 <h2>Table {{ table.table_number }} - Number of Seats: {{ table.seat.all.count }}</h2>
-<h4>Add Seat<a style="text-decoration: none;" href="/manager/home/edit-tables/add-seat/{{ table.id }}/{{ table.seat.all.count }}">  <i class="fa fa-plus-square" aria-hidden="true"></i>
+<h4>Add Seat<a style="text-decoration: none;" href="/manager/home/edit-tables/add-seat/{{ table.id }}">  <i class="fa fa-plus-square" aria-hidden="true"></i>
 </a></h4>
 <h4>Remove Seat<a style="text-decoration: none;" href="/manager/home/edit-tables/remove-seat/{{ table.id }}">  <i class="fa fa-minus-square" aria-hidden="true"></i>
 </a></h4>

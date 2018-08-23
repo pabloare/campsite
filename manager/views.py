@@ -56,9 +56,10 @@ def remove_seat(request, table):
 
 
 @login_required()
-def add_seat(request, table, count):
+def add_seat(request, table):
+    # There might be an error of asynchronous commands and same seat
     table_object = Table.objects.get(pk=table)
-    new_count = count + 1
+    new_count = table_object.seat.all().count() + 1
     seat_object = Seat(table=table_object, seat_number=new_count, payed=True)
     seat_object.save()
     return HttpResponseRedirect('/manager/home/edit-tables')
