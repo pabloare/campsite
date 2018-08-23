@@ -50,10 +50,12 @@
     <div class="row justify-content-center">
       <!-- normal button -->
     <!--<input class="btn btn-primary" type="submit" value="Order"> -->
-    <button class="btn btn-primary" type="submit" type="button" style="margin-top:15px;">Order <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+    <button name="ordering_post" class="btn btn-primary" type="submit" type="button" style="margin-top:15px;">Order <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
     </button>
   </div>
   </form>
+
+
   </div>
   <div style="margin-top:30px; text-align:center;" class="container">
   <h3> Current Order </h3>
@@ -66,15 +68,51 @@
   {% else %}
   <h6>- No current ordered dishes -</h6>
   {% endif %}
+</div>
+
+
+
+
   <div style="margin-top:40px;">
-  <a href="/user/pay/{{ username }}/{{ res_name }}/{{ table_num }}/{{ seat_num }}">
-  <button type="button" class="btn btn-success">Pay  <i class="fa fa-credit-card" aria-hidden="true"></i>
+<!-- PAYMENT FORMS -->
+<div class="row justify-content-center">
+<a href="/user/pay/{{ username }}/{{ res_name }}/{{ table_num }}/{{ seat_num }}">
+  <button type="button" class="btn btn-outline-info">Pay Credit/Debit <i class="fa fa-credit-card" aria-hidden="true"></i>
 </button></a>
 </div>
+
+<div style="margin-top:10px;" class="row justify-content-center">
+<button class="btn btn-outline-success cash-trigger-button" type="button" style="margin-top:15px;">Pay Cash <i class="fa fa-money" aria-hidden="true"></i>
+</div>
+<!-- If top button clicked show following -->
+
+<div class="row justify-content-center">
+<form style="margin-top:20px;" id="form" class="register-form cash-payment-form" action='' method="post">
+  {% csrf_token %}
+  <table>
+      <div class="row justify-content-center" style="margin-top:10px;">
+        <p class="lead">Change for Bill?</p>
+      </div>
+      <div class="input-group">
+          <input style="text-align:center;"type="number" name="change" class="form-control"  placeholder="$" aria-describedby="sizing-addon1" >
+      </div>
+      <div class="input-group">
+          <input style="text-align:center;" type="number" name="order_id_cash"  class="form-control order_cash" id="order_id_for_cash"  placeholder="order_id" aria-describedby="sizing-addon1" >
+      </div>
+    </table>
+    <div class="row justify-content-center">
+    <button name="pay_cash_post" class="btn btn-outline-success" type="submit" type="button" style="margin-top:15px;">Pay Cash  <i class="fa fa-money" aria-hidden="true"></i>
+    </button>
+  </div>
+  </form>
+</div>
+  <!-- PAYMENT FORMS -->
+</div>
+
+
   <!--
   <a href="/user/pay/{{ username }}/{{ res_name }}/{{ table_num }}/{{ seat_num }}"><h3>Pay for Bill </h3></a>
 -->
-</div>
 <!-- Implement following in views
 
   {% if has_payed %}

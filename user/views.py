@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from manager.models import Seat, Restaurant, Table, Dish
-from .models import Order, JoinOrder
+from .models import Order, JoinOrder, Payment
 from chef.models import Chef, Join
 from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
@@ -30,10 +30,13 @@ def home(request):
         # lock seat when user has entered seat
         seat.payed = False
         seat.save()
-        order = Order(username=username, seat=seat, note='')
+        payment = Payment()
+        payment.save()
+        order = Order(username=username, seat=seat, note='', payment=payment, restaurant=restaurant_object)
         order.save()
         return HttpResponseRedirect('/user/order/' + username + '/' + seat_num + '/' + table + '/' + restaurant)
-        # render new page where order is displayed with the order passed on
+
+            # render new page where order is displayed with the order passed on
     # render normal view
     return render(request, 'user_home.html', {'error': error, 'restaurants': Restaurant.objects.all()})
 
@@ -45,18 +48,35 @@ def ordering(request, username, seat, table, restaurant):
     seat = Seat.objects.get(table=table, seat_number=seat)
     order = Order.objects.get(username=username, seat=seat)
     if request.method == 'POST':
-        num_items = request.POST['num_items']
-        item = request.POST['item']
-        note = request.POST['note']
-        # Added note to join
-        # if note:
-        #    order.note = note
-        #    order.save()
-        if not note:
-            note = ""
-        for i in range(int(num_items)):
-            # passed note as parameter
-            order_dishes(restaurant, item, order, note)
+        if "ordering_post" in request.POST:
+            num_items = request.POST['num_items']
+            item = request.POST['item']
+            note = request.POST['note']
+            # Added note to join
+            # if note:
+            #    order.note = note
+            #    order.save()
+            if not note:
+                note = ""
+            for i in range(int(num_items)):
+                # passed note as parameter
+                order_dishes(restaurant, item, order, note)
+        elif "pay_cash_post" in request.POST:
+            order_id = request.POST['order_id_cash']
+            change = request.POST['change']
+            order = Order.objects.get(id=order_id)
+            joins = Join.objects.filter(order=order)
+            if not joins:
+                order.payment.wants_to_pay = True
+                order.payment.card = False
+                if change:
+                    order.payment.change_if_cash = int(change)
+                else:
+                    order.payment.change_if_cash = 0
+                order.payment.save()
+                return HttpResponseRedirect('/user/pay/confirmation' + '/' + str(order.id))
+            else:
+                return HttpResponseRedirect('/user/order/' + str(order.username) + '/' + str(order.seat.seat_number) + '/' + str(order.seat.table.table_number) + '/' + str(order.seat.table.restaurant.id))
     ordered_dishes = order.dishes.all()
     all_dishes = Dish.objects.filter(restaurant=restaurant).all()
     # See if chef has finished all dishes (i.e, deleted all joins) in order to make the user payment available
@@ -102,13 +122,43 @@ def pay(request, username, res_name, table_num, seat_num):
     joins = Join.objects.filter(order=order)
     try:
         if not joins:
-            order.dishes.clear()
-            order.delete()
-            seat.payed = True
-            seat.save()
-            return HttpResponseRedirect('/user/')
+            order.payment.wants_to_pay = True
+            order.payment.card = True
+            order.payment.save()
+            return HttpResponseRedirect('/user/pay/confirmation' + '/' + str(order.id))
         else:
             return HttpResponseRedirect('/user/order/' + username + '/' + str(seat.seat_number) + '/' + str(table.table_number) + '/' + str(restaurant.id))
     except ObjectDoesNotExist:
         pass
     return HttpResponseRedirect('/user/')
+    # joins = Join.objects.filter(order=order)
+    # try:
+    #    if not joins:
+    #        order.dishes.clear()
+    #        order.delete()
+    #        seat.payed = True
+    #        seat.save()
+    #        return HttpResponseRedirect('/user/')
+    #    else:
+    #        return HttpResponseRedirect('/user/order/' + username + '/' + str(seat.seat_number) + '/' + str(table.table_number) + '/' + str(restaurant.id))
+    # except ObjectDoesNotExist:
+    #    pass
+    # return HttpResponseRedirect('/user/')
+
+
+def confirmation(request, order_id):
+    order = Order.objects.get(id=order_id)
+    return render(request, 'payment_confirmation.html', {'order': order})
+
+
+def pay_exit(request, order_id):
+    order = Order.objects.get(id=order_id)
+    allow_exit = False
+    if order.payment.has_payed:
+        allow_exit = True
+        order.dishes.clear()
+        order.seat.payed = True
+        order.seat.save()
+        order.payment.delete()
+        order.delete()
+    return render(request, 'exit_confirmation.html', {'allow_exit': allow_exit})

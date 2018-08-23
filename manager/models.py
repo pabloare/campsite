@@ -22,14 +22,6 @@ class Manager(models.Model):
         return self.user.username
 
 
-#def create_profile(sender, **kwargs):
-#    if kwargs['created']:
-#        Manager.objects.create(user=kwargs['instance'])
-#
-
-#post_save.connect(create_profile, sender=User)
-
-
 class Table(models.Model):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='table')
     table_number = models.IntegerField(default=0)
@@ -53,6 +45,7 @@ class Dish(models.Model):
     name = models.CharField(null=True, max_length=100)
     description = models.CharField(max_length=500, default="")
     time_to_do = models.IntegerField(default=0)
+    price = models.FloatField(default=0.0)
 
     def __str__(self):
         return self.name

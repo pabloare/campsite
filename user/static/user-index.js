@@ -1,7 +1,13 @@
 $(document).ready(function() {
   'use strict';
+  document.getElementById("order_id_for_cash").value = $(".order_id").text();
+  $(".cash-payment-form").hide();
+  $(".order_cash").hide();
   console.log("working");
-  $("body").fadeIn("slow");
+  $(".cash-trigger-button").click(function(event) {
+    $(".cash-payment-form").fadeIn('fast');
+    $(".cash-trigger-button").hide();
+  });
 });
 
 
