@@ -51,10 +51,6 @@ def ordering(request, username, seat, table, restaurant):
             num_items = request.POST['num_items']
             item = request.POST['item']
             note = request.POST['note']
-            # Added note to join
-            # if note:
-            #    order.note = note
-            #    order.save()
             if not note:
                 note = ""
             for i in range(int(num_items)):
@@ -132,19 +128,6 @@ def pay(request, username, res_name, table_num, seat_num):
     except ObjectDoesNotExist:
         pass
     return HttpResponseRedirect('/user/')
-    # joins = Join.objects.filter(order=order)
-    # try:
-    #    if not joins:
-    #        order.dishes.clear()
-    #        order.delete()
-    #        seat.payed = True
-    #        seat.save()
-    #        return HttpResponseRedirect('/user/')
-    #    else:
-    #        return HttpResponseRedirect('/user/order/' + username + '/' + str(seat.seat_number) + '/' + str(table.table_number) + '/' + str(restaurant.id))
-    # except ObjectDoesNotExist:
-    #    pass
-    # return HttpResponseRedirect('/user/')
 
 
 def confirmation(request, order_id):
