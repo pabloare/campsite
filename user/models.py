@@ -18,6 +18,7 @@ class Order(models.Model):
     payment = models.OneToOneField(Payment, on_delete=models.CASCADE, related_name="payment")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    total = models.FloatField(default=0.0)
 
 
 class JoinOrder(models.Model):

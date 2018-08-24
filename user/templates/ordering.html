@@ -62,9 +62,12 @@
   {% if ordered_dishes %}
   {% for dish in ordered_dishes %}
   <div style="margin-top: 10px;" id="current-order">
-  <p class="lead">- {{ dish.name }} - </p>
+  <p class="lead">- {{ dish.name }} - {{ dish.price }} $ </p>
 </div>
   {% endfor %}
+  <div style="margin-top: 10px;" id="current-order">
+  <h4> Total: {{ order.total }} $</h4>
+  </div>
   {% else %}
   <h6>- No current ordered dishes -</h6>
   {% endif %}

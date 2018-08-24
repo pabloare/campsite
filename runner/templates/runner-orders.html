@@ -33,6 +33,7 @@
     {% else %}
     <p>Needs change for: {{ order.payment.change_if_cash }} </p>
     {% endif %}
+    <p>Total: {{ order.total }} $</p>
     <p><a href="/runner/home/pay/{{ runner.runner_id }}/{{ order.restaurant.id }}/{{ order.id }}">Has Payed Bill</a> </p>
     <p>Table: {{ order.seat.table }}</p>
     <p>Seat: {{ order.seat }}</p>

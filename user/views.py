@@ -85,6 +85,8 @@ def order_dishes(restaurant, item, order, note):
     dish = Dish.objects.get(restaurant=restaurant, name=item)
     add_to = JoinOrder(dishes=dish, order=order)
     add_to.save()
+    order.total += dish.price
+    order.save()
     # passed note as parameter
     send_to_chef(dish, restaurant, order, note)
 
