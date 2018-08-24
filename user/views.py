@@ -35,8 +35,7 @@ def home(request):
         order = Order(username=username, seat=seat, note='', payment=payment, restaurant=restaurant_object)
         order.save()
         return HttpResponseRedirect('/user/order/' + username + '/' + seat_num + '/' + table + '/' + restaurant)
-
-            # render new page where order is displayed with the order passed on
+        # render new page where order is displayed with the order passed on
     # render normal view
     return render(request, 'user_home.html', {'error': error, 'restaurants': Restaurant.objects.all()})
 
@@ -74,6 +73,7 @@ def ordering(request, username, seat, table, restaurant):
                 else:
                     order.payment.change_if_cash = 0
                 order.payment.save()
+                order.save()
                 return HttpResponseRedirect('/user/pay/confirmation' + '/' + str(order.id))
             else:
                 return HttpResponseRedirect('/user/order/' + str(order.username) + '/' + str(order.seat.seat_number) + '/' + str(order.seat.table.table_number) + '/' + str(order.seat.table.restaurant.id))
@@ -125,6 +125,7 @@ def pay(request, username, res_name, table_num, seat_num):
             order.payment.wants_to_pay = True
             order.payment.card = True
             order.payment.save()
+            order.save()
             return HttpResponseRedirect('/user/pay/confirmation' + '/' + str(order.id))
         else:
             return HttpResponseRedirect('/user/order/' + username + '/' + str(seat.seat_number) + '/' + str(table.table_number) + '/' + str(restaurant.id))

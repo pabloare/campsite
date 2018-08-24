@@ -14,8 +14,8 @@ def render_orders(request, runner_id, res_id):
     # add_order = Join(chef=chef, dish=dish)
     # add_order.save()
     # only display dishes that have  been finished
-    joins = Join.objects.filter(restaurant=res, ready=True).reverse()
-    orders = Order.objects.filter(restaurant=res).reverse()
+    joins = Join.objects.filter(restaurant=res, ready=True).order_by('updated_at')
+    orders = Order.objects.filter(restaurant=res).order_by('updated_at')
     return render(request, 'runner-orders.html', {'runner': runner, 'res': res_id, 'joins': joins, 'orders': orders})
 
 

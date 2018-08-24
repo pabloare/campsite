@@ -16,6 +16,8 @@ class Order(models.Model):
     note = models.CharField(max_length=300)
     dishes = models.ManyToManyField(Dish, through='JoinOrder')
     payment = models.OneToOneField(Payment, on_delete=models.CASCADE, related_name="payment")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 
 class JoinOrder(models.Model):

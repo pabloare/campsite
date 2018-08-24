@@ -12,7 +12,7 @@ def render_orders(request, chef_id, res_id):
     # add_order = Join(chef=chef, dish=dish)
     # add_order.save()
     # only display dishes that have not been finished
-    joins = Join.objects.filter(chef=chef, ready=False).reverse()
+    joins = Join.objects.filter(chef=chef, ready=False).order_by('created_at')
     return render(request, 'chef-orders.html', {'chef': chef, 'res': res_id, 'joins': joins})
 
 
