@@ -1,5 +1,5 @@
 *:not(.btn) {
-  background-image: url("/static/img/login-manager.jpg");
+  background-image: url("/static/img/wave.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;

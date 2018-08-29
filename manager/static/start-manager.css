@@ -1,11 +1,14 @@
-* {
-  background-image: url("/static/img/start-image2.jpg");
+.first-page{
+  height: 85vh;
+  background-image: url("/static/img/notified_header.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
   background-size: cover;
   overflow: hidden;
 }
+
+
 
 .title {
   margin-top: 10%;

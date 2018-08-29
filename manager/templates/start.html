@@ -1,20 +1,137 @@
 {% extends 'manager-base.html' %}
 {% block title %}
-  <title>Start</title>
+  <title>CampSite</title>
   {% load static %}
   <link rel="stylesheet" href="{% static 'start-manager.css' %}" type="text/css">
+
+  <script src="https://cdn.rawgit.com/icons8/titanic/master/dist/js/titanic.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/4.5.9/bodymovin.min.js"></script>
 {% endblock %}
 
 {% block body %}
-  <h1 class="display-1 title">Welcome to CampSite</h1>
-  <h4 class="display-4 title-two">For Managers</h4>
-<div class="row align-items-center forms">
-  <div class="col-md-6 col-sm-12 col-xs-12">
-    <h4 class="display-4 form-text"><a class="btn btn-outline-light btn-lg btn-block" href="/manager/login">Login</a> </h1>
-  </div>
-  <div class="col-md-6 col-sm-12 col-xs-12">
-    <h4 class="display-4 form-text"><a class="btn btn-outline-light btn-lg btn-block" href="/manager/register">Register</a> <h2>
+<nav class=" mynav navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#"><h2>CampSite</h2></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">About Us</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">How It Works</a>
+      </li>
 
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Get Started!</button>
+    </form>
+  </div>
+</nav>
+<div class="first-page">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 class="display-3" style="margin-top:20vh; text-align:center;">Welcome to the future of the restaurant business</h3>
+        <h3 class="lead" style="margin-top:1vh; text-align:center;"> Learn how CampSite can help your restaurant excel</h3>
+        <div style="margin-top:5vh;" class="row justify-content-center">
+        <button class="btn btn-outline-success btn-lg" type="submit">Get Started!</button>
+      </div>
+      </div>
+  </div>
   </div>
 </div>
+</div>
+<div style="height: 70vh;">
+  <div class="container-fluid" style="margin-top:15vh;">
+    <div class="row">
+
+      <div id="automate" class="col-sm-6">
+        <div class="row justify-content-center">
+          <div class='titanic titanic-chat'></div>
+
+          <!--
+          <i class="fa fa-circle-o" style="font-size:55px;"></i>
+        -->
+        </div>
+        <div class="row justify-content-center" style="margin-top:2vh;">
+          <h3>Automate</h3>
+        </div>
+          <div class="row justify-content-center" style="margin-top:2vh;">
+          <p style="text-align:center;"class="lead">Provide visitors with the opportunity of ordering through their own phones.</p>
+        </div>
+      </div>
+
+      <div id="efficency"class="col-sm-6">
+        <div class="row justify-content-center">
+          <div class='titanic titanic-power'></div>
+
+        </div>
+        <div class="row justify-content-center" style="margin-top:2vh;">
+          <h3>Optimize</h3>
+        </div>
+          <div class="row justify-content-center" style="margin-top:2vh;">
+          <p style="text-align:center;"class="lead">Remove inefficiencies through our fast software powered by AI.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row" style="margin-top:10vh;">
+
+      <div id="automate" class="col-sm-6">
+        <div class="row justify-content-center">
+          <div class='titanic titanic-unlock'></div>
+
+        </div>
+        <div class="row justify-content-center" style="margin-top:2vh;">
+          <h3>Integrate</h3>
+        </div>
+          <div class="row justify-content-center" style="margin-top:2vh;">
+          <p style="text-align:center;"class="lead">Manage your restaurant through one <em>secure</em> place.</p>
+        </div>
+      </div>
+
+      <div id="efficency"class="col-sm-6">
+        <div class="row justify-content-center">
+          <div class='titanic titanic-expensive'></div>
+
+        </div>
+        <div class="row justify-content-center" style="margin-top:2vh;">
+          <h3>Grow</h3>
+        </div>
+          <div class="row justify-content-center" style="margin-top:2vh;">
+          <p style="text-align:center;"class="lead">Massively improve margins by decrease in expenses on personnel.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div style="height: 25vh;">
+  <h3 class="text-center">Ready to try it out?</h3>
+  <div class="row justify-content-center" style="margin-top:5vh;">
+    <button class="btn btn-outline-success btn-lg" type="submit">Get Started!</button>
+  </div>
+</div>
+<footer class="page-footer font-small blue">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2018 Copyright:
+    <a href="http://www.campsite.ml">www.campsite.ml</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+{% endblock %}
+{% block jslinks %}
+
+<script>
+var titanic = new Titanic({
+  hover: true, // auto animated on hover (default true)
+  click: true  // auto animated on click/tap (default false)
+});
+</script>
+
 {% endblock %}
