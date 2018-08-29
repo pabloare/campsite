@@ -1,4 +1,8 @@
-
+*{
+  font-family: sofia-pro-soft, sans-serif;
+  font-style: normal;
+  font-weight: 300;
+}
 
 .dropdown-content {
     max-height: 120px;
