@@ -13,24 +13,21 @@
     <link rel="stylesheet" href="{% static 'user-home1.css' %}" type="text/css">
 </head>
 <body>
-  <div class="register-div">
-    <div style="margin-top: 8vh;">
-  <div class="row justify-content-center">
-  <h4> CampSite    <i class="fa fa-cubes" aria-hidden="true"></i>
-
-</h3>
-
-
-</div>
-<div class="row justify-content-center">
-<p class="lead"> Place an order </p>
-</div>
   {% if error %}
   <div class="alert alert-warning alert-dismissible" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <strong>Oops!</strong> There seems to be somebody at that seat already.
   </div>
   {% endif %}
+  <div class="register-div">
+    <div style="margin-top: 8vh;">
+  <div class="row justify-content-center">
+  <h4> CampSite    <i class="fa fa-cubes" aria-hidden="true"></i>
+</h3>
+</div>
+<div class="row justify-content-center">
+<p class="lead"> Place an order </p>
+</div>
   <div class="row justify-content-center">
     <form id="form" class="register-form" action='' method="post">
     {% csrf_token %}

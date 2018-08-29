@@ -8,10 +8,24 @@ from django.contrib.auth import logout
 from runner.models import Runner
 
 
-def start(request):
+def main(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect('/manager/home')
+    return render(request, 'main.html')
+
+
+def start(request):
     return render(request, 'start.html')
+
+
+def about_us(request):
+    # Render about us page
+    return render(request, 'about_us.html')
+
+
+def how_it_works(request):
+    # Render How it works page
+    return render(request, 'how_it_works.html')
 
 
 def home(request):

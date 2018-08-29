@@ -2,11 +2,14 @@ from django.urls import path
 from .views import home, login_home, edit_tables, remove_seat, add_seat
 from .views import add_table, edit_chef, remove_chef, activate_chef, add_dish
 from .views import remove_dish, logout_view, start, edit_runner, remove_runner
-from .views import activate_runner
+from .views import activate_runner, main, about_us, how_it_works
 from django.contrib.auth.views import login
 
 urlpatterns = [
-    path('', start),
+    path('', main),
+    path('start', start),
+    path('about-us', about_us),
+    path('how-it-works', how_it_works),
     path('register', home),
     path('login', login, {'template_name': 'login.html'}),
     path('home/', login_home),

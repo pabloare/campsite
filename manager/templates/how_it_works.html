@@ -1,0 +1,23 @@
+{% extends 'manager-base.html' %}
+{% block title %}
+  <title>CampSite</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'start-manager.css' %}" type="text/css">
+
+  <script src="https://cdn.rawgit.com/icons8/titanic/master/dist/js/titanic.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/4.5.9/bodymovin.min.js"></script>
+{% endblock %}
+
+{% block body %}
+<h2>Hello again</h2>
+{% endblock %}
+{% block jslinks %}
+
+<script>
+var titanic = new Titanic({
+  hover: true, // auto animated on hover (default true)
+  click: true  // auto animated on click/tap (default false)
+});
+</script>
+
+{% endblock %}
