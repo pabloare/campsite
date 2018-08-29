@@ -2,16 +2,21 @@ input {
   margin-top: 15px;
 }
 
-
+*{
+  font-family: sofia-pro-soft, sans-serif;
+  font-style: normal;
+  font-weight: 300;
+}
 .register-div {
   height: 100vh;
-  background-image: url("/static/img/background-image1.jpg");
+  background-image: url("/static/img/cloud.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
   background-size: cover;
   overflow: hidden;
 }
+
 
 .how-to {
   height: 100vh;
