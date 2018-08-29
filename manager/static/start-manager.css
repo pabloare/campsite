@@ -17,8 +17,20 @@
   background-size: cover;
   overflow: hidden;
 }
+.create-res {
+  height: 70vh;
+  margin-top: 16vh;
+}
 
-
+.head-div {
+  height: 70vh;
+  background-image: url("/static/img/clouds.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  overflow: hidden;
+}
 
 .title {
   margin-top: 10%;
