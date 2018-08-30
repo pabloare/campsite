@@ -41,7 +41,7 @@ def home(request):
         res.save()
         new_manager = Manager(user=u, email=email, restaurant=res)
         new_manager.save()
-        return HttpResponseRedirect('/manager')
+        return HttpResponseRedirect('/manager/login')
     return render(request, 'home.html')
 
 
