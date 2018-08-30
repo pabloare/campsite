@@ -20,6 +20,12 @@
 .create-res {
   height: 70vh;
   margin-top: 16vh;
+  background-image: url("/static/img/clouds.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  overflow: hidden;
 }
 
 .head-div {
