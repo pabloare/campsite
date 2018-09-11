@@ -18,13 +18,15 @@ def home(request):
         seat_num = request.POST['seat_num']
         restaurant_object = Restaurant.objects.get(id=restaurant)
         # TODO: Check the table exists and seat exists
+        if not Table.objects.filter(restaurant=restaurant_object, table_number=table).exists():
+            error = "Table"
+            return render(request, 'user_home.html', {'error': error, 'restaurants': Restaurant.objects.all()})
         table_object = Table.objects.get(restaurant=restaurant_object, table_number=table)
         seat = Seat.objects.get(table=table_object, seat_number=seat_num)
         # if someone is in the seat or has not payed do not release seat
         if not seat.payed:
-            error = True
+            error = "Seat"
             return render(request, 'user_home.html', {'error': error, 'restaurants': Restaurant.objects.all(), 'seat': seat})
-            # Throw error about how seat is occupied (use HttpResponseRedirect)
         # Create order to link dishes to
         username = request.POST['username']
         # lock seat when user has entered seat

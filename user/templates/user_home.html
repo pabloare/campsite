@@ -14,10 +14,17 @@
     <link rel="icon" href="{% static 'img/campsite-final0.png' %}">
 </head>
 <body>
-  {% if error %}
+  {% if error == "Seat" %}
   <div class="alert alert-warning alert-dismissible" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <strong>Oops!</strong> There seems to be somebody at that seat already.
+  </div>
+  {% endif %}
+  
+  {% if error == "Table" %}
+  <div class="alert alert-warning alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong>Oops!</strong> That table does not seem to exist.
   </div>
   {% endif %}
   <div class="register-div">
