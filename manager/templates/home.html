@@ -20,10 +20,19 @@
 <div class="input-group input-group-lg">
   <input type="email" class="form-control myInput" name="email" placeholder="Email" aria-describedby="sizing-addon2">
 </div>
-
 <div class="input-group input-group-lg">
-  <input type="text" class="form-control myInput" name="restaurant" placeholder="Restaurant" aria-describedby="sizing-addon3">
+  <input type="text" class="form-control myInput" name="restaurant" placeholder="Restaurant Name" aria-describedby="sizing-addon3">
 </div>
+<div class="input-group input-group-lg myInput">
+
+<select name="select-autoserve" class="custom-select" required>
+<option selected>Restaurant Operation</option>
+<option value="autoserve">Autoserve</option>
+<option value="waiters">Waiters</option>
+</select>
+</div>
+<small class="form-text text-muted text-center">Restaurant Operation? See <a href="#">here </a></small>
+
 <div class="input-group input-group-lg">
   <input type="password" name="password" class="form-control myInput"  placeholder="Password" aria-describedby="sizing-addon3">
 </div>

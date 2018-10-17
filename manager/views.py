@@ -37,7 +37,11 @@ def home(request):
         u.set_password(password)
         u.save()
         restaurant = request.POST['restaurant']
-        res = Restaurant(name=restaurant)
+        operation = request.POST['select-autoserve']
+        autoserve = False
+        if operation == "autoserve":
+            autoserve = True
+        res = Restaurant(name=restaurant, autoserve=autoserve)
         res.save()
         new_manager = Manager(user=u, email=email, restaurant=res)
         new_manager.save()
