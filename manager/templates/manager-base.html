@@ -17,6 +17,9 @@
 </head>
 <body>
   {% if user.is_authenticated %}
+  {% block alerts %}
+
+  {% endblock %}
 
   <nav aria-label="breadcrumb" style="position: relative;">
     <ol class="breadcrumb">

@@ -6,6 +6,11 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from runner.models import Runner
+import stripe
+from campsite import settings
+import requests
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 def main(request):
@@ -26,6 +31,21 @@ def about_us(request):
 def how_it_works(request):
     # Render How it works page
     return render(request, 'how_it_works.html')
+
+
+def setup_success(request):
+    try:
+        account_code = request.GET['code']
+    except:
+        return render('login_home.html', {'error': True})
+    account = {'client_secret': stripe.api_key, 'code': account_code, 'grant_type': 'authorization_code'}
+    content = requests.post('https://connect.stripe.com/oauth/token', params=account)
+    content_in_json = content.json()
+    stripe_id = content_in_json['stripe_user_id']
+    restaurant = request.user.manager.restaurant
+    restaurant.stripe_id = stripe_id
+    restaurant.save()
+    return render(request, 'login_home.html', {'success': True})
 
 
 def home(request):

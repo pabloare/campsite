@@ -138,3 +138,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+STRIPE_SECRET_KEY = 'sk_test_tDg8hlvbC8fZd8lraZQQeQQi'
+STRIPE_PUBLISHABLE_KEY = 'pk_test_Zz4ngDogsvBD0Dk3ydnqyWp0'

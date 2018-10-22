@@ -3,14 +3,45 @@
   {% block title%}
   <title>Home</title>
   <link rel="stylesheet" href="{% static 'login-home-manager.css' %}" type="text/css">
-
   {% endblock %}
+
+  {% block alerts %}
+  {% if success %}
+  <div style="margin-bottom:0px;" class="alert alert-success alert-dismissible fade show" role="alert">
+  Your payment information has been added!
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endif %}
+  {% if error %}
+  <div style="margin-bottom:0px;" class="alert alert-danger alert-dismissible fade show" role="alert">
+    There was an error with your account data. Contact us if you need help with setup. Or <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_Do3CRebsYxeGb1AtjJ6pm7WTMw1fQRqC&scope=read_write"> try again </a>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  {% else %}
+  {% if request.user.manager.restaurant.stripe_id %}
+  {% else %}
+
+  <div style="margin-bottom:0px;"class="alert alert-danger alert-dismissible fade show" role="alert">
+     It seems you have not added your payments info to receieve mony from customers! Set your account info   <a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_Do3CRebsYxeGb1AtjJ6pm7WTMw1fQRqC&scope=read_write">here</a> to collect payments.
+     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+       </button>
+  </div>
+  {% endif %}
+  {% endif %}
+  {% endblock %}
+
   {% block breadcrumbs %}
   <li class="breadcrumb-item active" aria-current="page">Home</li>
   {% endblock %}
   {% block body %}
+
   <div class="container mydiv">
-  <h1 class="display-5">Chefs <a href="edit-chef">  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+  <h1 class="display-5">Chefs <a href="/manager/home/edit-chef">  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 </a></h1>
   {% for chef in request.user.manager.restaurant.chef.all %}
   <p>  ID: {{ chef.chef_id }} </p>
@@ -18,7 +49,7 @@
 </div>
 
 <div class="container mydiv">
-<h1 class="display-5">Runners <a href="edit-runner">  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+<h1 class="display-5">Runners <a href="/manager/home/edit-runner">  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 </a></h1>
 {% for runner in request.user.manager.restaurant.runner.all %}
 <p>  ID: {{ runner.runner_id }} </p>
@@ -26,7 +57,7 @@
 </div>
 
 <div class="container mydiv">
-  <h1 class="display-5">Tables <a href="edit-tables">  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+  <h1 class="display-5">Tables <a href="/manager/home/edit-tables">  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 
 </a></h1>
   {% for table in request.user.manager.restaurant.table.all %}
@@ -35,7 +66,7 @@
 </div>
 
 <div class="container mydiv">
-  <h1 class="display-5">Dishes <a href="edit-dish">  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+  <h1 class="display-5">Dishes <a href="manager/home/edit-dish">  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 </a></h1>
   {% for dish in request.user.manager.restaurant.dish.all %}
   <p>  ID: {{ dish.dish_number }} - Name : {{ dish.name }}</p>
