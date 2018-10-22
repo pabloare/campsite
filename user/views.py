@@ -181,3 +181,12 @@ def pay_exit(request, order_id):
     except ObjectDoesNotExist:
         allow_exit = True
     return render(request, 'exit_confirmation.html', {'allow_exit': allow_exit})
+
+
+def no_order(request, order_id):
+    order = Order.objects.get(id=order_id)
+    order.seat.payed = True
+    order.seat.save()
+    order.payment.delete()
+    order.delete()
+    return HttpResponseRedirect('/user/')

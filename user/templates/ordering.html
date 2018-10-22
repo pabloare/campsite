@@ -75,7 +75,7 @@
 
 
 
-
+{% if ordered_dishes %}
   <div style="margin-top:40px;">
 <!-- PAYMENT FORMS -->
 <div class="row justify-content-center">
@@ -85,19 +85,23 @@
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="pk_test_Zz4ngDogsvBD0Dk3ydnqyWp0"
     data-amount="{{order.total_stripe}}"
-    data-name="campsite.ml"
-    data-description="Example charge"
+    data-name="{{ res_name }}"
     data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
     data-locale="auto"
     data-currency="cad">
   </script>
 </form>
 
+{% else %}
+<div style="margin-top:40px;" class="row justify-content-center">
 
+<a  class="btn btn-info" href='/user/no-order/{{ order.id }}'>No Thanks! </a>
+</div>
   <!-- PAYMENT FORMS -->
 </div>
 
-
+</div>
+{% endif %}
   <!--
   <a href="/user/pay/{{ username }}/{{ res_name }}/{{ table_num }}/{{ seat_num }}"><h3>Pay for Bill </h3></a>
 -->
