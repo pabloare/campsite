@@ -20,6 +20,9 @@ class Order(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     total = models.FloatField(default=0.0)
 
+    def total_stripe(self):
+        return self.total * 100
+
 
 class JoinOrder(models.Model):
     dishes = models.ForeignKey(Dish, on_delete=models.CASCADE, related_name='dish_order')

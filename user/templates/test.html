@@ -16,7 +16,7 @@
   {% else %}
   <h2>Buy for $9.99</h2>
   {% endif %}
-  <form action="" method="POST">
+  <form action="/user/pay/{{ username }}/{{ res_name }}/{{ table_num }}/{{ seat_num }}" method="POST">
     {% csrf_token %}
     <script
       src="https://checkout.stripe.com/checkout.js" class="stripe-button"

@@ -146,17 +146,18 @@ def pay(request, username, res_name, table_num, seat_num):
     seat = Seat.objects.get(table=table, seat_number=seat_num)
     order = Order.objects.get(username=username, seat=seat)
     joins = Join.objects.filter(order=order)
-    try:
-        if not joins:
-            order.payment.wants_to_pay = True
-            order.payment.card = True
-            order.payment.save()
+    if request.method == "POST":
+        if not restaurant.autoserve:
+            token = request.POST['stripeToken']
+            charge = stripe.Charge.create(amount=order.total, currency='cad', description='Charge', source=token, stripe_account=restaurant.stripe_id)
+            order.payment.has_payed = True
             order.save()
-            return HttpResponseRedirect('/user/pay/confirmation' + '/' + str(order.id))
-        else:
-            return HttpResponseRedirect('/user/order/' + username + '/' + str(seat.seat_number) + '/' + str(table.table_number) + '/' + str(restaurant.id))
-    except ObjectDoesNotExist:
-        pass
+        elif restaurant.autoserve:
+            token = request.POST['stripeToken']
+            order.payment.wants_to_pay = True
+            order.payment.save()
+            charge = stripe.Charge.create(amount=int(order.total * 100), currency='cad', description='Charge', source=token, stripe_account=restaurant.stripe_id)
+        return HttpResponseRedirect('/user/pay/confirmation' + '/' + str(order.id))
     return HttpResponseRedirect('/user/')
 
 
