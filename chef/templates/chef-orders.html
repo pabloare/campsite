@@ -8,6 +8,51 @@
   {% endblock %}
 
 {% block body %}
+{% if chef.restaurant.autoserve %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-6">
+      <h4 class="text-center">Orders</h4>
+  {% for order in orders %}
+  {% if order.payment.wants_to_pay %}
+  <div class="order_div_autoserve">
+  <a href="/chef/home/autoserve/{{ order.id }}/{{ chef.chef_id }}"><p>Beeing Prepared! Order Id: {{ order.id }} </p></a>
+<ul>
+  {% for item in order.dishes.all %}
+    <li>Item: {{ item }}</li>
+  {% endfor %}
+</ul>
+</div>
+  {% endif %}
+  {% endfor %}
+</div>
+
+<div class="col-6">
+  <h4 class="text-center">Notify Customer</h4>
+  {% for order in orders %}
+  {% if not order.payment.has_payed %}
+  {% if order.prepared %}
+  <div class="order_div_autoserve">
+    <a href="/chef/ready/{{ chef.restaurant.id }}/{{ chef.chef_id }}/{{ order.id }}"><p>Ready! Order Id: {{ order.id }} </p></a>
+    <ul>
+    {% for item in order.dishes.all %}
+      <li>Items: {{ item }}</li>
+  {% endfor %}
+</ul>
+</div>
+
+{% endif %}
+  {% endif %}
+{% endfor %}
+</div>
+</div>
+
+{% else %}
+
+
+
+
+
 {% for join in joins %}
 <div class="order_div">
   <p> Dish:  <a href="/chef/home/{{ join.id }}">{{ join.dish }} </a> </p>
@@ -22,5 +67,7 @@
 
 </div>
 
+
 {% endfor %}
+{% endif %}
 {% endblock %}

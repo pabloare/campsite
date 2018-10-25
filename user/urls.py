@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import home, ordering, pay, confirmation, pay_exit, test, test_success, no_order
+from .views import home, ordering, pay, confirmation, pay_exit, no_order
 
 urlpatterns = [
     path('', home),

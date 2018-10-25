@@ -6,32 +6,12 @@ from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 import stripe
 from campsite import settings
-import requests
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
-mar_key = "acct_1DMR4KEmhC6mXRBJ"
 
 
 def initial_view(request):
     return HttpResponseRedirect('/user/')
-
-
-def test(request):
-    has_payed = False
-    if request.method == "POST":
-        token = request.POST['stripeToken']
-        charge = stripe.Charge.create(amount=999, currency='cad', description='Example charge', source=token, stripe_account=mar_key)
-        has_payed = True
-    return render(request, 'test.html', {'has_payed': has_payed})
-
-
-def test_success(request):
-    account_code = request.GET['code']
-    account = {'client_secret': 'sk_test_tDg8hlvbC8fZd8lraZQQeQQi', 'code': account_code, 'grant_type': 'authorization_code'}
-    content = requests.post('https://connect.stripe.com/oauth/token', params=account)
-    content_in_json = content.json()
-    token = content_in_json['stripe_user_id']
-    return render(request, 'test.html', {'token': token})
 
 
 def home(request):
@@ -73,34 +53,14 @@ def ordering(request, username, seat, table, restaurant):
     seat = Seat.objects.get(table=table, seat_number=seat)
     order = Order.objects.get(username=username, seat=seat)
     if request.method == 'POST':
-        if "ordering_post" in request.POST:
-            num_items = request.POST['num_items']
-            item = request.POST['item']
-            note = request.POST['note']
-            if not note:
-                note = ""
-            for i in range(int(num_items)):
-                # passed note as parameter
-                order_dishes(restaurant, item, order, note)
-        elif "pay_cash_post" in request.POST:
-            order_id = request.POST['order_id_cash']
-            change = request.POST['change']
-            order = Order.objects.get(id=order_id)
-            joins = Join.objects.filter(order=order)
-            if not joins:
-                order.payment.wants_to_pay = True
-                order.payment.card = False
-                if change:
-                    order.payment.change_if_cash = int(change)
-                else:
-                    order.payment.change_if_cash = 0
-                order.payment.save()
-                order.save()
-                return HttpResponseRedirect('/user/pay/confirmation' + '/' + str(order.id))
-            else:
-                return HttpResponseRedirect('/user/order/' + str(order.username) + '/' + str(order.seat.seat_number) + '/' + str(order.seat.table.table_number) + '/' + str(order.seat.table.restaurant.id))
-        elif "stripe" in request.POST:
-            return HttpResponseRedirect("here")
+        num_items = request.POST['num_items']
+        item = request.POST['item']
+        note = request.POST['note']
+        if not note:
+            note = ""
+        for i in range(int(num_items)):
+            # passed note as parameter
+            order_dishes(restaurant, item, order, note)
     ordered_dishes = order.dishes.all()
     all_dishes = Dish.objects.filter(restaurant=restaurant).all()
     # See if chef has finished all dishes (i.e, deleted all joins) in order to make the user payment available
@@ -116,7 +76,8 @@ def order_dishes(restaurant, item, order, note):
     order.total += dish.price
     order.save()
     # passed note as parameter
-    send_to_chef(dish, restaurant, order, note)
+    if not restaurant.autoserve:
+        send_to_chef(dish, restaurant, order, note)
 
 
 # Added note parameter for note in join
@@ -149,14 +110,14 @@ def pay(request, username, res_name, table_num, seat_num):
     if request.method == "POST":
         if not restaurant.autoserve:
             token = request.POST['stripeToken']
-            charge = stripe.Charge.create(amount=order.total, currency='cad', description='Charge', source=token, stripe_account=restaurant.stripe_id)
-            order.payment.has_payed = True
+            charge = stripe.Charge.create(amount=int(order.total * 100), currency='cad', description='Charge', source=token, stripe_account=restaurant.stripe_id)
             order.save()
         elif restaurant.autoserve:
             token = request.POST['stripeToken']
+            charge = stripe.Charge.create(amount=int(order.total * 100), currency='cad', description='Charge', source=token, stripe_account=restaurant.stripe_id)
             order.payment.wants_to_pay = True
             order.payment.save()
-            charge = stripe.Charge.create(amount=int(order.total * 100), currency='cad', description='Charge', source=token, stripe_account=restaurant.stripe_id)
+            order.save()
         return HttpResponseRedirect('/user/pay/confirmation' + '/' + str(order.id))
     return HttpResponseRedirect('/user/')
 

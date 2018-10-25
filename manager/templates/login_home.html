@@ -66,7 +66,7 @@
 </div>
 
 <div class="container mydiv">
-  <h1 class="display-5">Dishes <a href="manager/home/edit-dish">  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+  <h1 class="display-5">Dishes <a href="/manager/home/edit-dish">  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 </a></h1>
   {% for dish in request.user.manager.restaurant.dish.all %}
   <p>  ID: {{ dish.dish_number }} - Name : {{ dish.name }}</p>

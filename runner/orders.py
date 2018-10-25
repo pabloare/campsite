@@ -8,10 +8,11 @@ from chef.models import Join
 
 def render_orders(request, runner_id, res_id):
     res = Restaurant.objects.get(id=res_id)
-    runner = Runner.objects.filter(restaurant=res).get(runner_id=runner_id)
-    joins = Join.objects.filter(restaurant=res, ready=True).order_by('updated_at')
-    orders = Order.objects.filter(restaurant=res).order_by('updated_at')
-    return render(request, 'runner-orders.html', {'runner': runner, 'res': res_id, 'joins': joins, 'orders': orders})
+    if not res.autoserve:
+        runner = Runner.objects.filter(restaurant=res).get(runner_id=runner_id)
+        joins = Join.objects.filter(restaurant=res, ready=True).order_by('updated_at')
+        orders = Order.objects.filter(restaurant=res).order_by('updated_at')
+        return render(request, 'runner-orders.html', {'runner': runner, 'res': res_id, 'joins': joins, 'orders': orders})
 
 
 def dish_complete(request, run_id, join_id, res_id):
