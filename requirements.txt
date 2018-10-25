@@ -5,3 +5,4 @@ gunicorn==19.9.0
 psycopg2==2.7.4
 whitenoise==4.0
 Pillow==5.1.0
+stripe==2.10.1    
