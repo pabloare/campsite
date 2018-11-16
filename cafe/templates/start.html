@@ -1,0 +1,108 @@
+{% extends 'manager-base.html' %}
+{% block title %}
+  <title>CampSite</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'start-manager.css' %}" type="text/css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+
+{% endblock %}
+
+{% block body %}
+<div class="first-page">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6">
+        <h3 class="display-3" style="margin-top:20vh; text-align:center;">Welcome to the future of the restaurant business</h3>
+        <h3 class="lead" style="margin-top:1vh; text-align:center;"> Learn how CampSite can help your restaurant excel</h3>
+        <div style="margin-top:5vh;" class="row justify-content-center">
+        <a style="text-decoration:none;" href="/manager/register"><button class="btn btn-outline-success btn-lg" type="submit">Get Started!</button></a>
+      </div>
+      </div>
+  </div>
+  </div>
+</div>
+</div>
+<div class="improvs container-fluid">
+  <div class="container-fluid" style="margin-top:15vh;">
+    <div class="row">
+
+      <div id="automate" class="col-sm-6">
+        <div class="row justify-content-center">
+          <h2>
+            <i class="fas fa-atom"></i>
+      </h2>
+    </div>
+        <div class="row justify-content-center" style="margin-top:2vh;">
+          <h3>Automate</h3>
+        </div>
+          <div class="row justify-content-center" style="margin-top:2vh;">
+          <p style="text-align:center;"class="lead">Provide visitors with the opportunity of ordering through their own phones.</p>
+        </div>
+      </div>
+
+      <div id="efficency"class="col-sm-6">
+        <div class="row justify-content-center">
+          <h2>
+            <i class="fas fa-balance-scale"></i>
+          </h2>
+
+        </div>
+        <div class="row justify-content-center" style="margin-top:2vh;">
+          <h3>Optimize</h3>
+        </div>
+          <div class="row justify-content-center" style="margin-top:2vh;">
+          <p style="text-align:center;"class="lead">Remove inefficiencies through our fast software powered by AI.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row" style="margin-top:10vh;">
+
+      <div id="automate" class="col-sm-6">
+        <div class="row justify-content-center">
+          <h2>
+            <i class="fas fa-bolt"></i>
+          </h2>
+        </div>
+        <div class="row justify-content-center" style="margin-top:2vh;">
+          <h3>Integrate</h3>
+        </div>
+          <div class="row justify-content-center" style="margin-top:2vh;">
+          <p style="text-align:center;"class="lead">Manage your restaurant through one <em>secure</em> place.</p>
+        </div>
+      </div>
+
+      <div id="efficency"class="col-sm-6">
+        <div class="row justify-content-center">
+          <h2>
+            <i class="fas fa-chart-line"></i>
+          </h2>
+
+        </div>
+        <div class="row justify-content-center" style="margin-top:2vh;">
+          <h3>Grow</h3>
+        </div>
+          <div class="row justify-content-center" style="margin-top:2vh;">
+          <p style="text-align:center;"class="lead">Massively improve margins by decrease in expenses on personnel.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div style="height: 25vh; margin-top:9vh;">
+  <h3 class="text-center">Ready to try it out?</h3>
+  <div class="row justify-content-center" style="margin-top:3vh;">
+    <a style="text-decoration:none;" href="/manager/register">
+    <button class="btn btn-outline-success btn-lg" type="submit">Get Started!</button>
+  </a>
+  </div>
+</div>
+
+{% endblock %}
+{% block jslinks %}
+
+
+{% endblock %}

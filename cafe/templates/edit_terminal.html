@@ -1,0 +1,61 @@
+{% extends 'manager-base.html' %}
+{% load static %}
+  {% block title%}
+  <title>Edit Terminals</title>
+  <link rel="stylesheet" href="{% static 'edit-chef.css' %}" type="text/css">
+  {% endblock %}
+  {% block breadcrumbs %}
+  <li class="breadcrumb-item"><a href="/cafe/home/">Home</a></li>
+  <li class="breadcrumb-item active" aria-current="page">Terminals</li>
+  {% endblock %}
+  {% block body %}
+  <div class="container">
+  <h1 class="display-6">Your Terminals</h1>
+  <p class="lead">Add a Terminal to your Cafe. Remember <em>the name has to be unique for each terminal.</em></p>
+
+  {% if error == True %}
+  <div class="alert alert-danger alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong>Oops!</strong> There seems to exist another Terminal with that name already. Try another one!
+  </div>
+
+  {% endif %}
+  <form class="register-form" action='' method="post">
+      {% csrf_token %}
+      <div class="input-group">
+        <input type="text" class="form-control" aria-describedby="basic-addon1" placeholder="Terminal name" name="name" required>
+        <span class="input-group-btn">
+          <button class="btn btn-primary" type="submit" type="button">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true">Add + </span>
+          </button>
+        </span>
+    </div><!-- /input-group -->
+  </form>
+  {% for terminal in request.user.owner.cafe.terminal.all %}
+<div class="ind-div">
+<h2 class="display-6"><i class="fa fa-user-circle" aria-hidden="true"></i>
+Name: {{ terminal.name }} - Active : {{ terminal.active }} {% if terminal.active %}<i class="fa fa-circle" aria-hidden="true" style="color:green;"></i>
+{% else %}
+<i class="fa fa-circle-thin" aria-hidden="true"></i>
+{% endif %}
+</h2>
+{% if terminal.active %}
+<a style="margin-top:1%;" class="btn btn-outline-secondary" href="/cafe/home/edit-terminal/activate-terminal/{{ terminal.id }}">Deactivate</a>
+{% else %}
+<a style="margin-top:1%;" class="btn btn-outline-success" href="/cafe/home/edit-terminal/activate-terminal/{{ terminal.id }}">Activate Terminal</a>
+{% endif %}
+<h6 class="display-6"><a style="margin-top:1%;" class="btn btn-outline-danger" href="/cafe/home/edit-terminal/remove-terminal/{{ terminal.id }}">Remove Terminal
+</a></h6>
+</div>
+{% endfor %}
+
+<div style="float: right;" class="row justify-content-end goback">
+<a class="btn btn-outline-primary" href="/cafe/home/"><i class="fa fa-reply" aria-hidden="true"></i>
+Go Back
+</a>
+</div>
+
+</div>
+
+
+{% endblock %}

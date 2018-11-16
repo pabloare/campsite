@@ -1,0 +1,64 @@
+{% extends 'manager-base.html' %}
+{% block title %}
+  <title>CampSite</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'start-manager.css' %}" type="text/css">
+  <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+
+  <script src="https://cdn.rawgit.com/icons8/titanic/master/dist/js/titanic.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/4.5.9/bodymovin.min.js"></script>
+{% endblock %}
+
+{% block body %}
+<nav class=" mynav navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand campsite" href="/manager/">
+    <h2 class="nav-link about-us">CampSite</h2>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link about-us" href="#">About Us</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link how-it-works" href="#">How It Works</a>
+      </li>
+
+    </ul>
+      <a style="text-decoration:none;" href="/manager/register">
+      <button class="btn btn-outline-success">Get Started!</button>
+    </a>
+  </div>
+</nav>
+
+<div class="main-view">
+
+</div>
+
+
+
+<footer class="page-footer font-small blue">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2018 Copyright:
+    <a href="http://www.campsite.ml">www.campsite.ml</a>
+    <p>Made with <i class="em em-heart"></i> from Vancouver </p>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+{% endblock %}
+{% block jslinks %}
+
+<script>
+var titanic = new Titanic({
+  hover: true, // auto animated on hover (default true)
+  click: true  // auto animated on click/tap (default false)
+});
+</script>
+
+<script type="text/javascript" src="{% static 'main.js' %}"></script>
+
+{% endblock %}

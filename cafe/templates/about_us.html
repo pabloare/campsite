@@ -1,0 +1,29 @@
+{% extends 'manager-base.html' %}
+{% block title %}
+  <title>CampSite</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'start-manager.css' %}" type="text/css">
+  <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="row justify-content-center" style="height:50vh;">
+    <div class="row align-self-center">
+      <p class="lead">Under Construction. Thank you for your patience        <i class="em em-desert_island"></i>
+</p>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+{% block jslinks %}
+
+<script>
+var titanic = new Titanic({
+  hover: true, // auto animated on hover (default true)
+  click: true  // auto animated on click/tap (default false)
+});
+</script>
+
+{% endblock %}

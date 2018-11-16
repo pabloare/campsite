@@ -1,0 +1,28 @@
+{% extends 'manager-base.html' %}
+{% block title %}
+<title>Log in </title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'login-manager.css' %}" type="text/css">
+
+{% endblock %}
+
+{% block body %}
+  <h1 class="display-1 title"> Log In</h1>
+  <div class="row justify-content-center">
+
+<form id="form" class="register-form" action='' method="post">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <div class="row justify-content-end">
+      <div class="col-4">
+    <a href="/manager"class="goback btn btn-secondary myInput">Go back</a>
+  </div>
+  <div class="col-4">
+    <input class="btn btn-primary myInput" type="submit" value="Log In">
+  </div>
+  </div>
+</form>
+</div>
+{% endblock %}

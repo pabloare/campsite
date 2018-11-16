@@ -1,0 +1,163 @@
+{% extends 'manager-base.html' %}
+{% block title %}
+  <title>CampSite</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'start-manager.css' %}" type="text/css">
+{% endblock %}
+
+{% block body %}
+<div class="how-head-div container">
+<div style="margin-top:5vh;" class="row justify-content-center">
+  <h3 class="display-3">Reinvent Customer Experience </h3>
+</div>
+<div class="container-fluid">
+  <div style="margin-top:1vh;" class="row justify-content-center">
+  <p class="lead">CampSite lets you you customers order and pay through their mobile phones</p>
+</div>
+</div>
+<div class="row justify-content-center image-class">
+<div class="text-center" style="max-width:600px;max-height:700px; margin-top:5vh;">
+<img style="max-width: 100%;height: auto;"src="{% static 'img/mock6.jpg' %}" class="rounded img-fluid">
+</div>
+</div>
+</div>
+
+<div class="create-res container">
+  <div class="container-fluid">
+  <div class="row justify-content-center">
+    <h4 class="display-4">First, Managers create the digital Restaurant</h4>
+  </div>
+</div>
+  <div class="container-fluid">
+    <div style="margin-top:1vh;" class="row justify-content-center">
+    <p class="lead">This means adding the Chefs in turn (activate if currently working), setting up the tables and logging the dishes</p>
+  </div>
+</div>
+  <!-- Change style inside html and move all image styles into same class in css file -->
+  <div class="row">
+  <div class="col-sm-6 image-class">
+  <div class="text-center" style="max-width:600px;max-height:700px; margin-top:2vh;">
+  <img style="max-width: 100%;height: auto;"src="{% static 'img/mock7.jpg' %}" class="rounded img-fluid">
+  </div>
+  </div>
+  <div class="col-sm-6 align-self-center">
+    <div style="margin-top:2vh;">
+      <ol class="align-middle" style="list-decoration:none;">
+        <li><p class="lead">Add all the chefs that work in the restaurant and assign them an ID. They will use this ID to work inside the app</p></li>
+        <li><p class="lead">Similar to the Chefs, add ID's to the Runner's</p></li>
+        <li><p class="lead">Runner's are the personnel that carries orders from the chef to the client</p></li>
+        <li><p class="lead">Enumerate each table and seat and add it to the "Table" section</p></li>
+        <li><p class="lead">Add Dishes with time to complete, name, description and price.</p></li>
+
+      </ol>
+    </div>
+  </div>
+</div>
+</div>
+<div class="container">
+<div class="create-res row">
+  <div class="container-fluid">
+
+  <div class="row justify-content-center">
+    <h4 class="display-4">Clients can access the Restaurant</h4>
+  </div>
+  </div>
+  <div class="container-fluid">
+    <div style="margin-top:1vh;" class="row justify-content-center">
+    <p class="lead">This means clients can go to CampSite and order from inside your Restaurant</p>
+  </div>
+</div>
+  <!-- Change style inside html and move all image styles into same class in css file -->
+  <div class="row">
+  <div class="col-sm-6 image-class">
+  <div class="text-center" style="max-width:600px;max-height:700px; margin-top:2vh;">
+  <img style="max-width: 100%;height: auto;"src="{% static 'img/mock8.jpg' %}" class="rounded img-fluid">
+  </div>
+  </div>
+  <div class="col-sm-6 align-self-center">
+    <div style="height:auto; width: auto; margin-top:2vh;">
+      <ol class="align-middle" style="list-decoration:none;">
+        <li><p class="lead">Clients browse from the restaurant's dishes with help from the menu (which showcases the items)</p></li>
+        <li><p class="lead">Client orders quantity of item, item and adds a note in case he or she has any special petition</p></li>
+        <li><p class="lead">For example: "No Avocado no my toast"</p></li>
+        <li><p class="lead">Just when the user sends the dish it automatically appears in the Chef's home page</p></li>
+
+      </ol>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="container">
+<div class="create-res row">
+  <div class="container-fluid">
+
+  <div class="row justify-content-center">
+    <h4 class="display-4">Chef recieves client orders through tablet</h4>
+  </div>
+  </div>
+  <div class="container-fluid">
+    <div style="margin-top:1vh;" class="row justify-content-center">
+    <p class="lead">The tablet is provided by CampSite, where (active) Chefs can see orders sent by clients</p>
+  </div>
+</div>
+  <!-- Change style inside html and move all image styles into same class in css file -->
+  <div class="row">
+  <div class="col-sm-6 image-class">
+  <div class="text-center" style="max-width:600px;max-height:700px; margin-top:2vh;">
+  <img style="max-width: 100%;height: auto;"src="{% static 'img/mock9.jpg' %}" class="rounded img-fluid">
+  </div>
+  </div>
+  <div class="col-sm-6 align-self-center">
+    <div style="height:auto; width: auto; margin-top:2vh;">
+      <ol class="align-middle" style="list-decoration:none;">
+        <li><p class="lead">The order is automatically displayed to the Chef once client orders</p></li>
+        <li><p class="lead">Chef's can see client specifications</p></li>
+        <li><p class="lead">Once a Chef clicks on the Dish name, the order is eliminated from said Chef's screen</p></li>
+        <li><p class="lead">Normally, Chef tablets are positioned in front of each Chef in eyesight</p></li>
+
+      </ol>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="create-res row">
+  <div class="container-fluid">
+  <div class="row justify-content-center">
+    <h4 class="display-4">Runners are notified once dishes are ready</h4>
+  </div>
+  </div>
+  <div class="container-fluid">
+    <div style="margin-top:1vh;" class="row justify-content-center">
+    <p class="lead">Similar to the chefs, Runners are provided a terminal where they can see the dishes that are available to be delivered</p>
+  </div>
+</div>
+  <!-- Change style inside html and move all image styles into same class in css file -->
+  <div class="row">
+  <div class="col-sm-6 image-class">
+  <div class="text-center" style="max-width:600px;max-height:700px; margin-top:2vh;">
+  <img style="max-width: 100%;height: auto;"src="{% static 'img/mock10.jpg' %}" class="rounded img-fluid">
+  </div>
+  </div>
+  <div class="col-sm-6 align-self-center">
+    <div style="height:auto; width: auto; margin-top:2vh;">
+      <ol class="align-middle" style="list-decoration:none;">
+        <li><p class="lead">Runners also get notified once the client is ready to pay</p></li>
+        <li><p class="lead">The runner confirms the dishes by touching the dish name</p></li>
+        <li><p class="lead">Runner confirms payment by touching "has payed bill"</p></li>
+        <li><p class="lead">Once the Runner confirms a clients payment the client gets a confirmation screen</p></li>
+
+      </ol>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+{% endblock %}
+{% block jslinks %}
+
+{% endblock %}
