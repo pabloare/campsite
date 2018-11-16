@@ -36,7 +36,8 @@ INSTALLED_APPS = [
     'manager',
     'user',
     'chef',
-    'runner'
+    'runner',
+    'cafe'
 ]
 
 MIDDLEWARE = [

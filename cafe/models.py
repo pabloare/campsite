@@ -24,7 +24,7 @@ class Owner(models.Model):
 
 
 class Customer(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='owner')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='customer')
     is_owner = models.BooleanField(default=False)
 
     def __str__(self):
@@ -44,7 +44,7 @@ class Terminal(models.Model):
 
 
 class Item(models.Model):
-    menu = models.ForeignKey(Cafe, on_delete=models.CASCADE, related_name='menu', default='')
+    menu = models.ForeignKey(Cafe, on_delete=models.CASCADE, related_name='item', default='')
     name = models.CharField(null=True, max_length=100)
     description = models.CharField(max_length=500, default="")
     time_to_do = models.IntegerField(default=0)

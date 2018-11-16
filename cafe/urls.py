@@ -12,7 +12,7 @@ urlpatterns = [
     path('about-us', about_us),
     path('how-it-works', how_it_works),
     path('register', home),
-    path('login', login, {'template_name': 'login.html'}),
+    path('login', login, {'template_name': 'login-cafe.html'}),
     path('home/', login_home),
     path('home/success', setup_success),
     path('home/edit-terminal', edit_terminal),

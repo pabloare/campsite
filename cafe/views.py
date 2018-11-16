@@ -14,7 +14,7 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 def main(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect('/cafe/home')
-    return render(request, 'main.html')
+    return render(request, 'main-cafe.html')
 
 
 def start(request):
@@ -35,7 +35,7 @@ def setup_success(request):
     try:
         account_code = request.GET['code']
     except:
-        return render('login_home.html', {'error': True})
+        return render('login_home-cafe.html', {'error': True})
     account = {'client_secret': stripe.api_key, 'code': account_code, 'grant_type': 'authorization_code'}
     content = requests.post('https://connect.stripe.com/oauth/token', params=account)
     content_in_json = content.json()
@@ -60,12 +60,12 @@ def home(request):
         new_owner = Owner(user=u, email=email, cafe=cafe_object)
         new_owner.save()
         return HttpResponseRedirect('/cafe/login')
-    return render(request, 'home.html')
+    return render(request, 'home-cafe.html')
 
 
 @login_required()
 def login_home(request):
-    return render(request, 'login_home.html', {'selector': 0})
+    return render(request, 'login_home-cafe.html', {'selector': 0})
 
 
 @login_required()
