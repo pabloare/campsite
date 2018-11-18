@@ -36,6 +36,22 @@
                   {% endfor %}
               </select>
           </div>
+      <div style="max-width: 250px;" class="input-group input-group-lg">
+              <select name="select-menu" class="custom-select" required>
+                  <option selected>Select A Menu</option>
+                  {% for menu in request.user.owner.cafe.menu.all %}
+                      <option value="{{ menu.id }}">{{ menu.name }}</option>
+                  {% endfor %}
+              </select>
+          </div>
+       <div style="max-width: 250px;" class="input-group input-group-lg">
+              <select name="select-terminal" class="custom-select" required>
+                  <option selected>Select A Terminal</option>
+                  {% for terminal in request.user.owner.cafe.terminal.all %}
+                      <option value="{{ terminal.id }}">{{ terminal.name }}</option>
+                  {% endfor %}
+              </select>
+          </div>
       </table>
       <button class="btn btn-primary" type="submit" type="button" style="margin-top:1%;">
         <span class="glyphicon glyphicon-plus" aria-hidden="true">Add + </span>

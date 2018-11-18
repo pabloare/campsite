@@ -20,6 +20,7 @@ def user_home(request):
             login_customer(request)
         if "start_order" in request.POST:
             start_order(request)
+            return HttpResponseRedirect('/cafe/user/order')
     if request.user.is_authenticated:
         cafes = Cafe.objects.all()
         return render(request, 'cafe-user-home.html', {'cafes': cafes})
@@ -33,8 +34,6 @@ def start_order(request):
     customer = request.user.customer
     order = CustomerOrder(cafe=cafe, customer=customer)
     order.save()
-    return HttpResponseRedirect('/cafe/user/order')
-
 
 def login_customer(request):
     username = request.POST['username']
@@ -197,8 +196,10 @@ def add_item(request):
         cafe = request.user.owner.cafe
         name = request.POST['name']
         menu_id = request.POST['select-menu']
+        terminal_id = request.POST['select-terminal']
         try:
             menu = Menu.objects.get(id=menu_id)
+            terminal = Terminal.objects.get(id=terminal_id)
         except:
             return render(request, 'edit_item.html', {'error': True})
         items = Item.objects.filter(cafe=cafe)
@@ -207,7 +208,7 @@ def add_item(request):
         desc = request.POST['desc']
         time = request.POST['time']
         price = request.POST['price']
-        item = Item(cafe=cafe, name=name, description=desc, time_to_do=time, price=price, menu=menu)
+        item = Item(cafe=cafe, name=name, description=desc, time_to_do=time, price=price, menu=menu, destination=terminal)
         item.save()
         return HttpResponseRedirect('/cafe/home/edit-item')
     return render(request, 'edit_item.html', {'error': False})

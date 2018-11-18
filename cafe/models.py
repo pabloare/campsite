@@ -52,6 +52,7 @@ class Item(models.Model):
     description = models.CharField(max_length=500, default="")
     time_to_do = models.IntegerField(default=0)
     price = models.FloatField(default=0.0)
+    destination = models.ForeignKey(Terminal, on_delete=models.CASCADE, related_name='item', default='')
 
     def __str__(self):
         return self.name
@@ -67,5 +68,7 @@ class Size(models.Model):
 
 class CustomerOrder(models.Model):
     customer = models.OneToOneField(Customer, on_delete=models.CASCADE, related_name='order')
-    cafe = models.OneToOneField(Cafe, on_delete=models.CASCADE, related_name='order')
+    cafe = models.ForeignKey(Cafe, on_delete=models.CASCADE, related_name='order')
     items = models.ManyToManyField(Item)
+    total = models.FloatField(default=0.0)
+
