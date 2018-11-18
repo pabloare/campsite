@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<select id="select-item" name="select-item" class="custom-select" onchange="getSizes()" required>
+          <option selected>Select an Item</option>
+          {% for item in items %}
+          <option value="{{ item.id }}">{{ item.name }}</option>
+          {% endfor %}
+      </select>
+</body>
+</html>

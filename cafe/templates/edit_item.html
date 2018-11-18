@@ -36,14 +36,6 @@
                   {% endfor %}
               </select>
           </div>
-      <div style="max-width: 250px;" class="input-group input-group-lg">
-              <select name="select-menu" class="custom-select" required>
-                  <option selected>Select A Menu</option>
-                  {% for menu in request.user.owner.cafe.menu.all %}
-                      <option value="{{ menu.id }}">{{ menu.name }}</option>
-                  {% endfor %}
-              </select>
-          </div>
        <div style="max-width: 250px;" class="input-group input-group-lg">
               <select name="select-terminal" class="custom-select" required>
                   <option selected>Select A Terminal</option>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+    {% if sizes %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<select id="select-size" name="select-size" class="custom-select" required>
+          <option selected>Select a Size</option>
+          {% for size in sizes %}
+          <option value="{{ size.id }}">{{ size.name }}</option>
+          {% endfor %}
+      </select>
+</body>
+{% endif %}
+</html>

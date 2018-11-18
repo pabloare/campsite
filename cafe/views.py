@@ -237,3 +237,16 @@ def remove_item(request, item_id):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect('/cafe/login')
+
+
+# Dynamic Functions
+def display_items(request, cafe_name, menu_id):
+    cafe = Cafe.objects.get(name=cafe_name)
+    menu = Menu.objects.filter(cafe=cafe).get(id=menu_id)
+    items = menu.item.all()
+    return render(request, 'display-items.html', {'items': items})
+
+
+def get_sizes(request, item_id):
+    item = Item.objects.get(id=item_id)
+    return render(request, 'display-sizes.html', {'sizes': item.size.all()})

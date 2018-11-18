@@ -1,36 +1,18 @@
-$(document).ready(function() {
-  'use strict';
-  document.getElementById("order_id_for_cash").value = $(".order_id").text();
-  $(".cash-payment-form").hide();
-  $(".order_cash").hide();
-  console.log("working");
-  $(".cash-trigger-button").click(function(event) {
-    $(".cash-payment-form").fadeIn('fast');
-    $(".cash-trigger-button").hide();
-  });
-});
-
-
-function searchFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-    var input, filter, ul, li, a, i;
-    input = document.getElementById("myInput");
-    filter = input.value.toUpperCase();
-    div = document.getElementById("myDropdown");
-    a = div.getElementsByTagName("a");
-    list = document.getElementById("list");
-    for (i = 0; i < a.length; i++) {
-        if (a[i].innerHTML.toUpperCase().indexOf(filter) != -1) {
-            a[i].style.display = "";
-        } else {
-            a[i].style.display = "none";
-        }
+let menuDropdown = document.getElementById("select-menu");
+console.log("here");
+function displayItems() {
+    if (menuDropdown.value !== "Select a Menu to Browse From") {
+        let menuID = menuDropdown.value;
+        let cafeName = document.getElementById("cafe-name").innerText;
+        let link = "/cafe/display-items/" + cafeName + "/" + menuID;
+        $("#menu-items").load(link)
     }
 }
-
-
-function put(nameOfItem) {
-  search = document.getElementById("myInput");
-  search.value = nameOfItem;
-  searchFunction();
-};
+function  getSizes() {
+    let itemDropdown = document.getElementById("select-item");
+    if (itemDropdown.value !== "Select an Item") {
+        let itemID = itemDropdown.value;
+        let link = "/cafe/get-sizes/" + itemID;
+        $("#item-sizes").load(link);
+    }
+}

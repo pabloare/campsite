@@ -27,39 +27,39 @@
     </div>
 <div class="row justify-content-center">
   <!-- Needed for rendering orders -->
-  <h3 class="lead"> Your Order ID: </h3> <h3 class="order_id lead">{{ request.user.customer.order.id }}<h3>
+  <h3 class="lead"> Your Order ID: </h3> <h3 class="order_id lead">{{ request.user.customer.order.id }}</h3>
   </div>
   <div class="row justify-content-center">
-  <p class="lead">@ {{ request.user.customer.order.cafe.name }}</p>
+      <p class="lead">@ <p class="lead" id="cafe-name" >{{ request.user.customer.order.cafe.name }}</p></p>
 </div>
 </div>
   <div class="row justify-content-center">
     <form id="form" class="register-form" action='' method="post">
     {% csrf_token %}
     <table>
-      <div style="margin-top:10px;"class="input-group">
+      <div class="input-group" style="width: 40vh;">
+      <select id="select-menu" name="select-menu" class="custom-select" onchange="displayItems()" required>
+          <option selected>Select a Menu to Browse From</option>
+          {% for menu in request.user.customer.order.cafe.menu.all %}
+          <option value="{{ menu.id }}">{{ menu.name }}</option>
+          {% endfor %}
+      </select>
+      </div>
+ <div id="menu-items" style="margin-top:10px;"class="input-group">
+
+ </div>
+
+    <div id="item-sizes" style="margin-top:10px;"class="input-group">
+
+ </div>
+ <div style="margin-top:10px;"class="input-group">
           <input type="number" name="num_items" class="form-control"  placeholder="# Of Items" aria-describedby="sizing-addon1" required>
       </div>
-
-  <div style="margin-top:10px;" class="input-group">
-    <div>
-      <input type="text" class="form-control" id="myInput" name="item" onkeyup="searchFunction()" placeholder="Search Item" aria-describedby="sizing-addon2" required>
-    <!--- Improve dropdown UI -->
-    <div id="myDropdown" class="input-group dropdown-content">
-    {% for item in request.user.customer.order.cafe.item.all %}
-    <a onclick="put('{{ item.name }}')" href="#a">{{ item.name }}</a>
-    {% endfor %}
-    </div>
-    </div>
-  </div>
-
   <div style="margin-top:10px;" class="input-group">
   <input  id="note" type="text" class="form-control" name="note" placeholder="If you have allergies or prefer a certain condiment, let the chef know here! (Use this space for all plates)" aria-describedby="sizing-addon3">
   </div>
     </table>
     <div class="row justify-content-center">
-      <!-- normal button -->
-    <!--<input class="btn btn-primary" type="submit" value="Order"> -->
     <button name="ordering_post" class="btn btn-primary" type="submit" type="button" style="margin-top:15px;">Order <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
     </button>
   </div>
