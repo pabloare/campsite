@@ -6,7 +6,7 @@ from django.contrib.auth import logout
 import stripe
 from campsite import settings
 import requests
-from .models import Cafe, Owner, Terminal, Item
+from .models import Cafe, Owner, Terminal, Item, Menu, Size
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -83,6 +83,42 @@ def edit_terminal(request):
 
 
 @login_required()
+def edit_menu(request):
+    if request.method == 'POST':
+        cafe = request.user.owner.cafe
+        name = request.POST['name']
+        description = request.POST['description']
+        menus = Menu.objects.filter(cafe=cafe)
+        if menus.filter(name=name).exists():
+            return render(request, 'edit_menu.html', {'error': True})
+        menu = Menu(name=name, cafe=cafe, description=description, active=False)
+        menu.save()
+        return HttpResponseRedirect('/cafe/home/edit-menu')
+    return render(request, 'edit_menu.html', {'error': False})
+
+
+@login_required()
+def activate_menu(request, mid):
+    cafe = request.user.owner.cafe
+    menu = Menu.objects.get(id=mid, cafe=cafe)
+    if menu.active:
+        menu.active = False
+        menu.save()
+    elif not menu.active:
+        menu.active = True
+        menu.save()
+    return HttpResponseRedirect('/cafe/home/edit-menu')
+
+
+@login_required()
+def remove_menu(request, menu_id):
+    cafe = request.user.owner.cafe
+    menu = Menu.objects.get(id=menu_id, cafe=cafe)
+    menu.delete()
+    return HttpResponseRedirect('/cafe/home/edit-menu')
+
+
+@login_required()
 def remove_terminal(request, terminal_id):
     cafe = request.user.owner.cafe
     terminal = Terminal.objects.get(id=terminal_id, cafe=cafe)
@@ -108,16 +144,32 @@ def add_item(request):
     if request.method == 'POST':
         cafe = request.user.owner.cafe
         name = request.POST['name']
+        menu_id = request.POST['select-menu']
+        try:
+            menu = Menu.objects.get(id=menu_id)
+        except:
+            return render(request, 'edit_item.html', {'error': True})
         items = Item.objects.filter(cafe=cafe)
         if items.filter(name=name).exists():
             return render(request, 'edit_item.html', {'error': True})
         desc = request.POST['desc']
         time = request.POST['time']
         price = request.POST['price']
-        item = Item(cafe=cafe, name=name, description=desc, time_to_do=time, price=price)
+        item = Item(cafe=cafe, name=name, description=desc, time_to_do=time, price=price, menu=menu)
         item.save()
         return HttpResponseRedirect('/cafe/home/edit-item')
     return render(request, 'edit_item.html', {'error': False})
+
+
+@login_required()
+def add_item_size(request, item_id):
+    if request.method == 'POST':
+        name = request.POST['name']
+        item = Item.objects.get(id=item_id)
+        size = Size(name=name, item=item)
+        size.save()
+        return HttpResponseRedirect('/cafe/home/edit-item')
+    return render(request, 'edit_item.html')
 
 
 @login_required()

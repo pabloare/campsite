@@ -35,6 +35,7 @@ class Menu(models.Model):
     cafe = models.ForeignKey(Cafe, on_delete=models.CASCADE, related_name='menu', default='')
     name = models.CharField(max_length=500, default="")
     description = models.TextField(default="")
+    active = models.BooleanField(default=False)
 
 
 class Terminal(models.Model):
@@ -44,11 +45,20 @@ class Terminal(models.Model):
 
 
 class Item(models.Model):
-    menu = models.ForeignKey(Cafe, on_delete=models.CASCADE, related_name='item', default='')
+    cafe = models.ForeignKey(Cafe, on_delete=models.CASCADE, related_name='item', default='')
+    menu = models.ForeignKey(Menu, on_delete=models.CASCADE, related_name='item', default='')
     name = models.CharField(null=True, max_length=100)
     description = models.CharField(max_length=500, default="")
     time_to_do = models.IntegerField(default=0)
     price = models.FloatField(default=0.0)
+
+    def __str__(self):
+        return self.name
+
+
+class Size(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='size', default='')
+    name = models.CharField(null=True, max_length=100)
 
     def __str__(self):
         return self.name

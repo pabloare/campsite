@@ -1,0 +1,63 @@
+{% extends 'cafe-base.html' %}
+{% load static %}
+  {% block title%}
+  <title>Edit Menu</title>
+  <link rel="stylesheet" href="{% static 'edit-chef.css' %}" type="text/css">
+  {% endblock %}
+  {% block breadcrumbs %}
+  <li class="breadcrumb-item"><a href="/cafe/home/">Home</a></li>
+  <li class="breadcrumb-item active" aria-current="page">Menu</li>
+  {% endblock %}
+  {% block body %}
+  <div class="container">
+  <h1 class="display-6">Your Menus</h1>
+  <p class="lead">Add a Menu to your Cafe. Remember <em>the name has to be unique for each menu.</em></p>
+
+  {% if error == True %}
+  <div class="alert alert-danger alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong>Oops!</strong> There seems to exist another Menu with that name already. Try another one!
+  </div>
+
+  {% endif %}
+  <form class="register-form" action='' method="post">
+      {% csrf_token %}
+      <table>
+        <input type="text" class="form-control" aria-describedby="basic-addon1" placeholder="Menu name" name="name" required>
+          <input type="text" class="form-control" aria-describedby="basic-addon1" placeholder="Description" name="description" required>
+
+      </table>
+        <span class="input-group-btn">
+          <button class="btn btn-primary" type="submit" type="button">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true">Add + </span>
+          </button>
+        </span>
+  </form>
+  {% for menu in request.user.owner.cafe.menu.all %}
+<div class="ind-div">
+<h2 class="display-6"><i class="fa fa-user-circle" aria-hidden="true"></i>
+Name: {{ menu.name }} - Active : {{ menu.active }} {% if menu.active %}<i class="fa fa-circle" aria-hidden="true" style="color:green;"></i>
+{% else %}
+<i class="fa fa-circle-thin" aria-hidden="true"></i>
+{% endif %}
+</h2>
+{% if menu.active %}
+<a style="margin-top:1%;" class="btn btn-outline-secondary" href="/cafe/home/edit-menu/activate-menu/{{ menu.id }}">Deactivate</a>
+{% else %}
+<a style="margin-top:1%;" class="btn btn-outline-success" href="/cafe/home/edit-menu/activate-menu/{{ menu.id }}">Activate Menu</a>
+{% endif %}
+<h6 class="display-6"><a style="margin-top:1%;" class="btn btn-outline-danger" href="/cafe/home/edit-menu/remove-menu/{{ menu.id }}">Remove Menu
+</a></h6>
+</div>
+{% endfor %}
+
+<div style="float: right;" class="row justify-content-end goback">
+<a class="btn btn-outline-primary" href="/cafe/home/"><i class="fa fa-reply" aria-hidden="true"></i>
+Go Back
+</a>
+</div>
+
+</div>
+
+
+{% endblock %}

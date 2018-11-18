@@ -57,7 +57,7 @@
 </div>
 
 <div class="container mydiv">
-  <h1 class="display-5">Dishes <a href="/cafe/home/edit-item">  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+  <h1 class="display-5">Items <a href="/cafe/home/edit-item">  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 </a></h1>
   {% for item in request.user.owner.cafe.item.all %}
   <p>  Name: {{ item.name }}</p>
