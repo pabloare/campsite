@@ -1,12 +1,14 @@
 from django.urls import path
 from .views import home, login_home
 from .views import edit_terminal, remove_terminal, activate_terminal, add_item
-from .views import remove_item, logout_view, start, add_item_size
+from .views import remove_item, logout_view, start, add_item_size, user_home, user_order
 from .views import main, about_us, how_it_works, setup_success, edit_menu, remove_menu, activate_menu
 from django.contrib.auth.views import login
 
 urlpatterns = [
     path('', main),
+    path('user', user_home),
+    path('user/order', user_order),
     path('start', start),
     path('about-us', about_us),
     path('how-it-works', how_it_works),

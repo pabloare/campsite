@@ -11,7 +11,7 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
 def initial_view(request):
-    return HttpResponseRedirect('/user/')
+    return HttpResponseRedirect('cafe/user')
 
 
 def home(request):

@@ -6,9 +6,61 @@ from django.contrib.auth import logout
 import stripe
 from campsite import settings
 import requests
-from .models import Cafe, Owner, Terminal, Item, Menu, Size
+from .models import Cafe, Owner, Terminal, Item, Menu, Size, Customer, CustomerOrder
+from django.contrib.auth import authenticate, login
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
+
+
+def user_home(request):
+    if request.method == 'POST':
+        if "register" in request.POST:
+            register_customer(request)
+        if "log_in" in request.POST:
+            login_customer(request)
+        if "start_order" in request.POST:
+            start_order(request)
+    if request.user.is_authenticated:
+        cafes = Cafe.objects.all()
+        return render(request, 'cafe-user-home.html', {'cafes': cafes})
+    else:
+        return render(request, 'cafe-user-home.html')
+
+
+def start_order(request):
+    cafe_id = request.POST['select-cafe']
+    cafe = Cafe.objects.get(id=cafe_id)
+    customer = request.user.customer
+    order = CustomerOrder(cafe=cafe, customer=customer)
+    order.save()
+    return HttpResponseRedirect('/cafe/user/order')
+
+
+def login_customer(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        login(request, user)
+        return HttpResponseRedirect('cafe/user')
+    # TODO: Error handling when wrong credentials are given
+
+
+def register_customer(request):
+    username = request.POST['username']
+    user = User.objects.create(username=username)
+    email = request.POST['email']
+    password = request.POST['password']
+    user.set_password(password)
+    user.save()
+    customer = Customer(user=user, email=email)
+    customer.save()
+    return render(request,  'cafe-user-home.html')
+
+
+@login_required()
+def user_order(request):
+    return render(request, 'cafe-user-ordering.html')
 
 
 def main(request):

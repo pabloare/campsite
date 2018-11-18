@@ -9,6 +9,7 @@ from runner.models import Runner
 import stripe
 from campsite import settings
 import requests
+from django.contrib.auth import authenticate
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 

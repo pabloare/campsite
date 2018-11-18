@@ -25,6 +25,7 @@ class Owner(models.Model):
 
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='customer')
+    email = models.EmailField(max_length=150, null=True)
     is_owner = models.BooleanField(default=False)
 
     def __str__(self):
@@ -62,3 +63,9 @@ class Size(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class CustomerOrder(models.Model):
+    customer = models.OneToOneField(Customer, on_delete=models.CASCADE, related_name='order')
+    cafe = models.OneToOneField(Cafe, on_delete=models.CASCADE, related_name='order')
+    items = models.ManyToManyField(Item)
