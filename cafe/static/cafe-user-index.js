@@ -45,3 +45,6 @@ function orderItem() {
     }
 }
 
+function reloadItems() {
+    $("#payment").load("/cafe/order/reload")
+}

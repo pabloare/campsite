@@ -294,3 +294,6 @@ def order_size(request, item, order, note, size, amount):
         order.save()
     return render(request, 'cafe-user-payment.html')
 
+
+def order_reload(request):
+    return render(request, 'cafe-user-payment.html')

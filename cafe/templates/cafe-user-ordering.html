@@ -48,7 +48,6 @@
  <div id="menu-items" style="margin-top:10px;"class="input-group">
 
  </div>
-
     <div id="item-sizes" style="margin-top:10px;"class="input-group">
 
  </div>
@@ -67,6 +66,9 @@
 
 
   </div>
+{% if request.user.customer.order.item_object %}
+    <script>reloadItems()</script>
+{% endif %}
 <div id="payment">
 
 </div>
