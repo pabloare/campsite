@@ -20,17 +20,28 @@ function  getSizes() {
         $("#item-sizes").html("");
     }
 }
-
+let csrftoken = Cookies.get('csrftoken');
+$.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    });
 function orderItem() {
-    let menuDropdown = document.getElementById("select-menu");
     let itemDropdown = document.getElementById("select-item");
     let sizesDropdown = document.getElementById("select-size");
-    let menuID = menuDropdown.value;
     let itemID = itemDropdown.value;
-    let sizesID = sizesDropdown.value;
-    let amount = document.getElementById("amount");
-    let note = document.getElementById("note");
-    console.log("here");
-
+    let amount = document.getElementById("amount").value.toString();
+    let note = document.getElementById("note").value;
+    let orderID = document.getElementById("order_id").innerText;
+    if (note === "") {
+        note = "None"
+    }
+    if (sizesDropdown !== null) {
+        let sizesID = sizesDropdown.value;
+        $("#payment").load("/cafe/order", {"order_id": orderID, "note": note, "amount": amount, "item_id": itemID, "sizes_id": sizesID});
+    } else {
+        let sizesID = "null";
+        $("#payment").load("/cafe/order", {"order_id": orderID, "note": note, "amount": amount, "item_id": itemID, "sizes_id": sizesID});
+    }
 }
 

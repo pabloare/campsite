@@ -67,12 +67,18 @@ class Size(models.Model):
 
 
 class CustomerOrder(models.Model):
-    customer = models.OneToOneField(Customer, on_delete=models.CASCADE, related_name='order')
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='order')
     cafe = models.ForeignKey(Cafe, on_delete=models.CASCADE, related_name='order')
     total = models.FloatField(default=0.0)
+    updated_at = models.DateTimeField(auto_now=True)
 
 
 class ItemObject(models.Model):
-    item = models.OneToOneField(Item, on_delete=models.CASCADE, related_name="item_object")
-    size = models.OneToOneField(Size, on_delete=models.CASCADE, related_name="item_object")
+    item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name="item_object")
+    size = models.ForeignKey(Size, on_delete=models.CASCADE, related_name="item_object", null=True)
     order = models.ForeignKey(CustomerOrder, on_delete=models.CASCADE, related_name='item_object')
+    destination = models.ForeignKey(Terminal, on_delete=models.CASCADE, related_name='item_object', default='')
+    updated_at = models.DateTimeField(auto_now=True)
+    payed = models.BooleanField(default=False)
+    ready = models.BooleanField(default=False)
+    note = models.TextField(default="")

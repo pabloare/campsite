@@ -7,10 +7,10 @@
 <body>
  <div style="margin-top:30px; text-align:center;" class="container">
   <h4> Current Order </h4>
-  {% if request.user.customer.order.items%}
-  {% for item in request.user.customer.order.items.all %}
-  <div style="margin-top: 10px;" id="current-order">
-  <p class="lead">- {{ item.name }} - {{ item.price }} $ </p>
+  {% if request.user.customer.order.item_object %}
+  {% for item_object in request.user.customer.order.item_object.all %}
+  <div style="margin-top: 1vh;" id="current-order">
+  <p class="lead">- {{ item_object.size }} {{ item_object.item.name }}  ${{ item_object.item.price }} $ </p>
 </div>
   {% endfor %}
   <div style="margin-top: 10px;" id="current-order">

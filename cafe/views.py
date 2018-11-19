@@ -7,6 +7,7 @@ import stripe
 from campsite import settings
 import requests
 from .models import Cafe, Owner, Terminal, Item, Menu, Size, Customer, CustomerOrder
+from .models import ItemObject
 from django.contrib.auth import authenticate, login
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -250,3 +251,46 @@ def display_items(request, cafe_name, menu_id):
 def get_sizes(request, item_id):
     item = Item.objects.get(id=item_id)
     return render(request, 'display-sizes.html', {'sizes': item.size.all()})
+
+
+def order_item_size(request, order_id, note, amount, item_id, size_id):
+    if note is "null":
+        note = ""
+    order = CustomerOrder.objects.get(id=order_id)
+    item = Item.objects.get(id=item_id)
+    size = Size.objects.get(id=size_id)
+    for i in range(int(amount)):
+        item_object = ItemObject(item=item, size=size, order=order, destination=item.destination, note=note)
+        item_object.save()
+        order.total += item.price
+        order.save()
+    return render(request, 'cafe-user-payment.html')
+
+
+def order_item(request):
+    order_id = request.POST['order_id']
+    item_id = request.POST['item_id']
+    amount = request.POST['amount']
+    note = request.POST['note']
+    sizes_id = request.POST['sizes_id']
+    order = CustomerOrder.objects.get(id=order_id)
+    item = Item.objects.get(id=item_id)
+    if sizes_id is not "null":
+        size = Size.objects.get(id=sizes_id)
+        return order_size(request, item, order, note, size, amount)
+    for i in range(int(amount)):
+        item_object = ItemObject(item=item, order=order, destination=item.destination, note=note)
+        item_object.save()
+        order.total += item.price
+        order.save()
+    return render(request, 'cafe-user-payment.html')
+
+
+def order_size(request, item, order, note, size, amount):
+    for i in range(int(amount)):
+        item_object = ItemObject(item=item, order=order, destination=item.destination, note=note, size=size)
+        item_object.save()
+        order.total += item.price
+        order.save()
+    return render(request, 'cafe-user-payment.html')
+
