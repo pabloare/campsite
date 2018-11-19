@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment</title>
+</head>
+<body>
+ <div style="margin-top:30px; text-align:center;" class="container">
+  <h4> Current Order </h4>
+  {% if request.user.customer.order.items%}
+  {% for item in request.user.customer.order.items.all %}
+  <div style="margin-top: 10px;" id="current-order">
+  <p class="lead">- {{ item.name }} - {{ item.price }} $ </p>
+</div>
+  {% endfor %}
+  <div style="margin-top: 10px;" id="current-order">
+  <h5> Total: {{ request.user.customer.order.total|floatformat:2 }} $</h5>
+  </div>
+  {% else %}
+  <h6>- No current ordered dishes -</h6>
+  {% endif %}
+</div>
+
+
+<!-- make this form available once the user has selected at least one dish  JavaScript-- >
+<!-- change the action in form-- >
+
+<!-- PAYMENT FORMS -->
+<div class="row justify-content-center">
+<form action="/user/pay/{{ username }}/{{ res_name }}/{{ table_num }}/{{ seat_num }}" method="POST">
+  {% csrf_token %}
+  <script
+    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_Zz4ngDogsvBD0Dk3ydnqyWp0"
+    data-amount="{{order.total_stripe}}"
+    data-name="{{ res_name }}"
+    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+    data-locale="auto"
+    data-currency="cad">
+  </script>
+</form>
+
+</div>
+</body>
+</html>

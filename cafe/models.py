@@ -69,6 +69,10 @@ class Size(models.Model):
 class CustomerOrder(models.Model):
     customer = models.OneToOneField(Customer, on_delete=models.CASCADE, related_name='order')
     cafe = models.ForeignKey(Cafe, on_delete=models.CASCADE, related_name='order')
-    items = models.ManyToManyField(Item)
     total = models.FloatField(default=0.0)
 
+
+class ItemObject(models.Model):
+    item = models.OneToOneField(Item, on_delete=models.CASCADE, related_name="item_object")
+    size = models.OneToOneField(Size, on_delete=models.CASCADE, related_name="item_object")
+    order = models.ForeignKey(CustomerOrder, on_delete=models.CASCADE, related_name='item_object')

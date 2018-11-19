@@ -34,12 +34,12 @@
 </div>
 </div>
   <div class="row justify-content-center">
-    <form id="form" class="register-form" action='' method="post">
+    <form id="form" class="register-form" onsubmit="orderItem(); return false;" method="post">
     {% csrf_token %}
     <table>
       <div class="input-group" style="width: 40vh;">
       <select id="select-menu" name="select-menu" class="custom-select" onchange="displayItems()" required>
-          <option selected>Select a Menu to Browse From</option>
+          <option value="">Select a Menu to Browse From</option>
           {% for menu in request.user.customer.order.cafe.menu.all %}
           <option value="{{ menu.id }}">{{ menu.name }}</option>
           {% endfor %}
@@ -53,57 +53,23 @@
 
  </div>
  <div style="margin-top:10px;"class="input-group">
-          <input type="number" name="num_items" class="form-control"  placeholder="# Of Items" aria-describedby="sizing-addon1" required>
+          <input id="amount" type="number" name="num_items" class="form-control"  placeholder="# Of Items" aria-describedby="sizing-addon1" required>
       </div>
   <div style="margin-top:10px;" class="input-group">
   <input  id="note" type="text" class="form-control" name="note" placeholder="If you have allergies or prefer a certain condiment, let the chef know here! (Use this space for all plates)" aria-describedby="sizing-addon3">
   </div>
     </table>
     <div class="row justify-content-center">
-    <button name="ordering_post" class="btn btn-primary" type="submit" type="button" style="margin-top:15px;">Order <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+    <button id="order" name="ordering_post" class="btn btn-primary" type="submit" type="button" style="margin-top:15px;">Order <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
     </button>
   </div>
   </form>
 
 
   </div>
-  <div style="margin-top:30px; text-align:center;" class="container">
-  <h3> Current Order </h3>
-  {% if request.user.customer.order.items%}
-  {% for item in request.user.customer.order.items.all %}
-  <div style="margin-top: 10px;" id="current-order">
-  <p class="lead">- {{ item.name }} - {{ item.price }} $ </p>
-</div>
-  {% endfor %}
-  <div style="margin-top: 10px;" id="current-order">
-  <h4> Total: {{ request.user.customer.order.total|floatformat:2 }} $</h4>
-  </div>
-  {% else %}
-  <h6>- No current ordered dishes -</h6>
-  {% endif %}
-</div>
-
-
-<!-- make this form available once the user has selected at least one dish  JavaScript-- >
-<!-- change the action in form-- >
-
-<!-- PAYMENT FORMS -->
-<div class="row justify-content-center">
-<form action="/user/pay/{{ username }}/{{ res_name }}/{{ table_num }}/{{ seat_num }}" method="POST">
-  {% csrf_token %}
-  <script
-    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="pk_test_Zz4ngDogsvBD0Dk3ydnqyWp0"
-    data-amount="{{order.total_stripe}}"
-    data-name="{{ res_name }}"
-    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-    data-locale="auto"
-    data-currency="cad">
-  </script>
-</form>
+<div id="payment">
 
 </div>
-
 
     <script
     src="https://code.jquery.com/jquery-3.3.1.min.js"
