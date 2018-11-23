@@ -38,10 +38,9 @@ function orderItem() {
     }
     if (sizesDropdown !== null) {
         let sizesID = sizesDropdown.value;
-        $("#payment").load("/cafe/order", {"order_id": orderID, "note": note, "amount": amount, "item_id": itemID, "sizes_id": sizesID});
+        $("#payment").load("/cafe/order/size", {"order_id": orderID, "note": note, "amount": amount, "item_id": itemID, "sizes_id": sizesID});
     } else {
-        let sizesID = "null";
-        $("#payment").load("/cafe/order", {"order_id": orderID, "note": note, "amount": amount, "item_id": itemID, "sizes_id": sizesID});
+        $("#payment").load("/cafe/order", {"order_id": orderID, "note": note, "amount": amount, "item_id": itemID});
     }
 }
 

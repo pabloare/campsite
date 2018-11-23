@@ -67,7 +67,7 @@ class Size(models.Model):
 
 
 class CustomerOrder(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='order')
+    customer = models.OneToOneField(Customer, on_delete=models.CASCADE, related_name='order')
     cafe = models.ForeignKey(Cafe, on_delete=models.CASCADE, related_name='order')
     total = models.FloatField(default=0.0)
     updated_at = models.DateTimeField(auto_now=True)

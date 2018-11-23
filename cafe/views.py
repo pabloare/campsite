@@ -36,6 +36,7 @@ def start_order(request):
     order = CustomerOrder(cafe=cafe, customer=customer)
     order.save()
 
+
 def login_customer(request):
     username = request.POST['username']
     password = request.POST['password']
@@ -70,17 +71,17 @@ def main(request):
 
 
 def start(request):
-    return render(request, 'start.html')
+    return render(request, 'cafe-start.html')
 
 
 def about_us(request):
     # Render about us page
-    return render(request, 'about_us.html')
+    return render(request, 'cafe-about_us.html')
 
 
 def how_it_works(request):
     # Render How it works page
-    return render(request, 'how_it_works.html')
+    return render(request, 'cafe-how_it_works.html')
 
 
 def setup_success(request):
@@ -272,12 +273,8 @@ def order_item(request):
     item_id = request.POST['item_id']
     amount = request.POST['amount']
     note = request.POST['note']
-    sizes_id = request.POST['sizes_id']
     order = CustomerOrder.objects.get(id=order_id)
     item = Item.objects.get(id=item_id)
-    if sizes_id is not "null":
-        size = Size.objects.get(id=sizes_id)
-        return order_size(request, item, order, note, size, amount)
     for i in range(int(amount)):
         item_object = ItemObject(item=item, order=order, destination=item.destination, note=note)
         item_object.save()
@@ -286,7 +283,15 @@ def order_item(request):
     return render(request, 'cafe-user-payment.html')
 
 
-def order_size(request, item, order, note, size, amount):
+def order_item_size(request):
+    order_id = request.POST['order_id']
+    item_id = request.POST['item_id']
+    amount = request.POST['amount']
+    note = request.POST['note']
+    sizes_id = request.POST['sizes_id']
+    size = Size.objects.get(id=sizes_id)
+    order = CustomerOrder.objects.get(id=order_id)
+    item = Item.objects.get(id=item_id)
     for i in range(int(amount)):
         item_object = ItemObject(item=item, order=order, destination=item.destination, note=note, size=size)
         item_object.save()
@@ -297,3 +302,12 @@ def order_size(request, item, order, note, size, amount):
 
 def order_reload(request):
     return render(request, 'cafe-user-payment.html')
+
+
+@login_required()
+def logout_view(request):
+    order = request.user.customer.order
+    order.delete()
+    request.user.customer.order = None
+    request.user.customer.save()
+    return HttpResponseRedirect('/')

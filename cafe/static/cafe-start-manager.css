@@ -1,3 +1,9 @@
+* {
+  color: rgb(63, 77, 86);
+  font-weight: 500 !important;
+  font-family: Roboto, sans-serif;
+}
+
 .first-page{
   height: 85vh;
   background-image: url("/static/img/notified_header.svg");

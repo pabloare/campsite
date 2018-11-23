@@ -10,7 +10,11 @@
   {% if request.user.customer.order.item_object %}
   {% for item_object in request.user.customer.order.item_object.all %}
   <div style="margin-top: 1vh;" id="current-order">
+  {% if item_object.size %}
   <p class="lead">- {{ item_object.size }} {{ item_object.item.name }}  ${{ item_object.item.price }} $ </p>
+  {% else %}
+    <p class="lead">- {{ item_object.item.name }}  ${{ item_object.item.price }} $ </p>
+{% endif %}
 </div>
   {% endfor %}
   <div style="margin-top: 10px;" id="current-order">
@@ -32,8 +36,8 @@
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="pk_test_Zz4ngDogsvBD0Dk3ydnqyWp0"
-    data-amount="{{order.total_stripe}}"
-    data-name="{{ res_name }}"
+    data-amount="{{ request.user.customer.order.total }}"
+    data-name="{{ request.user.customer.order.cafe.name }}"
     data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
     data-locale="auto"
     data-currency="cad">
