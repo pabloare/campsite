@@ -76,7 +76,7 @@ class CustomerOrder(models.Model):
 class ItemObject(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name="item_object")
     size = models.ForeignKey(Size, on_delete=models.CASCADE, related_name="item_object", null=True)
-    order = models.ForeignKey(CustomerOrder, on_delete=models.CASCADE, related_name='item_object')
+    order = models.ForeignKey(CustomerOrder, on_delete=models.CASCADE, related_name='item_object', null=True)
     destination = models.ForeignKey(Terminal, on_delete=models.CASCADE, related_name='item_object', default='')
     updated_at = models.DateTimeField(auto_now=True)
     payed = models.BooleanField(default=False)

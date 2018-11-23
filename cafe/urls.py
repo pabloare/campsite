@@ -2,7 +2,7 @@ from django.urls import path
 from .views import home, login_home
 from .views import edit_terminal, remove_terminal, activate_terminal, add_item, display_items, get_sizes
 from .views import remove_item, logout_view, start, add_item_size, user_home, user_order
-from .views import order_item, order_reload, order_item_size
+from .views import order_item, order_reload, order_item_size, logout_user
 from .views import main, about_us, how_it_works, setup_success, edit_menu, remove_menu, activate_menu
 from django.contrib.auth.views import login
 
@@ -10,6 +10,7 @@ from django.contrib.auth.views import login
 urlpatterns = [
     path('', main),
     path('user', user_home),
+    path('logout', logout_user),
     path('user/logout', logout_view),
     # PATHS for dynamic display in User
     path('order', order_item),

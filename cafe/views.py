@@ -254,20 +254,6 @@ def get_sizes(request, item_id):
     return render(request, 'display-sizes.html', {'sizes': item.size.all()})
 
 
-def order_item_size(request, order_id, note, amount, item_id, size_id):
-    if note is "null":
-        note = ""
-    order = CustomerOrder.objects.get(id=order_id)
-    item = Item.objects.get(id=item_id)
-    size = Size.objects.get(id=size_id)
-    for i in range(int(amount)):
-        item_object = ItemObject(item=item, size=size, order=order, destination=item.destination, note=note)
-        item_object.save()
-        order.total += item.price
-        order.save()
-    return render(request, 'cafe-user-payment.html')
-
-
 def order_item(request):
     order_id = request.POST['order_id']
     item_id = request.POST['item_id']
@@ -307,7 +293,14 @@ def order_reload(request):
 @login_required()
 def logout_view(request):
     order = request.user.customer.order
+    order.item_object.all().delete()
     order.delete()
     request.user.customer.order = None
     request.user.customer.save()
+    return HttpResponseRedirect('/')
+
+
+@login_required()
+def logout_user(request):
+    logout(request)
     return HttpResponseRedirect('/')
