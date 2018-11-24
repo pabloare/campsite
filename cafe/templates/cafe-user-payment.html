@@ -13,7 +13,7 @@
   {% if item_object.size %}
   <p class="lead">- {{ item_object.size }} {{ item_object.item.name }}  ${{ item_object.item.price }} $ </p>
   {% else %}
-    <p class="lead">- {{ item_object.item.name }}  ${{ item_object.item.price }} $ </p>
+    <p class="lead">- {{ item_object.item.name }}  ${{ item_object.item.price }} $</p>
 {% endif %}
 </div>
   {% endfor %}
@@ -22,7 +22,7 @@
   </div>
   {% else %}
   <h6>- No current ordered dishes -</h6>
-  {% endif %}
+\  {% endif %}
 </div>
 
 

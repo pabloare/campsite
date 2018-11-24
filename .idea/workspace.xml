@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ce1696e1-8f28-48f6-afd7-8f219f9eb1cc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cafe/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/cafe/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cafe/static/cafe-user-home.js" beforeDir="false" afterPath="$PROJECT_DIR$/cafe/static/cafe-user-home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cafe/templates/cafe-user-home.html" beforeDir="false" afterPath="$PROJECT_DIR$/cafe/templates/cafe-user-home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cafe/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/cafe/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cafe/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/cafe/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cafe/templates/cafe-user-payment.html" beforeDir="false" afterPath="$PROJECT_DIR$/cafe/templates/cafe-user-payment.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,8 +46,8 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="7" />
-          <entry key="html" value="85" />
-          <entry key="js" value="18" />
+          <entry key="html" value="88" />
+          <entry key="js" value="19" />
           <entry key="pstat" value="1" />
           <entry key="py" value="52" />
         </counts>
@@ -59,8 +55,8 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="7" />
-          <entry key="HTML" value="85" />
-          <entry key="JavaScript" value="18" />
+          <entry key="HTML" value="88" />
+          <entry key="JavaScript" value="19" />
           <entry key="Profiler Session" value="1" />
           <entry key="Python" value="52" />
         </counts>
@@ -68,16 +64,16 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="85" />
-          <entry key="html" value="3391" />
-          <entry key="js" value="1795" />
+          <entry key="html" value="3604" />
+          <entry key="js" value="2326" />
           <entry key="py" value="5942" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="85" />
-          <entry key="HTML" value="3391" />
-          <entry key="JavaScript" value="1795" />
+          <entry key="HTML" value="3604" />
+          <entry key="JavaScript" value="2326" />
           <entry key="Python" value="5942" />
         </counts>
       </usages-collector>
@@ -88,8 +84,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cafe/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="659">
-              <caret line="302" column="17" lean-forward="true" selection-start-line="302" selection-start-column="17" selection-end-line="302" selection-end-column="17" />
+            <state relative-caret-position="1455">
+              <caret line="304" column="19" lean-forward="true" selection-start-line="304" selection-start-column="19" selection-end-line="304" selection-end-column="19" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
                 <marker date="1543007482762" expanded="true" signature="1268:1271" ph="..." />
@@ -101,18 +97,6 @@
                 <marker date="1543007482762" expanded="true" signature="8631:8684" ph="..." />
                 <marker date="1543007482762" expanded="true" signature="8716:9312" ph="..." />
                 <marker date="1543007482762" expanded="true" signature="9690:9695" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cafe/templates/cafe-user-home.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="610">
-              <caret line="92" column="6" lean-forward="true" selection-start-line="92" selection-start-column="6" selection-end-line="92" selection-end-column="6" />
-              <folding>
-                <element signature="n#style#0;n#small#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -141,7 +125,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cafe/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="168">
@@ -153,20 +137,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cafe/templates/cafe-user-ordering.html">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/cafe/static/cafe-user-index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-260">
-              <caret line="35" column="46" selection-start-line="35" selection-start-column="46" selection-end-line="35" selection-end-column="46" />
+            <state relative-caret-position="515">
+              <caret line="39" column="42" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cafe/templates/cafe-user-payment.html">
+        <entry file="file://$PROJECT_DIR$/cafe/templates/cafe-user-ordering.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="886">
-              <caret line="39" column="55" selection-start-line="39" selection-start-column="55" selection-end-line="39" selection-end-column="55" />
+            <state relative-caret-position="569">
+              <caret line="73" column="6" selection-start-line="73" selection-start-column="6" selection-end-line="73" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -232,14 +216,14 @@
         <option value="$PROJECT_DIR$/cafe/static/cafe-start-manager.css" />
         <option value="$PROJECT_DIR$/cafe/templates/cafe-start.html" />
         <option value="$PROJECT_DIR$/cafe/templates/cafe-how_it_works.html" />
-        <option value="$PROJECT_DIR$/cafe/static/cafe-user-index.js" />
-        <option value="$PROJECT_DIR$/cafe/templates/cafe-user-payment.html" />
-        <option value="$PROJECT_DIR$/cafe/templates/cafe-user-ordering.html" />
         <option value="$PROJECT_DIR$/cafe/models.py" />
-        <option value="$PROJECT_DIR$/cafe/static/cafe-user-home.js" />
         <option value="$PROJECT_DIR$/cafe/templates/cafe-user-home.html" />
         <option value="$PROJECT_DIR$/cafe/views.py" />
         <option value="$PROJECT_DIR$/cafe/urls.py" />
+        <option value="$PROJECT_DIR$/cafe/static/cafe-user-home.js" />
+        <option value="$PROJECT_DIR$/cafe/templates/cafe-user-payment.html" />
+        <option value="$PROJECT_DIR$/cafe/templates/cafe-user-ordering.html" />
+        <option value="$PROJECT_DIR$/cafe/static/cafe-user-index.js" />
       </list>
     </option>
   </component>
@@ -415,29 +399,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/cafe/templates/edit_menu.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="623">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manager/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-493">
-          <caret line="1" column="16" selection-start-line="1" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/user/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/manager/static/main.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -648,6 +609,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/cafe/templates/cafe-user-home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="610">
+          <caret line="92" column="6" lean-forward="true" selection-start-line="92" selection-start-column="6" selection-end-line="92" selection-end-column="6" />
+          <folding>
+            <element signature="n#style#0;n#small#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cafe/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chef/templates/login_chef.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chef/templates/home_chef.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chef/templates/chef-orders.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/cafe/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="758">
@@ -660,27 +650,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cafe/static/cafe-user-index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="960">
-          <caret line="40" column="47" selection-start-line="40" selection-end-line="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cafe/templates/cafe-user-ordering.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-260">
-          <caret line="35" column="46" selection-start-line="35" selection-start-column="46" selection-end-line="35" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cafe/templates/cafe-user-payment.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="886">
-          <caret line="39" column="55" selection-start-line="39" selection-start-column="55" selection-end-line="39" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cafe/static/cafe-user-home.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -688,20 +657,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cafe/templates/cafe-user-home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="610">
-          <caret line="92" column="6" lean-forward="true" selection-start-line="92" selection-start-column="6" selection-end-line="92" selection-end-column="6" />
-          <folding>
-            <element signature="n#style#0;n#small#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cafe/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="659">
-          <caret line="302" column="17" lean-forward="true" selection-start-line="302" selection-start-column="17" selection-end-line="302" selection-end-column="17" />
+        <state relative-caret-position="1455">
+          <caret line="304" column="19" lean-forward="true" selection-start-line="304" selection-start-column="19" selection-end-line="304" selection-end-column="19" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
             <marker date="1543007482762" expanded="true" signature="1268:1271" ph="..." />
@@ -717,13 +676,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cafe/urls.py">
+    <entry file="file://$PROJECT_DIR$/cafe/templates/cafe-user-payment.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="432">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cafe/templates/cafe-user-ordering.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="569">
+          <caret line="73" column="6" selection-start-line="73" selection-start-column="6" selection-end-line="73" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cafe/static/cafe-user-index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="515">
+          <caret line="39" column="42" selection-start-line="39" selection-start-column="42" selection-end-line="39" selection-end-column="42" />
         </state>
       </provider>
     </entry>
