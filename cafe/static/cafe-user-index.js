@@ -41,6 +41,19 @@ function orderItem() {
         $("#payment").load("/cafe/order/size", {"order_id": orderID, "note": note, "amount": amount, "item_id": itemID, "sizes_id": sizesID});
     } else {
         $("#payment").load("/cafe/order", {"order_id": orderID, "note": note, "amount": amount, "item_id": itemID});
+        // $.ajax({
+        //     type: 'post',
+        //     url: "/cafe/order",
+        //      data: {
+        //         order_id : orderID,
+        //         note: note,
+        //         amount: amount,
+        //         item_id: itemID
+        // },
+        //     success: function(result) {
+        //     $(result).prependTo("#payment");
+        //     }
+        // });
     }
 }
 

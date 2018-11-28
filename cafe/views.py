@@ -304,3 +304,25 @@ def logout_view(request):
 def logout_user(request):
     logout(request)
     return HttpResponseRedirect('/')
+
+
+# Terminal Views -------------------------------------------------- TERMINAL VIEWS ----------------
+def terminal_login(request):
+    error = False
+    if request.method == 'POST':
+        cafe_id = request.POST['select-cafe']
+        terminal_name = request.POST['terminal-name']
+        cafe = Cafe.objects.get(id=cafe_id)
+        terminals = Terminal.objects.filter(cafe=cafe)
+        if terminals.filter(name=terminal_name).exists():
+            terminal = terminals.get(name=terminal_name)
+            return HttpResponseRedirect('terminal/' + terminal.name + "/" + cafe.id)
+        else:
+            error = True
+    return render(request, 'terminal/login-terminal.html', {'cafes': Cafe.objects.all(), 'error': error})
+
+
+def terminal_main(request, terminal_name, cafe_id):
+    cafe = Cafe.objects.get(id=cafe_id)
+    terminal = Terminal.objects.filter(cafe=cafe).get(name=terminal_name)
+    return render(request, 'terminal/home-terminal.html', {'terminal': terminal})

@@ -1,0 +1,25 @@
+{% extends 'login_chef.html' %}
+
+{% block title %}
+<title> Ordering </title>
+    {% load static %}
+{% endblock %}
+{% block body %}
+<div class="container">
+<div class="row justify-content-center">
+<h1>Welcome Back!</h1>
+</div>
+<div class="row justify-content-center">
+<a href="/chef/">Logout</a>
+</div>
+  <!-- USING THESE AS VARIABLES TO RENDER, DO NOT TOUCH-->
+  <p class="res_name">{{ chef.restaurant.id }}</p>
+  <p class="chef_id">{{ chef.chef_id }}</p>
+  <div class="orders">
+
+  </div>
+</div>
+{% endblock %}
+{% block jslinks %}
+<script type="text/javascript" src="{% static 'chef-jquery.js' %}"></script>
+{% endblock %}

@@ -4,6 +4,7 @@ from .views import edit_terminal, remove_terminal, activate_terminal, add_item, 
 from .views import remove_item, logout_view, start, add_item_size, user_home, user_order
 from .views import order_item, order_reload, order_item_size, logout_user
 from .views import main, about_us, how_it_works, setup_success, edit_menu, remove_menu, activate_menu
+from .views import terminal_login, terminal_main
 from django.contrib.auth.views import login
 
 
@@ -36,5 +37,12 @@ urlpatterns = [
     path('home/edit-item', add_item),
     path('home/edit-item/add-size/<item_id>', add_item_size),
     path('home/edit-item/remove-item/<item_id>', remove_item),
-    path('home/logout', logout_view)
+    path('home/logout', logout_view),
+    # Terminal Routes #########
+    path('terminal', terminal_login),
+    path('terminal/<terminal_id>/<cafe_id>', terminal_main),
+    # path('ready/<res_id>/<chef_id>/<order_id>', terminal_ready),
+    # path('home/update/<chef_id>/<res_id>', render_orders),
+    # path('home/<str:join_id>', dish_complete),
+    # path('home/autoserve/<order_id>/<chef_id>', dish_complete_autoserve),
 ]

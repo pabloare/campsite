@@ -1,0 +1,17 @@
+.order_div {
+  border: 1px solid gray;
+  padding: 1%;
+  border-radius:10px;
+  max-height: 159px;
+  overflow-y: scroll;
+  margin-top:10px
+
+}
+
+.order_div_autoserve {
+  border: 1px solid gray;
+  padding: 1%;
+  border-radius:10px;
+  margin-top:10px
+
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% block title %}
+  <title>Chef Login</title>
+  {% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+</head>
+<body>
+  {% block body %}
+    <div style="margin-top:2%;"class="row justify-content-center">
+    <h4 class="display-4">Terminal Login     <i class="fa fa-cubes" aria-hidden="true"></i></h4>
+  </div>
+  <div  style="margin-top:2%;"class="container">
+  <form class="register-form" action='' method="post">
+    {% if error %}
+    <div class="alert alert-warning alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <strong>Oops!</strong> That Terminal name does not exist. Contact your Manager for help!
+    </div>
+    {% endif %}
+      {% csrf_token %}
+      <table>
+
+        <div class="input-group input-group-md">
+        <input class="form-control" type="text" placeholder="Your Chef ID" name="chef_id" required>
+      </div>
+         <p> Forgot Terminal Name? Ask your manager for it!</p>
+         <div class="input-group input-group-lg">
+
+         <select name="select-res" class="custom-select" required>
+     <option selected>Select Cafe</option>
+     {% for cafe in cafes %}
+     <option value="{{ cafe.id }}">{{ cafe.name }}</option>
+     {% endfor %}
+     </select>
+     </div>
+      </table>
+      <button class="btn btn-primary" type="submit" type="button" style="margin-top:1%;">Log In <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+      </button>
+      <a class="btn btn-outline-primary" style="margin-top:1%;" href="/"class="goback">Go back</a>
+    </form>
+  </div>
+  {% endblock %}
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+  {% block jslinks %}
+  {% endblock %}
+</body>
+</html>
