@@ -27,12 +27,12 @@
       <table>
 
         <div class="input-group input-group-md">
-        <input class="form-control" type="text" placeholder="Your Chef ID" name="chef_id" required>
+        <input class="form-control" type="text" placeholder="Terminal Name" name="terminal-name" required>
       </div>
          <p> Forgot Terminal Name? Ask your manager for it!</p>
          <div class="input-group input-group-lg">
 
-         <select name="select-res" class="custom-select" required>
+         <select name="select-cafe" class="custom-select" required>
      <option selected>Select Cafe</option>
      {% for cafe in cafes %}
      <option value="{{ cafe.id }}">{{ cafe.name }}</option>

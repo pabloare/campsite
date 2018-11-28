@@ -316,7 +316,7 @@ def terminal_login(request):
         terminals = Terminal.objects.filter(cafe=cafe)
         if terminals.filter(name=terminal_name).exists():
             terminal = terminals.get(name=terminal_name)
-            return HttpResponseRedirect('terminal/' + terminal.name + "/" + cafe.id)
+            return HttpResponseRedirect('/cafe/terminal/' + terminal.name + "/" + str(cafe.id))
         else:
             error = True
     return render(request, 'terminal/login-terminal.html', {'cafes': Cafe.objects.all(), 'error': error})
@@ -326,3 +326,15 @@ def terminal_main(request, terminal_name, cafe_id):
     cafe = Cafe.objects.get(id=cafe_id)
     terminal = Terminal.objects.filter(cafe=cafe).get(name=terminal_name)
     return render(request, 'terminal/home-terminal.html', {'terminal': terminal})
+
+
+def update_terminal(request):
+    if request.method == 'POST':
+        cafe_id = request.POST['cafe_id']
+        terminal_name = request.POST['terminal_name']
+        cafe = Cafe.objects.get(id=cafe_id)
+        terminal = Terminal.objects.filter(cafe=cafe).get(name=terminal_name)
+        # TODO: Change payed to True, false just for testing
+        # TODO: If only one terminal in cafe send all the orders in cafe as one order-----------
+        items = ItemObject.objects.filter(destination=terminal, ready=False, payed=False).order_by('updated_at')
+        return render(request, 'terminal/orders-terminal.html', {'items': items})

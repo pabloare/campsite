@@ -1,4 +1,4 @@
-{% extends 'login_chef.html' %}
+{% extends 'terminal/login-terminal.html' %}
 
 {% block title %}
 <title> Ordering </title>
@@ -10,16 +10,17 @@
 <h1>Welcome Back!</h1>
 </div>
 <div class="row justify-content-center">
-<a href="/chef/">Logout</a>
+<a href="/cafe/terminal">Logout</a>
 </div>
   <!-- USING THESE AS VARIABLES TO RENDER, DO NOT TOUCH-->
-  <p class="res_name">{{ chef.restaurant.id }}</p>
-  <p class="chef_id">{{ chef.chef_id }}</p>
-  <div class="orders">
-
+  <p id="cafe_id" hidden>{{ terminal.cafe.id }}</p>
+  <p id="terminal_name" hidden>{{ terminal.name }}</p>
+  <div id="orders">
   </div>
 </div>
 {% endblock %}
 {% block jslinks %}
-<script type="text/javascript" src="{% static 'chef-jquery.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+
+<script type="text/javascript" src="{% static 'terminal.js' %}"></script>
 {% endblock %}
